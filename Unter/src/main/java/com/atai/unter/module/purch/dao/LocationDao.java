@@ -11,4 +11,4 @@ public interface LocationDao {
 	public List<Location> listLocations();
 	public Location getLocationById(int id);
 	public void removeLocation(int id);
-}
+} 

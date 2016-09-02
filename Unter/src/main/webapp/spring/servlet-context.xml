@@ -8,8 +8,8 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 	<annotation-driven />
-	
-	<context:component-scan base-package="com.pluralsight.controller"/>
+	<!--  base package to start scanning annotations. Do not change. kanchana -->
+	<context:component-scan base-package="com.atai.unter.module"/>
 	
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -17,22 +17,23 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!--  data source creation change user name and password accordingl. kanchana -->
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/spring" />
+			value="jdbc:mysql://localhost:3306/unter" />
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="arjunkan3+" />
 	</beans:bean>
 	
-	<!-- Hibernate 4 SessionFactory Bean definition -->
+	<!-- Hibernate 5 SessionFactory Bean definition. Add your beans under <beans:list> defined in the model package. kanchana-->
 	<beans:bean id="hibernate5AnnotatedSessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value>com.journaldev.spring.model.Person</beans:value>
+				<beans:value>com.atai.unter.module.purch.model.Location</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -44,14 +45,14 @@
 		</beans:property>
 	</beans:bean>
 	
-	<beans:bean id="personDAO" class="com.journaldev.spring.dao.PersonDAOImpl">
+	<beans:bean id="locationDAO" class="com.atai.unter.module.purch.dao.LocationDaoImpl">
 		<beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</beans:bean>
-	<beans:bean id="personService" class="com.journaldev.spring.service.PersonServiceImpl">
+	<beans:bean id="locationService" class="com.atai.unter.module.purch.services.LocationServiceImpl">
 		<beans:property name="personDAO" ref="personDAO"></beans:property>
 	</beans:bean>
-	<context:component-scan base-package="com.journaldev.spring" />
 	
+	<!--  To declarative handling of spring transactions Do not modify kanchana -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">

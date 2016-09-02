@@ -1,4 +1,4 @@
-AREATE database unter;
+CREATE database unter;
 
 CREATE TABLE location_tab (
 id INT(12) SIGNED AUTO_INCREMENT PRIMARY KEY,

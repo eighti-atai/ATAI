@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>CustomerOrderController</servlet-name>
+  	<display-name>CustomerOrderController</display-name>
+  	<description></description>
+  	<servlet-class>com.atai.unter.module.order.controller.CustomerOrderController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CustomerOrderController</servlet-name>
+  	<url-pattern>/CustomerOrderController</url-pattern>
+  </servlet-mapping>
 </web-app>

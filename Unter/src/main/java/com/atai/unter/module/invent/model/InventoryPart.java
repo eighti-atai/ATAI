@@ -10,16 +10,20 @@ import javax.persistence.Table;
 public class InventoryPart {
 	
 	@Id
-	@Column(name="part_no")
-	private String partNo;
+	@Column(name="inv_part_no")
+	private String invPartNo;
 	private String description;
 	private String uom;
+	@Column(name="reorder_level")
+	private double reorderLevel;
+	@Column(name="safety_stock_level")
+	private double safetyStockLevel;
 	
-	public String getPartNo() {
-		return partNo;
+	public String getInvPartNo() {
+		return invPartNo;
 	}
-	public void setPartNo(String partNo) {
-		this.partNo = partNo;
+	public void setInvPartNo(String invPartNo) {
+		this.invPartNo = invPartNo;
 	}
 	public String getDescription() {
 		return description;
@@ -33,4 +37,17 @@ public class InventoryPart {
 	public void setUom(String uom) {
 		this.uom = uom;
 	}
+	public double getReorderLevel() {
+		return reorderLevel;
+	}
+	public void setReorderLevel(double reorderLevel) {
+		this.reorderLevel = reorderLevel;
+	}
+	public double getSafetyStockLevel() {
+		return safetyStockLevel;
+	}
+	public void setSafetyStockLevel(double safetyStockLevel) {
+		this.safetyStockLevel = safetyStockLevel;
+	}
+	
 }

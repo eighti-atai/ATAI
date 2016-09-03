@@ -7,6 +7,6 @@ public interface InventoryPartDao {
 	public void addInventoryPart(InventoryPart invPart);
 	public void updateInventoryPart(InventoryPart invPart);
 	public List<InventoryPart> listInventoryParts();
-	public InventoryPart getInventoryPartByNo(String sPartNo);
-	public void removeInventoryPart(String sPartNo);
+	public InventoryPart getInventoryPartByNo(String invPartNo);
+	public void removeInventoryPart(String invPartNo);
 }

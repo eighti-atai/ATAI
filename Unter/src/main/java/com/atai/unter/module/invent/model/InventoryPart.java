@@ -12,10 +12,14 @@ public class InventoryPart {
 	@Id
 	@Column(name="inv_part_no")
 	private String invPartNo;
+	
 	private String description;
+	
 	private String uom;
+	
 	@Column(name="reorder_level")
 	private double reorderLevel;
+	
 	@Column(name="safety_stock_level")
 	private double safetyStockLevel;
 	

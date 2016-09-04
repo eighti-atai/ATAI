@@ -22,9 +22,9 @@
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/unter" />
+			value="jdbc:mysql://localhost:3306/test" />
 		<beans:property name="username" value="root" />
-		<beans:property name="password" value="arjunkan3+" />
+		<beans:property name="password" value="admin" />
 	</beans:bean>
 	
 	<!-- Hibernate 5 SessionFactory Bean definition. Add your beans under <beans:list> defined in the model package. kanchana-->
@@ -34,6 +34,7 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.atai.unter.module.purch.model.Location</beans:value>
+				<beans:value>com.atai.unter.module.invent.model.InventoryPart</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -45,11 +46,18 @@
 		</beans:property>
 	</beans:bean>
 	
-	<beans:bean id="locationDAO" class="com.atai.unter.module.purch.dao.LocationDaoImpl">
+	<!--<beans:bean id="locationDAO" class="com.atai.unter.module.purch.dao.LocationDaoImpl">
 		<beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</beans:bean>
 	<beans:bean id="locationService" class="com.atai.unter.module.purch.services.LocationServiceImpl">
 		<beans:property name="personDAO" ref="personDAO"></beans:property>
+	</beans:bean>-->
+	
+	<beans:bean id="inventoryPartDao" class="com.atai.unter.module.invent.dao.InventoryPartDaoImpl">
+		<beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="invPartService" class="com.atai.unter.module.invent.service.InventoryPartServiceImpl">
+		<beans:property name="invPartDao" ref="inventoryPartDao"></beans:property>
 	</beans:bean>
 	
 	<!--  To declarative handling of spring transactions Do not modify kanchana -->

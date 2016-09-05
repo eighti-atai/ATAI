@@ -13,7 +13,7 @@ import com.atai.unter.module.invent.model.InventoryPart;
 public class InventoryPartController {
 	
 	private InventoryPartService invPartService;
-
+ 
 	@Autowired(required=true)
 	@Qualifier(value="invPartService")
 	public void setInvPartService(InventoryPartService invPartService) {

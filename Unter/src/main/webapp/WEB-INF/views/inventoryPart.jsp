@@ -1,19 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<link href=”webjars/bootstrap/3.3.7-1/css/bootstrap.min.css” rel=”stylesheet” type=”text/css” />
-</head>
+<title>Insert title here</title>   
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+    rel="stylesheet">
+</head> 
 <body>
 
 <div class="container">
 <h3>Persons List</h3>
 <c:if test="${!empty listInvParts}">
-	<table class="table table-inverse">
+	<table class="table table-striped">
 	<thead>
 	<tr>
 		<th width="80">Inventory Part No</th>
@@ -43,7 +41,7 @@
 	</table>
 </c:if>
 </div>
-<script src=”webjars/bootstrap/3.3.7-1/js/bootstrap.min.js”></script>
-<script src=”webjars/jquery/3.1.0/js/bootstrap.min.js”></script>
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>

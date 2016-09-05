@@ -1,50 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<!--<beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">-->
+		
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<annotation-driven />
 	<!--  base package to start scanning annotations. Do not change. kanchana -->
 	<context:component-scan base-package="com.atai.unter.module"/>
 	
-	<beans:bean
+	
+	<mvc:annotation-driven/>
+	
+	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 	
 	<!--  data source creation change user name and password accordingl. kanchana -->
-	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/test" />
-		<beans:property name="username" value="root" />
-		<beans:property name="password" value="admin" />
-	</beans:bean>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/unter" />
+		<property name="username" value="root" />
+		<property name="password" value="admin" />
+	</bean>
 	
 	<!-- Hibernate 5 SessionFactory Bean definition. Add your beans under <beans:list> defined in the model package. kanchana-->
-	<beans:bean id="hibernate5AnnotatedSessionFactory"
+	<bean id="hibernate5AnnotatedSessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<beans:property name="dataSource" ref="dataSource" />
-		<beans:property name="annotatedClasses">
-			<beans:list>
-				<beans:value>com.atai.unter.module.purch.model.Location</beans:value>
-				<beans:value>com.atai.unter.module.invent.model.InventoryPart</beans:value>
-			</beans:list>
-		</beans:property>
-		<beans:property name="hibernateProperties">
-			<beans:props>
-				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
-				</beans:prop>
-				<beans:prop key="hibernate.show_sql">true</beans:prop>
-			</beans:props>
-		</beans:property>
-	</beans:bean>
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.atai.unter.module.purch.model.Location</value>
+				<value>com.atai.unter.module.invent.model.InventoryPart</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
 	
 	<!--<beans:bean id="locationDAO" class="com.atai.unter.module.purch.dao.LocationDaoImpl">
 		<beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
@@ -53,18 +63,26 @@
 		<beans:property name="personDAO" ref="personDAO"></beans:property>
 	</beans:bean>-->
 	
-	<beans:bean id="inventoryPartDao" class="com.atai.unter.module.invent.dao.InventoryPartDaoImpl">
-		<beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
-	</beans:bean>
-	<beans:bean id="invPartService" class="com.atai.unter.module.invent.service.InventoryPartServiceImpl">
-		<beans:property name="invPartDao" ref="inventoryPartDao"></beans:property>
-	</beans:bean>
+	<bean id="inventoryPartDao" class="com.atai.unter.module.invent.dao.InventoryPartDaoImpl">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>
+	<bean id="invPartService" class="com.atai.unter.module.invent.service.InventoryPartServiceImpl">
+		<property name="invPartDao" ref="inventoryPartDao"></property>
+	</bean>
+	
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+	<!--mvc:resources mapping="/public/**" location="classpath:/public/"/>
+	<mvc:resources mapping="/resources/**" location="classpath:/META-INF/resources/" />
+	<mvc:resources mapping="/webjars/**" location="/webjars/"/>
+	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/-->
 	
 	<!--  To declarative handling of spring transactions Do not modify kanchana -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
-	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
-	</beans:bean>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>
 	
-</beans:beans>
+<!--</beans:beans>-->
+</beans>

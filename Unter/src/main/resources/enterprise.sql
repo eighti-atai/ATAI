@@ -1,0 +1,6 @@
+CREATE TABLE address_tab (
+address_id INT(12) SIGNED AUTO_INCREMENT PRIMARY KEY,
+street VARCHAR(100) NOT NULL,
+city 	VARCHAR(100) NOT NULL,
+country VARCHAR(100)
+);

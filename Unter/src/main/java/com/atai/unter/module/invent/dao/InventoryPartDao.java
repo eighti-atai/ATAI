@@ -1,7 +1,7 @@
 package com.atai.unter.module.invent.dao;
 
 import java.util.List;
-import com.atai.unter.module.invent.model.*;
+import com.atai.unter.module.invent.model.InventoryPart;
 
 public interface InventoryPartDao {
 	public void addInventoryPart(InventoryPart invPart);

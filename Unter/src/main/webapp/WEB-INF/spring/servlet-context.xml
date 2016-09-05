@@ -45,6 +45,7 @@
 			<list>
 				<value>com.atai.unter.module.purch.model.Location</value>
 				<value>com.atai.unter.module.invent.model.InventoryPart</value>
+				<value>com.atai.unter.module.enterprise.model.Address</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -68,6 +69,13 @@
 	</bean>
 	<bean id="invPartService" class="com.atai.unter.module.invent.service.InventoryPartServiceImpl">
 		<property name="invPartDao" ref="inventoryPartDao"></property>
+	</bean>
+	
+	<bean id="addressDao" class="com.atai.unter.module.enterprise.dao.AddressDaoImpl">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>
+	<bean id="addressService" class="com.atai.unter.module.enterprise.service.AddressServiceImpl">
+		<property name="addressDao" ref="addressDao"></property>
 	</bean>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />

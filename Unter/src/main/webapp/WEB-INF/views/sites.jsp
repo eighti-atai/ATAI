@@ -7,6 +7,67 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- ----------------------------Add Site------------------------------------ -->
+	<h1>
+		Add a Site
+	</h1>
+	<c:url var="addAction" value="/site/add" ></c:url>
+	<form:form action="${addAction}" commandName="site">
+		<table>
+			<tr>
+				<td>
+					<form:label path="siteId">
+						<spring:message text="Site ID"/>
+					</form:label>
+				</td>
+				<td>
+					<form:input path="siteId" />
+				</td> 
+			</tr>
+			<tr>
+				<td>
+					<form:label path="addressId">
+						<spring:message text="Address ID"/>
+					</form:label>
+				</td>
+				<td>
+					<form:input path="addressId" />
+				</td> 
+			</tr>
+			<tr>
+				<td>
+					<form:label path="phoneNo1">
+						<spring:message text="Phone No 1"/>
+					</form:label>
+				</td>
+				<td>
+					<form:input path="phoneNo1" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<form:label path="phoneNo2">
+						<spring:message text="Phone No 2"/>
+					</form:label>
+				</td>
+				<td>
+					<form:input path="phoneNo2" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1">
+					<!--<c:if test="${!empty site.siteId}">
+						<input type="submit"
+							value="<spring:message text="Edit Site"/>" />
+					</c:if> -->
+					<input type="submit"
+							value="<spring:message text="Add Site"/>" />
+				</td>
+			</tr>
+		</table>	
+	</form:form>
+<br>
+	<!-- ----------------------------List Sites---------------------------------- -->
 	<div class="container">
 		<h3>Site List</h3>
 		<c:if test="${!empty listSites}">

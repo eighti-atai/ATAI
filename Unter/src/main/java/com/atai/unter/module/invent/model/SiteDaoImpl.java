@@ -1,4 +1,4 @@
-package com.atai.unter.module.enterprise.dao;
+package com.atai.unter.module.invent.model;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import com.atai.unter.generic.interfaces.DataAcccessObject;
-import com.atai.unter.module.invent.model.Site;
 
 @Repository
 public class SiteDaoImpl implements DataAcccessObject<Site>{

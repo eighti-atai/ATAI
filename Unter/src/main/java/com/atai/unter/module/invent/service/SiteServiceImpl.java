@@ -11,6 +11,12 @@ import com.atai.unter.module.invent.model.Site;
 @Service
 public class SiteServiceImpl implements SiteService{
 	private SiteDao siteDao;
+	
+	
+
+	public void setSiteDao(SiteDao siteDao) {
+		this.siteDao = siteDao;
+	}
 
 	@Transactional
 	public void addSite(Site site) {

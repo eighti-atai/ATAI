@@ -8,11 +8,9 @@ import org.hibernate.SessionFactory;
 import com.atai.unter.generic.interfaces.DataAcccessObject;
 import com.atai.unter.module.invent.model.Site;
 
-public class SiteDaoImpl implements DataAcccessObject<Site>
+public class SiteDaoImpl implements SiteDao
 {
-private SessionFactory sessionFactory;
-	
-	
+	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -35,17 +33,18 @@ private SessionFactory sessionFactory;
 		return sites;
 	}
 
-	public Site getDataById(String siteId) {
+	public Site getSiteById(String siteId) {
 		Session session = sessionFactory.getCurrentSession();
 		Site site = session.load(Site.class, new String(siteId));
 		return site;
 	}
 
-	public void removeData(String siteId) {
+	public void removeSite(String siteId) {
 		Session session = sessionFactory.getCurrentSession();
 		Site site = session.load(Site.class, new String(siteId));
 		if (site != null){
 			session.delete(site);
 		}
 	}
+	
 }

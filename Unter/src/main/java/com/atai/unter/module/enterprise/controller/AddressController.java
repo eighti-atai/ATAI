@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.atai.unter.module.enterprise.model.Address;
 import com.atai.unter.module.enterprise.service.AddressService;
 import com.atai.unter.module.invent.model.InventoryPart;
 
@@ -22,7 +23,7 @@ public class AddressController {
 	@RequestMapping(value="/addresses", method=RequestMethod.GET)
 	public String listPersons(Model model)
 	{
-		model.addAttribute("address", new InventoryPart());
+		model.addAttribute("address", new Address());
 		model.addAttribute("listaddresses", this.addressService.listAddresses());
 		return "addresses";
 	}

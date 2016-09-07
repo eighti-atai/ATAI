@@ -7,8 +7,8 @@ CREATE TABLE `unter`.`inventory_part_tab` (
   PRIMARY KEY (`inv_part_no`));
   
 CREATE TABLE site_tab (
-site_id INT(12) SIGNED AUTO_INCREMENT PRIMARY KEY,
-description VARCHAR(30) NOT NULL,
-address_id VARCHAR(1000) NOT NULL
-);
-
+site_id VARCHAR(5) PRIMARY KEY,
+address_id 	INT SIGNED,
+phone_no_1  INT SIGNED,
+phone_no_2  INT SIGNED,
+FOREIGN KEY (address_id) REFERENCES address_tab(address_id));

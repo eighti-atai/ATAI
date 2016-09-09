@@ -21,23 +21,20 @@ public class SalesPartServiceImpl implements SalesPartService {
 	}
 
 	public void updateSalesPart(SalesPart s) {
-		// TODO Auto-generated method stub
+		salesPartDao.updateSalesPart(s);
 		
 	}
 
 	public List<SalesPart> listSalesPart() {
-		// TODO Auto-generated method stub
-		return null;
+		return salesPartDao.listSalesPart();
 	}
 
 	public SalesPart getSalesPartById(String SalesPartNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return salesPartDao.getSalesPartById(SalesPartNo);
 	}
 
 	public void removeSalesPart(String SalesPartNo) {
-		// TODO Auto-generated method stub
-		
+		salesPartDao.removeSalesPart(SalesPartNo);
 	}
 
 }

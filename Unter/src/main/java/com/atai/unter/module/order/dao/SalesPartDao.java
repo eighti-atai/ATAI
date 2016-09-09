@@ -9,5 +9,5 @@ public interface SalesPartDao {
 	public void updateSalesPart(SalesPart p);
 	public List<SalesPart> listSalesPart();
 	public SalesPart getSalesPartById(String SalesPartNo);
-	public void removeSalesPart(String SalesPart);
+	public void removeSalesPart(String SalesPartNo);
 }

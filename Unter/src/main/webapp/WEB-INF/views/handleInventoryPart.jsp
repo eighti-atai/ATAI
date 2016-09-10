@@ -5,6 +5,7 @@
 </head>
 <body>
 <div class="container">
+	<h1>Inventory Part</h1>
 	<form:form class="form-horizontal" method="POST" modelAttribute="addInventoryPart" Action="inventoryPart/add">
 	<div class="form-group">
 		<label class="col-sm-2 col-md-2 control-label">Name</label>

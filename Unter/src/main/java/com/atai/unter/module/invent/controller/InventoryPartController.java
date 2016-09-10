@@ -40,6 +40,6 @@ public class InventoryPartController {
 	public String addInventoryPart(@ModelAttribute("addInventoryPart") InventoryPart inventoryPart)
 	{
 		invPartService.addInventoryPart(inventoryPart);
-		return "inventoryPart";
+		return "redirect:/inventoryPart";
 	}
 }

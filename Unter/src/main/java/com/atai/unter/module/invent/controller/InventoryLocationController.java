@@ -23,7 +23,7 @@ public class InventoryLocationController {
 	public String listSites(Model model)
 	{
 		model.addAttribute("inventorylocation", new InventoryLocation());
-		model.addAttribute("listSites", this.invLocationService.listData());
+		model.addAttribute("listInventoryLocations", this.invLocationService.listData());
 		return "inventorylocations";
 	}
 	

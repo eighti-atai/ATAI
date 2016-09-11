@@ -17,7 +17,7 @@ public class InventoryLocation {
 	private String invLocationType;
 
 	@ManyToOne
-	@JoinColumn(name = "site_id", referencedColumnName = "site_id")
+	@JoinColumn(name = "site_id", referencedColumnName = "site_id", insertable = false, updatable = false)
 	private Site site;
 
 	public InventoryLocationKey getId() {

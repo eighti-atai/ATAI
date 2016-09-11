@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import com.atai.unter.module.invent.model.InventoryLocation;
 import com.atai.unter.module.invent.model.InventoryLocationKey;
 
+@Repository
 public class InventoryLocationDaoImpl implements InventoryLocationDao{
 
 	private SessionFactory sessionFactory;
@@ -33,7 +35,7 @@ public class InventoryLocationDaoImpl implements InventoryLocationDao{
 		return locations;
 	}
 
-	public InventoryLocation getSiteById(InventoryLocationKey invLocationId) {
+	public InventoryLocation getInventoryLocationById(InventoryLocationKey invLocationId) {
 		Session session = sessionFactory.getCurrentSession();
 		InventoryLocation invLocation = session.load(InventoryLocation.class, invLocationId);
 		return invLocation;

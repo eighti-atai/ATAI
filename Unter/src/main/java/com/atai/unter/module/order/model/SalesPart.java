@@ -1,8 +1,12 @@
 package com.atai.unter.module.order.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "sales_part_tab")
 public class SalesPart {
 
 	@Id

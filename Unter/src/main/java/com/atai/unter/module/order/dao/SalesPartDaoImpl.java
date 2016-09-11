@@ -33,7 +33,7 @@ private SessionFactory sessionFactory;
 	public List<SalesPart> listSalesPart() {
 		Session session = sessionFactory.getCurrentSession();
 		//List<SalesPart> salesPartList = null;// = Collection.checkedList ( session.createQuery("from sales_part_tab"),SalesPart.c);
-		List<SalesPart> salesPartList = session.createQuery("from sales_part_tab").list();
+		List<SalesPart> salesPartList = session.createQuery("from SalesPart").list();
 		return salesPartList;
 		//return null;
 	}

@@ -20,12 +20,12 @@ public class SalesPartController {
 		this.salesPartService = salesPartService;
 	}
 	
-	@RequestMapping(value="/salesPart", method=RequestMethod.GET)
-	public String listPersons(Model model)
+	@RequestMapping(value="/salespart", method=RequestMethod.GET)
+	public String listSalesPart(Model model)
 	{
-		model.addAttribute("salesPart", new SalesPart());
+		model.addAttribute("salespart", new SalesPart());
 		model.addAttribute("listSalesParts", this.salesPartService.listSalesPart());
-		return "salesPart";
+		return "salespart";
 	}
 
 }

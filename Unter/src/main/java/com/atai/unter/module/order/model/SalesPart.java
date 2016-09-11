@@ -12,7 +12,7 @@ public class SalesPart {
 	@Id
 	@Column(name = "sales_part_no")
 	private String SalesPartNo;
-	@Column(name = "discription")
+	@Column(name = "description")
 	private String Discription;
 	@Column(name = "inv_part_no")
 	private String InvPartNo;

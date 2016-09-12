@@ -24,7 +24,7 @@ public class SalesPartController {
 	public String listSalesPart(Model model)
 	{
 		model.addAttribute("salespart", new SalesPart());
-		model.addAttribute("listSalesParts", this.salesPartService.listSalesPart());
+		model.addAttribute("listsalesparts", this.salesPartService.listSalesPart());
 		return "salespart";
 	}
 

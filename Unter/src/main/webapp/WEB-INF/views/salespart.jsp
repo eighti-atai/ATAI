@@ -13,13 +13,13 @@
 	<table class="table table-inverse">
 		<thead>
 		<tr>
-			<th width="80">Address ID</th>
+			<th width="80">Sales PartNo</th>
 		</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${listsalesparts}" var="salespart">
 				<tr>
-					<td>${salesparts.salesPartNo}</td>
+					<td>${salespart.salesPartNo}</td>
 					<td/>
 					<td/>
 				</tr>

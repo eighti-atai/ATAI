@@ -49,6 +49,7 @@
 				<value>com.atai.unter.module.invent.model.Site</value>
 				<value>com.atai.unter.module.invent.model.InventoryLocation</value>
 				<value>com.atai.unter.module.order.model.SalesPart</value>
+				<value>com.atai.unter.module.invent.model.InventoryPartCost</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -101,6 +102,10 @@
 	<bean id="salesPartService" class="com.atai.unter.module.order.service.SalesPartServiceImpl">
 		<property name="salesPartDao" ref="salesPartDao"></property>
 	</bean>
+	
+	<!-- <bean id="invPartCostDao" 		class="com.atai.unter.module.invent.dao.InventoryPartCostDaoImpl"/> -->
+	<!-- <bean id="invPartCostService" 	class="com.atai.unter.module.invent.service.InventoryPartCostServiceImpl"/> -->
+	
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>

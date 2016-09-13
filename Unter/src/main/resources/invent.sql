@@ -34,4 +34,4 @@ CREATE TABLE IF NOT EXISTS `unter`.`inventory_part_cost_tab` (
 PRIMARY KEY (`inv_part_no`, `inv_part_cost_no`),   
 CONSTRAINT `inv_part_no`     FOREIGN KEY (`inv_part_no`)     
 REFERENCES `unter`.`inventory_part_tab` (`inv_part_no`)     
-ON DELETE NO ACTION     ON UPDATE NO ACTION) ENGINE = InnoDB
+ON DELETE NO ACTION     ON UPDATE NO ACTION) ENGINE = InnoDB;

@@ -13,5 +13,6 @@ public class InventoryPartCostKey implements Serializable {
 	private String invPartNo;
 	
 	@Column(name = "inv_part_cost_no")
-	private BigDecimal invPartCostNo;
+	private int invPartCostNo;
+	
 }

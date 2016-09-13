@@ -28,7 +28,7 @@ public class InventoryLocationController {
 	}
 	
 	@RequestMapping(value = "/invlocations/add")
-	public String addPerson(@ModelAttribute("inventorylocation") InventoryLocation invLocation){
+	public String addInventoryLocation(@ModelAttribute("inventorylocation") InventoryLocation invLocation){
 		this.invLocationService.addData(invLocation);
 				
 		return "redirect:/inventorylocations";

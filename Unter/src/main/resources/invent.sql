@@ -25,3 +25,13 @@ CREATE TABLE IF NOT EXISTS `unter`.`inventory_location_tab` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `unter`.`inventory_part_cost_tab` (   
+`inv_part_no` VARCHAR(10) NOT NULL,   
+`inv_part_cost_no` INT NOT NULL,   
+`cost` NUMERIC(20,2) NULL,   
+PRIMARY KEY (`inv_part_no`, `inv_part_cost_no`),   
+CONSTRAINT `inv_part_no`     FOREIGN KEY (`inv_part_no`)     
+REFERENCES `unter`.`inventory_part_tab` (`inv_part_no`)     
+ON DELETE NO ACTION     ON UPDATE NO ACTION) ENGINE = InnoDB

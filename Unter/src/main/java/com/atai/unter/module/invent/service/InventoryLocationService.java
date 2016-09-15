@@ -1,0 +1,12 @@
+package com.atai.unter.module.invent.service;
+
+import com.atai.unter.generic.interfaces.Service;
+import com.atai.unter.module.invent.model.InventoryLocation;
+import com.atai.unter.module.invent.model.InventoryLocationKey;
+
+public interface InventoryLocationService extends Service<InventoryLocation>{
+
+	public InventoryLocation getInventoryLocationById(InventoryLocationKey invLocationId);
+	public void removeInventoryLocation(InventoryLocationKey invLocationId);
+	
+}

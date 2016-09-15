@@ -1,8 +1,11 @@
 package com.atai.unter.module.invent.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +24,9 @@ public class Site {
 	
 	@Column(name = "phone_no_2")
 	private int phoneNo2;
+	
+	@OneToMany(mappedBy = "site")
+	private Set<InventoryLocation> invLocations;
 
 	public String getSiteId() {
 		return siteId;
@@ -52,6 +58,10 @@ public class Site {
 
 	public void setPhoneNo2(int phoneNo2) {
 		this.phoneNo2 = phoneNo2;
+	}
+
+	public Set<InventoryLocation> getInvLocations() {
+		return invLocations;
 	}
 	
 	

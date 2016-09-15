@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import com.atai.unter.module.invent.model.InventoryPart;
 import com.atai.unter.module.order.model.SalesPart;
 //import com.mysql.cj.mysqlx.protobuf.MysqlxCrud.Collection;
 
@@ -30,8 +31,9 @@ private SessionFactory sessionFactory;
 	}
 
 	public List<SalesPart> listSalesPart() {
-		//Session session = sessionFactory.getCurrentSession();
-		List<SalesPart> salesPartList = null;// = Collection.checkedList ( session.createQuery("from sales_part_tab"),SalesPart.c);
+		Session session = sessionFactory.getCurrentSession();
+		//List<SalesPart> salesPartList = null;// = Collection.checkedList ( session.createQuery("from sales_part_tab"),SalesPart.c);
+		List<SalesPart> salesPartList = session.createQuery("from SalesPart").list();
 		return salesPartList;
 		//return null;
 	}

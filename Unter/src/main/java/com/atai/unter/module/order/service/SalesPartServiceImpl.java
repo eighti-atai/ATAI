@@ -3,6 +3,7 @@ package com.atai.unter.module.order.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.atai.unter.module.order.dao.SalesPartDao;
 import com.atai.unter.module.order.model.SalesPart;
@@ -14,25 +15,29 @@ public class SalesPartServiceImpl implements SalesPartService {
 	public void setSalesPartDao(SalesPartDao salesPartDao) {
 		this.salesPartDao = salesPartDao;
 	}
-
+	@Transactional
 	public void addSalesPart(SalesPart s) {
 		salesPartDao.addSalesPart(s);
 		
 	}
 
+	@Transactional
 	public void updateSalesPart(SalesPart s) {
 		salesPartDao.updateSalesPart(s);
 		
 	}
 
+	@Transactional(readOnly = true)
 	public List<SalesPart> listSalesPart() {
 		return salesPartDao.listSalesPart();
 	}
 
+	@Transactional(readOnly = true)
 	public SalesPart getSalesPartById(String SalesPartNo) {
 		return salesPartDao.getSalesPartById(SalesPartNo);
 	}
 
+	@Transactional
 	public void removeSalesPart(String SalesPartNo) {
 		salesPartDao.removeSalesPart(SalesPartNo);
 	}

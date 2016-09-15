@@ -12,8 +12,10 @@ public class User {
 	@Id
 	@Column(name = "user_id")
 	private String userId;
+	@Column(name = "user_name")
 	private String userName;
-	private String address;
+	private int addressId;
+	@Column(name = "phone_number")
 	private String phoneNumber;
 	
 	public String getUserId() {
@@ -28,11 +30,11 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getAddress() {
-		return address;
+	public int getAddressId() {
+		return addressId;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;

@@ -103,6 +103,11 @@
 		<property name="salesPartDao" ref="salesPartDao"></property>
 	</bean>
 	
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages" />
+    </bean>
+    <bean id="inventoryPartValidator" class="com.atai.unter.module.invent.validator.InventoryPartValidator" />
+	
 	<!-- <bean id="invPartCostDao" 		class="com.atai.unter.module.invent.dao.InventoryPartCostDaoImpl"/> -->
 	<!-- <bean id="invPartCostService" 	class="com.atai.unter.module.invent.service.InventoryPartCostServiceImpl"/> -->
 	

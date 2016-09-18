@@ -5,10 +5,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-
-import com.atai.unter.module.invent.model.InventoryPart;
 import com.atai.unter.module.order.model.SalesPart;
-//import com.mysql.cj.mysqlx.protobuf.MysqlxCrud.Collection;
+
 
 @Repository
 public class SalesPartDaoImpl implements SalesPartDao  {
@@ -20,14 +18,14 @@ private SessionFactory sessionFactory;
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void addSalesPart(SalesPart p) {
+	public void addSalesPart(SalesPart salesPart) {
 		Session session =  sessionFactory.getCurrentSession();
-		session.persist(p);
+		session.persist(salesPart);
 	}
 
-	public void updateSalesPart(SalesPart p) {
+	public void updateSalesPart(SalesPart salesPart) {
 		Session session = sessionFactory.getCurrentSession();
-		session.update(p);
+		session.update(salesPart);
 	}
 
 	public List<SalesPart> listSalesPart() {
@@ -38,17 +36,17 @@ private SessionFactory sessionFactory;
 		//return null;
 	}
 
-	public SalesPart getSalesPartById(String SalesPartNo) {
+	public SalesPart getSalesPartById(String salesPartNo) {
 		Session session = this.sessionFactory.getCurrentSession();		
-		SalesPart p = (SalesPart) session.load(SalesPart.class, new String(SalesPartNo));
-		return p;
+		SalesPart salesPart = (SalesPart) session.load(SalesPart.class, new String(salesPartNo));
+		return salesPart;
 	}
 
 	public void removeSalesPart(String SalesPartNo) {
 		Session session = this.sessionFactory.getCurrentSession();	
-		SalesPart p = (SalesPart) session.load(SalesPart.class, new String(SalesPartNo));
-		if(null != p){
-			session.delete(p);
+		SalesPart salesPart = (SalesPart) session.load(SalesPart.class, new String(SalesPartNo));
+		if(null != salesPart){
+			session.delete(salesPart);
 		}
 	}
 }

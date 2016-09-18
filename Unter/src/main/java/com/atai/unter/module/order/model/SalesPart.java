@@ -2,6 +2,8 @@ package com.atai.unter.module.order.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,29 +13,31 @@ public class SalesPart {
 
 	@Id
 	@Column(name = "sales_part_no")
-	private String SalesPartNo;
+	//@GeneratedValue(strategy=)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private String salesPartNo;
 	@Column(name = "description")
-	private String Discription;
+	private String discription;
 	@Column(name = "inv_part_no")
-	private String InvPartNo;
+	private String invPartNo;
 	
 	public String getSalesPartNo() {
-		return SalesPartNo;
+		return this.salesPartNo;
 	}
 	public void setSalesPartNo(String salesPartNo) {
-		SalesPartNo = salesPartNo;
+		this.salesPartNo = salesPartNo;
 	}
 	public String getDiscription() {
-		return Discription;
+		return this.discription;
 	}
 	public void setDiscription(String discription) {
-		Discription = discription;
+		this.discription = discription;
 	}
 	public String getInvPartNo() {
-		return InvPartNo;
+		return this.invPartNo;
 	}
 	public void setInvPartNo(String invPartNo) {
-		InvPartNo = invPartNo;
+		this.invPartNo = invPartNo;
 	}
 	
 }

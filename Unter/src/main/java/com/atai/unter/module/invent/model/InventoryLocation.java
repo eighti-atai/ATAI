@@ -28,6 +28,11 @@ public class InventoryLocation {
 		this.id = id;
 	}
 
+	public void setId(String siteId, String invLocationId)
+	{
+		this.id.setSiteId(siteId);
+		this.id.setInvLocationId(invLocationId);
+	}
 	public String getInvLocationType() {
 		return invLocationType;
 	}

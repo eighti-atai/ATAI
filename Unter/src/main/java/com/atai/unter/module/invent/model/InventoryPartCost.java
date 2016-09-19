@@ -1,23 +1,31 @@
 package com.atai.unter.module.invent.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "inventory_part_cost_tab")
-public class InventoryPartCost {
-	@Id
+public class InventoryPartCost implements Serializable{
+	
+	@EmbeddedId
 	private InventoryPartCostKey id;
 	
 	private BigDecimal cost;
 	
 	@ManyToOne
-	@JoinColumn(name = "inv_part_no", referencedColumnName = "inv_part_no", insertable = false, updatable = false)
+	@JoinColumn(name = "inv_part_no", insertable = false, updatable = false)
 	private InventoryPart inventoryPart;
 
 	public InventoryPartCostKey getId() {

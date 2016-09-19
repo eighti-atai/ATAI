@@ -18,4 +18,12 @@ public class InventoryLocationKey implements Serializable {
 	public String getInvLocationId() {
 		return invLocationId;
 	}
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
+	}
+	public void setInvLocationId(String invLocationId) {
+		this.invLocationId = invLocationId;
+	}
+	
+	
 }

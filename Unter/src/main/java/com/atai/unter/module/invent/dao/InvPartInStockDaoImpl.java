@@ -36,12 +36,12 @@ public class InvPartInStockDaoImpl implements InvPartInStockDao{
 		return invPartCost;
 	}
 
-	public InvPartInStock getInvPartInStockById(InvPartInStock invPartCostId) {
+	public InvPartInStock getInvPartInStockById(InvPartInStock.InvPartInStockKey invPartCostId) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.load(InvPartInStock.class, invPartCostId);
 	}
 
-	public void removeInvPartInStock(InvPartInStock invPartCostId) {
+	public void removeInvPartInStock(InvPartInStock.InvPartInStockKey invPartCostId) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(session.load(InvPartInStock.class, invPartCostId));
 		

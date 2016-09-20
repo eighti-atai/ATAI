@@ -35,3 +35,17 @@ PRIMARY KEY (`inv_part_no`, `inv_part_cost_no`),
 CONSTRAINT `inv_part_no`     FOREIGN KEY (`inv_part_no`)     
 REFERENCES `unter`.`inventory_part_tab` (`inv_part_no`)     
 ON DELETE NO ACTION     ON UPDATE NO ACTION) ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `unter`.`inv_part_in_stock_tab` (   
+`inv_part_no` VARCHAR(10) NOT NULL,   
+`inv_part_cost_no` INT NOT NULL,   
+`site_id` VARCHAR(5) NOT NULL,
+`inv_location_id` VARCHAR(5) NOT NULL,
+`stock_qty` int,   
+PRIMARY KEY (`inv_part_no`, `inv_part_cost_no`, `site_id`, `inv_location_id`),   
+CONSTRAINT `inv_part_cost_pk`     FOREIGN KEY (`inv_part_no`, `inv_part_cost_no`)     
+REFERENCES `unter`.`inventory_part_cost_tab` (`inv_part_no`, `inv_part_cost_no`),     
+CONSTRAINT `inventory_location_pk` FOREIGN KEY (`site_id`, `inv_location_id`)
+REFERENCES `unter`.`inventory_location_tab` (`site_id`, `inv_location_id`)
+ON DELETE NO ACTION     ON UPDATE NO ACTION)	ENGINE = InnoDB;

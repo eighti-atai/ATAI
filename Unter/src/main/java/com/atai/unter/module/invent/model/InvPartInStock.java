@@ -20,6 +20,7 @@ public class InvPartInStock implements Serializable{
 	@EmbeddedId
 	InvPartInStockKey id;
 	
+	@Column(name = "stock_qty")
 	private int stockQuantity;
 		
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

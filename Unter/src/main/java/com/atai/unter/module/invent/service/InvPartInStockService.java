@@ -8,8 +8,8 @@ import com.atai.unter.module.invent.model.InvPartInStock;
 public interface InvPartInStockService extends Service<InvPartInStock>{
 
 	@Transactional(readOnly = true)
-	public InvPartInStock getInvPartInStockById(InvPartInStock invPartCostId);
+	public InvPartInStock getInvPartInStockById(InvPartInStock.InvPartInStockKey invPartCostId);
 
 	@Transactional
-	public void removeInvPartInStock(InvPartInStock invPartCostId);
+	public void removeInvPartInStock(InvPartInStock.InvPartInStockKey invPartCostId);
 }

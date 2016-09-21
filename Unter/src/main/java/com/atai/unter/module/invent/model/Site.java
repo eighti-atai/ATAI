@@ -2,11 +2,16 @@ package com.atai.unter.module.invent.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.atai.unter.module.enterprise.model.Address;
 
 @Entity
 @Table(name = "site_tab")
@@ -18,6 +23,10 @@ public class Site {
 	
 	@Column(name = "address_id")
 	private int addressId;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id",insertable = false, updatable = false)
+	private Address address;
 	
 	@Column(name = "phone_no_1")
 	private int phoneNo1;
@@ -44,8 +53,21 @@ public class Site {
 		this.addressId = addressId;
 	}
 
+	
 	public int getPhoneNo1() {
 		return phoneNo1;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public void setInvLocations(Set<InventoryLocation> invLocations) {
+		this.invLocations = invLocations;
 	}
 
 	public void setPhoneNo1(int phoneNo1) {

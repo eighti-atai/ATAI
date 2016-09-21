@@ -37,12 +37,12 @@ public class InvPartInStockServiceImpl implements InvPartInStockService{
 	}
 
 	@Transactional(readOnly = true)
-	public InvPartInStock getInvPartInStockById(InvPartInStock invPartCostId) {
+	public InvPartInStock getInvPartInStockById(InvPartInStock.InvPartInStockKey invPartCostId) {
 		return invPartInStockDao.getInvPartInStockById(invPartCostId);
 	}
 
 	@Transactional
-	public void removeInvPartInStock(InvPartInStock invPartCostId) {
+	public void removeInvPartInStock(InvPartInStock.InvPartInStockKey invPartCostId) {
 		invPartInStockDao.removeInvPartInStock(invPartCostId);
 	}
 

@@ -6,12 +6,15 @@ CREATE TABLE `unter`.`inventory_part_tab` (
   `safety_stock_level` DOUBLE NULL,
   PRIMARY KEY (`inv_part_no`));
   
-CREATE TABLE site_tab (
+CREATE TABLE IF NOT EXISTS site_tab (
 site_id VARCHAR(5) PRIMARY KEY,
 address_id 	INT SIGNED,
 phone_no_1  INT SIGNED,
 phone_no_2  INT SIGNED,
-FOREIGN KEY (address_id) REFERENCES address_tab(address_id));
+FOREIGN KEY (address_id) REFERENCES address_tab(address_id)
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS `unter`.`inventory_location_tab` (

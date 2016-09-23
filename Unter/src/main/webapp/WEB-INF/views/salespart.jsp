@@ -1,6 +1,7 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form"%>
+
 <html>
 <head>
 	<!--<link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet">
@@ -16,21 +17,21 @@
 	
 	<form:form class="form-horizontal" method="POST" action="${AddUrl1}" commandName="addSalesPart">
 	
-	<spring:bind path="salesPartNo">
+	<spring:bind path="salesPartId">
 		<div class="form-group">
 			<label class="col-sm-2 col-md-2 control-label">Name</label>
 			<div class="col-sm-10 col-md-10">
-				<form:input path="salesPartNo" class="form-control"/>
-				<form:errors path="salesPartNo" class="control-label"/>
+				<form:input path="salesPartId" class="form-control"/>
+				<form:errors path="salesPartId" class="control-label"/>
 			</div>
 		</div>
 	</spring:bind>
-	<spring:bind path="discription">
+	<spring:bind path="description">
 		<div class="form-group">
 			<label class="col-sm-2 col-md-2 control-label">Description</label>
 			<div class="col-sm-10 col-md-10">
-				<form:input path="discription" class="form-control"/>
-				<form:errors path="discription" class="error"/>
+				<form:input path="description" class="form-control"/>
+				<form:errors path="description" class="error"/>
 			</div>
 		</div>
 	</spring:bind>

@@ -8,6 +8,6 @@ public interface SalesPartService{
 	public void addSalesPart(SalesPart s);
 	public void updateSalesPart(SalesPart s);
 	public List<SalesPart> listSalesPart();
-	public SalesPart getSalesPartById(String SalesPartNo);
-	public void removeSalesPart(String SalesPartNo);
+	public SalesPart getSalesPartById(String salesPartId);
+	public void removeSalesPart(String salesPartId);
 	}

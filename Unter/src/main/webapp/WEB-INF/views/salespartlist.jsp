@@ -23,8 +23,8 @@
 	<tbody>
 	<c:forEach items="${listSalesP}" var="salesPart">
 		<tr>
-			<td>${salesPart.salesPartNo}</td>
-			<td>${salesPart.discription}</td>
+			<td>${salesPart.salesPartId}</td>
+			<td>${salesPart.description}</td>
 			<td/>
 			<td/>
 			<td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>

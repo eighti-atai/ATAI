@@ -36,15 +36,15 @@ private SessionFactory sessionFactory;
 		//return null;
 	}
 
-	public SalesPart getSalesPartById(String salesPartNo) {
+	public SalesPart getSalesPartById(String salesPartId) {
 		Session session = this.sessionFactory.getCurrentSession();		
-		SalesPart salesPart = (SalesPart) session.load(SalesPart.class, new String(salesPartNo));
+		SalesPart salesPart = (SalesPart) session.load(SalesPart.class, new String(salesPartId));
 		return salesPart;
 	}
 
-	public void removeSalesPart(String SalesPartNo) {
+	public void removeSalesPart(String salesPartId) {
 		Session session = this.sessionFactory.getCurrentSession();	
-		SalesPart salesPart = (SalesPart) session.load(SalesPart.class, new String(SalesPartNo));
+		SalesPart salesPart = (SalesPart) session.load(SalesPart.class, new String(salesPartId));
 		if(null != salesPart){
 			session.delete(salesPart);
 		}

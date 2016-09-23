@@ -2,8 +2,6 @@ package com.atai.unter.module.order.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,26 +10,32 @@ import javax.persistence.Table;
 public class SalesPart {
 
 	@Id
-	@Column(name = "sales_part_no")
-	//@GeneratedValue(strategy=)
-	//@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String salesPartNo;
+	@Column(name = "sales_part_id")
+	private String salesPartId;
 	@Column(name = "description")
-	private String discription;
-	@Column(name = "inv_part_no")
+	private String description;
+	@Column(name = "inv_part_id")
 	private String invPartNo;
+	@Column(name = "inv_conversion_factor")
+	private String invConversionFactor;
+	@Column(name = "uom")
+	private String uom;
+	@Column(name = "price_category")
+	private String priceCategory;
+	@Column(name = "general_category")
+	private String generalCategory;
 	
-	public String getSalesPartNo() {
-		return this.salesPartNo;
+	public String getsalesPartId() {
+		return this.salesPartId;
 	}
-	public void setSalesPartNo(String salesPartNo) {
-		this.salesPartNo = salesPartNo;
+	public void setsalesPartId(String salesPartId) {
+		this.salesPartId = salesPartId;
 	}
-	public String getDiscription() {
-		return this.discription;
+	public String getdescription() {
+		return this.description;
 	}
-	public void setDiscription(String discription) {
-		this.discription = discription;
+	public void setdescription(String description) {
+		this.description = description;
 	}
 	public String getInvPartNo() {
 		return this.invPartNo;

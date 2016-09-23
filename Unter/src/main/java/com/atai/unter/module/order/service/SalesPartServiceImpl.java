@@ -33,13 +33,13 @@ public class SalesPartServiceImpl implements SalesPartService {
 	}
 
 	@Transactional(readOnly = true)
-	public SalesPart getSalesPartById(String SalesPartNo) {
-		return salesPartDao.getSalesPartById(SalesPartNo);
+	public SalesPart getSalesPartById(String salesPartId) {
+		return salesPartDao.getSalesPartById(salesPartId);
 	}
 
 	@Transactional
-	public void removeSalesPart(String SalesPartNo) {
-		salesPartDao.removeSalesPart(SalesPartNo);
+	public void removeSalesPart(String salesPartId) {
+		salesPartDao.removeSalesPart(salesPartId);
 	}
 
 }

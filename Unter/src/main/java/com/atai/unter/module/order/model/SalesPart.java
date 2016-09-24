@@ -43,5 +43,29 @@ public class SalesPart {
 	public void setInvPartNo(String invPartNo) {
 		this.invPartNo = invPartNo;
 	}
+	public String getInvConversionFactor() {
+		return invConversionFactor;
+	}
+	public void setInvConversionFactor(String invConversionFactor) {
+		this.invConversionFactor = invConversionFactor;
+	}
+	public String getUom() {
+		return uom;
+	}
+	public void setUom(String uom) {
+		this.uom = uom;
+	}
+	public String getPriceCategory() {
+		return priceCategory;
+	}
+	public void setPriceCategory(String priceCategory) {
+		this.priceCategory = priceCategory;
+	}
+	public String getGeneralCategory() {
+		return generalCategory;
+	}
+	public void setGeneralCategory(String generalCategory) {
+		this.generalCategory = generalCategory;
+	}
 	
 }

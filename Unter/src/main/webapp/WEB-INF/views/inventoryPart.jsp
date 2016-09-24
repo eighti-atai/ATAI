@@ -1,4 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page session="false" %>
 <html>
 <head>
@@ -33,8 +34,15 @@
 			<td>${invPart.safetyStockLevel}</td>
 			<td/>
 			<td/>
-			<td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td>
+			<td>
+				<spring:url value="/inventoryPart/update/${invPart.invPartNo}" var="updateUrl"></spring:url>
+				<button class="btn btn-primary" 
+						onclick="location.href='${updateUrl}'">Update</button></td>
+			<td>
+				<spring:url value="/inventoryPart/delete/${invPart.invPartNo}" var="deleteUrl"></spring:url>
+				<button class="btn btn-danger"
+						onclick="loaction.href='${deleteUrl}'"> Delete </button>
+			<!--  <a href="<c:url value='/remove/${person.id}' />" >Delete</a></td> -->
 		</tr>
 		</tbody>
 	</c:forEach>

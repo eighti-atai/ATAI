@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
@@ -17,16 +18,17 @@ import com.atai.unter.module.invent.model.InventoryPart;
 @Controller
 public class InventoryPartController {
 	
+	@Autowired
 	private InventoryPartService invPartService;
-	
+	   
 	@Autowired
 	InventoryPartValidator inventoryPartValidator;
- 
+ /*
 	@Autowired(required=true)
 	@Qualifier(value="invPartService")
 	public void setInvPartService(InventoryPartService invPartService) {
 		this.invPartService = invPartService;
-	}
+	}*/
 	
 	@RequestMapping(value="/inventoryPart", method=RequestMethod.GET)
 	public String listInvebtoryParts(Model model)
@@ -42,15 +44,17 @@ public class InventoryPartController {
 	{
 		return new ModelAndView("handleInventoryPart", "addInventoryPart", new InventoryPart());
 	}
-	/*
-	@RequestMapping(value="/inventoryPart/add", method=RequestMethod.POST)
-	public String addInventoryPart(@ModelAttribute("addInventoryPart") InventoryPart inventoryPart)
+	
+	@RequestMapping(value="/inventoryPart/update/{no}", method=RequestMethod.GET)
+	public String addInventoryPart(@PathVariable("no") String no, Model model)
 	{
-		invPartService.addInventoryPart(inventoryPart);
-		return "redirect:/inventoryPart";
+		InventoryPart invPart = this.invPartService.getInventoryPartByNo(no);
+		model.addAttribute("addInventoryPart", invPart);
+		model.addAttribute("msg", "update");
+		return "handleInventoryPart";
 	}
 	
-
+/*
 	@RequestMapping(value="/inventoryPart/add", method = RequestMethod.GET)
     public String setupForm(Model model) 
 	{

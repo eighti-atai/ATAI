@@ -69,13 +69,14 @@
 		<beans:property name="personDAO" ref="personDAO"></beans:property>
 	</beans:bean>-->
 	
+	<!-- 
 	<bean id="inventoryPartDao" class="com.atai.unter.module.invent.dao.InventoryPartDaoImpl">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>
 	<bean id="invPartService" class="com.atai.unter.module.invent.service.InventoryPartServiceImpl">
 		<property name="invPartDao" ref="inventoryPartDao"></property>
 	</bean>
-	
+	 -->
 	<bean id="addressDao" class="com.atai.unter.module.enterprise.dao.AddressDaoImpl">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>

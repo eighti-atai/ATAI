@@ -24,7 +24,7 @@ public class InventoryPart {
 	private double safetyStockLevel;
 	
 	public String getInvPartNo() {
-		return invPartNo;
+		return this.invPartNo;
 	}
 	public void setInvPartNo(String invPartNo) {
 		this.invPartNo = invPartNo;

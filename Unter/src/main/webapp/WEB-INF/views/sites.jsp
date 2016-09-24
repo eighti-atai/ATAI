@@ -5,6 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+.error {
+	color: #ff0000;
+	font-style: italic;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 	<!-- ----------------------------Add Site------------------------------------ -->
@@ -23,6 +30,9 @@
 				<td>
 					<form:input path="siteId" />
 				</td> 
+				<td>
+					<form:errors path="siteId" cssClass="error"></form:errors>
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -43,6 +53,9 @@
 				<td>
 					<form:input path="phoneNo1" />
 				</td>
+				<td>
+					<form:errors path="phoneNo1" cssClass="error"></form:errors>
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -52,6 +65,9 @@
 				</td>
 				<td>
 					<form:input path="phoneNo2" />
+				</td>
+				<td>
+					<form:errors path="phoneNo2" cssClass="error"></form:errors>
 				</td>
 			</tr>
 			<tr>

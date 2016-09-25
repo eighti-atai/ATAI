@@ -35,7 +35,7 @@ public class SiteDaoImpl implements SiteDao
 
 	public Site getSiteById(String siteId) {
 		Session session = sessionFactory.getCurrentSession();
-		Site site = session.load(Site.class, new String(siteId));
+		Site site = session.get(Site.class, new String(siteId));
 		return site;
 	}
 

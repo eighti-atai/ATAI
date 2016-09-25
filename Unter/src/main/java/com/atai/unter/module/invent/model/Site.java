@@ -1,5 +1,6 @@
 package com.atai.unter.module.invent.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,7 +18,7 @@ import com.atai.unter.module.enterprise.model.Address;
 
 @Entity
 @Table(name = "site_tab")
-public class Site {
+public class Site implements Serializable{
 
 	@Id
 	@Column(name = "site_id")
@@ -37,6 +38,16 @@ public class Site {
 	@Column(name = "phone_no_2")
 	private int phoneNo2;
 	
+	private String objid;
+	
+	public String getObjid() {
+		return objid;
+	}
+
+	public void setObjid(String objid) {
+		this.objid = objid;
+	}
+
 	@OneToMany(mappedBy = "site")
 	private Set<InventoryLocation> invLocations;
 

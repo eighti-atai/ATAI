@@ -20,7 +20,7 @@ public class SiteServiceImpl implements SiteService{
 
 	@Transactional
 	public void addSite(Site site) {
-		
+		site.setObjid(site.toString());
 		siteDao.addData(site);
 	}
 

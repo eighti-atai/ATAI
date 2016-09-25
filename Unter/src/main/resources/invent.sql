@@ -11,6 +11,7 @@ site_id VARCHAR(5) PRIMARY KEY,
 address_id 	INT SIGNED,
 phone_no_1  INT SIGNED,
 phone_no_2  INT SIGNED,
+objid		VARCHAR(1000) NOT NULL,
 FOREIGN KEY (address_id) REFERENCES address_tab(address_id)
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION)
@@ -52,3 +53,5 @@ REFERENCES `unter`.`inventory_part_cost_tab` (`inv_part_no`, `inv_part_cost_no`)
 CONSTRAINT `inventory_location_pk` FOREIGN KEY (`site_id`, `inv_location_id`)
 REFERENCES `unter`.`inventory_location_tab` (`site_id`, `inv_location_id`)
 ON DELETE NO ACTION     ON UPDATE NO ACTION)	ENGINE = InnoDB;
+
+alter table site_tab add column objid varchar(1000) not null;

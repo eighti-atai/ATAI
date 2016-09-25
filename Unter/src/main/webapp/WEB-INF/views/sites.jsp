@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
 <title>Insert title here</title>
 <style>
 .error {
@@ -12,6 +12,12 @@
 	font-weight: bold;
 }
 </style>
+<script type="text/javascript">
+function search() {
+	document.getElementById("searchfield").value = "TRUE";
+    document.getElementById("site").submit();
+}
+</script>
 </head>
 <body>
 	<!-- ----------------------------Add Site------------------------------------ -->
@@ -19,7 +25,7 @@
 		Add a Site
 	</h1>
 	<c:url var="addAction" value="/site/add" ></c:url>
-	<form:form action="${addAction}" commandName="site">
+	<form:form id="site" action="${addAction}" commandName="site">
 		<table>
 			<tr>
 				<td>
@@ -71,13 +77,25 @@
 				</td>
 			</tr>
 			<tr>
+				<td>
+					<form:hidden path="objid"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="hidden" name="searchfield" id = "searchfield">
+				</td>
+			</tr>
+			<tr>
 				<td colspan="1">
 					<!--<c:if test="${!empty site.siteId}">
 						<input type="submit"
 							value="<spring:message text="Edit Site"/>" />
 					</c:if> -->
 					<input type="submit"
-							value="<spring:message text="Add Site"/>" />
+							value="<spring:message text="Save"/>" />
+					<button type="reset" value="Reset">Reset</button>
+					 <input type="button" value="Search" onclick="search()"/> 
 				</td>
 			</tr>
 		</table>	
@@ -111,5 +129,5 @@
 			</table>
 		</c:if>
 	</div>
-</body>
+	</body>
 </html>

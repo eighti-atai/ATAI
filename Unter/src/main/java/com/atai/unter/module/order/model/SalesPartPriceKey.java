@@ -3,9 +3,11 @@ package com.atai.unter.module.order.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 import com.atai.unter.module.invent.model.InventoryPartCostKey;
 
+@Embeddable
 public class SalesPartPriceKey implements Serializable {
 
 	@Column(name = "sales_part_id")

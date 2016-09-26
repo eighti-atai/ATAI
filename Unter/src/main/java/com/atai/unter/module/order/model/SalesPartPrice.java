@@ -1,19 +1,22 @@
 package com.atai.unter.module.order.model;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.atai.unter.module.invent.model.InventoryPartCostKey;
+
 @Entity
-@Table(name = "sales_part_tab")
+@Table(name = "sales_part_price_tab")
 public class SalesPartPrice {
 
-	@Id
-	SalesPartPriceKey id ;
-	
+	@EmbeddedId
+	private SalesPartPriceKey id ;
+		
 	@Column( name = "inv_part_id")
 	String invPartId;
 	

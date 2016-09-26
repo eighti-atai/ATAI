@@ -49,6 +49,7 @@
 				<value>com.atai.unter.module.invent.model.Site</value>
 				<value>com.atai.unter.module.invent.model.InventoryLocation</value>
 				<value>com.atai.unter.module.order.model.SalesPart</value>
+				<value>com.atai.unter.module.order.model.SalesPartPrice</value>
 				<value>com.atai.unter.module.invent.model.InventoryPartCost</value>
 				<value>com.atai.unter.module.invent.model.InvPartInStock</value>
 			</list>

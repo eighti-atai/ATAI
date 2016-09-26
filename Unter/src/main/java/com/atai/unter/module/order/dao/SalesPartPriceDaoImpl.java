@@ -38,14 +38,14 @@ public class SalesPartPriceDaoImpl implements SalesPartPriceDao {
 		return salesPartPrice;
 	}
 
-	public SalesPartPrice getSalesPartPrice(SalesPartPriceKey salesPartPriceId) {
+	public SalesPartPrice getSalesPartPrice(SalesPartPriceKey id) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.load(SalesPartPrice.class, salesPartPriceId);
+		return session.load(SalesPartPrice.class, id);
 	}
 
-	public void removeSalesPartPrice(SalesPartPriceKey salesPartPriceId) {
+	public void removeSalesPartPrice(SalesPartPriceKey id) {
 		Session session = sessionFactory.getCurrentSession();
-		session.delete(session.load(SalesPartPrice.class, salesPartPriceId));
+		session.delete(session.load(SalesPartPrice.class, id));
 	}
 
 }

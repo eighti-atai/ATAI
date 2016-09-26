@@ -5,6 +5,6 @@ import com.atai.unter.module.order.model.SalesPartPrice;
 import com.atai.unter.module.order.model.SalesPartPriceKey;
 
 public interface SalesPartPriceService extends DataAcccessObject<SalesPartPrice>{
-	public SalesPartPrice getSalesPartPriceById(SalesPartPriceKey salesPartPriceId);
-	public void removeSalesPartPrice(SalesPartPriceKey salesPartPriceId);
+	public SalesPartPrice getSalesPartPriceById(SalesPartPriceKey id);
+	public void removeSalesPartPrice(SalesPartPriceKey id);
 }

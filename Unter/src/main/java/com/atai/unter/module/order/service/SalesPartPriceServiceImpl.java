@@ -35,13 +35,13 @@ public class SalesPartPriceServiceImpl implements SalesPartPriceService{
 	}
 
 	@Transactional(readOnly = true)
-	public SalesPartPrice getSalesPartPriceById(SalesPartPriceKey salesPartPriceId) {
-		return salesPartPriceDao.getSalesPartPrice(salesPartPriceId);
+	public SalesPartPrice getSalesPartPriceById(SalesPartPriceKey id) {
+		return salesPartPriceDao.getSalesPartPrice(id);
 	}
 
 	@Transactional
-	public void removeSalesPartPrice(SalesPartPriceKey salesPartPriceId) {
-		salesPartPriceDao.removeSalesPartPrice(salesPartPriceId);
+	public void removeSalesPartPrice(SalesPartPriceKey id) {
+		salesPartPriceDao.removeSalesPartPrice(id);
 	}
 
 }

@@ -38,7 +38,7 @@ private SessionFactory sessionFactory;
 
 	public SalesPart getSalesPartById(String salesPartId) {
 		Session session = this.sessionFactory.getCurrentSession();		
-		SalesPart salesPart = (SalesPart) session.load(SalesPart.class, new String(salesPartId));
+		SalesPart salesPart = session.get(SalesPart.class, new String(salesPartId));
 		return salesPart;
 	}
 

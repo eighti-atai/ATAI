@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.atai.unter.module.invent.model.InventoryPartCost;
+import com.atai.unter.module.order.model.SalesPart;
 import com.atai.unter.module.order.model.SalesPartPrice;
 import com.atai.unter.module.order.model.SalesPartPriceKey;
 
@@ -29,7 +30,6 @@ public class SalesPartPriceDaoImpl implements SalesPartPriceDao {
 	public void updateData(SalesPartPrice p) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(p);
-		
 	}
 
 	public List<SalesPartPrice> listData() {
@@ -40,7 +40,7 @@ public class SalesPartPriceDaoImpl implements SalesPartPriceDao {
 
 	public SalesPartPrice getSalesPartPrice(SalesPartPriceKey id) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.load(SalesPartPrice.class, id);
+		return session.get(SalesPartPrice.class, id);
 	}
 
 	public void removeSalesPartPrice(SalesPartPriceKey id) {

@@ -21,6 +21,7 @@ public class SalesPartPriceServiceImpl implements SalesPartPriceService{
 
 	@Transactional
 	public void addData(SalesPartPrice p) {
+		p.setObjid(p.toString());
 		salesPartPriceDao.addData(p);
 	}
 

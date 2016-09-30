@@ -34,4 +34,12 @@ public class SalesPartPriceController {
 				
 		return "redirect:/salespartprices";
 	}
+	
+	/*@GetMapping(value = "/salespartprices/edit")
+	public String listSalesPartPrice(Model model)
+	{
+		model.addAttribute("addSalesPartPrice", new SalesPartPrice());
+		model.addAttribute("listSalesPartPrice", this.salesPartPriceService.listData());
+		return "salespartprices";
+	}*/
 }

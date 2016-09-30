@@ -23,6 +23,8 @@ public class SalesPartPrice {
 	@Column(name = "inv_part_cost_no")
 	String invPartCostNo;
 	
+	private String objid;
+	
 	@ManyToOne
 	@JoinColumn(name = "sales_part_id" , updatable = false, insertable = false)
 	SalesPart salesPart;
@@ -57,5 +59,13 @@ public class SalesPartPrice {
 
 	public void setSalesPart(SalesPart salesPart) {
 		this.salesPart = salesPart;
+	}
+	
+	public String getObjid() {
+		return objid;
+	}
+
+	public void setObjid(String objid) {
+		this.objid = objid;
 	}
 }

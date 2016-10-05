@@ -117,6 +117,7 @@
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+	<mvc:resources mapping="/static/**" location="/static/" />
 	<!--mvc:resources mapping="/public/**" location="classpath:/public/"/>
 	<mvc:resources mapping="/resources/**" location="classpath:/META-INF/resources/" />
 	<mvc:resources mapping="/webjars/**" location="/webjars/"/>

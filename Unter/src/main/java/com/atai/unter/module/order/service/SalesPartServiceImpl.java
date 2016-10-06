@@ -17,8 +17,8 @@ public class SalesPartServiceImpl implements SalesPartService {
 	}
 	@Transactional
 	public void addSalesPart(SalesPart s) {
+		s.setObjid(s.toString());
 		salesPartDao.addSalesPart(s);
-		
 	}
 
 	@Transactional

@@ -24,6 +24,9 @@ public class SalesPart {
 	private String priceCategory;
 	@Column(name = "general_category")
 	private String generalCategory;
+	@Column(name = "objid")
+	private String objid;
+	
 	
 	public String getsalesPartId() {
 		return this.salesPartId;
@@ -66,6 +69,13 @@ public class SalesPart {
 	}
 	public void setGeneralCategory(String generalCategory) {
 		this.generalCategory = generalCategory;
+	}
+	
+	public String getObjid() {
+		return objid;
+	}
+	public void setObjid(String objid) {
+		this.objid = objid;
 	}
 	
 }

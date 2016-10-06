@@ -82,7 +82,7 @@ public class SalesPartRestController {
      
     //-------------------Retrieve Single User--------------------------------------------------------
       
-    @RequestMapping(value = "/salespartlist/{salesPartId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/SalesPart/{salesPartId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SalesPart> getUser(@PathVariable("salesPartId") String salesPartId) {
         System.out.println("Fetching Sales Part with id " + salesPartId);
         SalesPart salesPart = salesPartService.getSalesPartById(salesPartId);
@@ -97,7 +97,7 @@ public class SalesPartRestController {
       
     //-------------------Create a User--------------------------------------------------------
       
-    @RequestMapping(value = "/salespartlist/", method = RequestMethod.POST)
+    @RequestMapping(value = "/SalesPart/", method = RequestMethod.POST)
     public ResponseEntity<Void> createSalesPart(@RequestBody SalesPart salesPart,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating salesPart " + salesPart.getdescription());
   
@@ -109,7 +109,7 @@ public class SalesPartRestController {
         salesPartService.addSalesPart(salesPart);
   
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/salespartlist/{salesPartId}").buildAndExpand(salesPart.getsalesPartId()).toUri());
+        headers.setLocation(ucBuilder.path("/SalesPart/{salesPartId}").buildAndExpand(salesPart.getsalesPartId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
   
@@ -117,7 +117,7 @@ public class SalesPartRestController {
       
     //------------------- Update a User --------------------------------------------------------
       
-    @RequestMapping(value = "/user/{salesPartId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/SalesPart/{salesPartId}", method = RequestMethod.PUT)
     public ResponseEntity<SalesPart> updateUser(@PathVariable("salesPartId") String salesPartId, @RequestBody SalesPart salesPart) {
         System.out.println("Updating SalesPart " + salesPartId);
           

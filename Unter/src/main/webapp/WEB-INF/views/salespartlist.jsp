@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>  
-    <title>AngularJS $http Example</title>  
+    <title>ATAI</title>  
     <style>
       .salesPartId.ng-valid {
           background-color: lightgreen;
@@ -73,21 +73,21 @@
       }
 
     </style>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+     <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
   </head>
   <body ng-app="myApp" class="ng-cloak">
       <div class="generic-container" data-ng-controller="SalesPartController as ctrl">
           <div class="panel panel-default">
-              <div class="panel-heading"><span class="lead">SalesPart Registration Form </span></div>
+              <div class="panel-heading"><span class="lead">Sales Parts</span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       <input type="hidden" ng-model="ctrl.SalesPart.objid" /> 
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="uname">Name</label>
+                              <label class="col-md-2 control-lable" for="salesPartId">Sales Part Id</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.SalesPart.salesPartId" id="salesPartId" class="salesPartId form-control input-sm" placeholder="Enter1 " required ng-minlength="3"/>
+                                  <input type="text" ng-model="ctrl.SalesPart.salesPartId" id="salesPartId" class="salesPartId form-control input-sm" placeholder="Enter1 " required ng-minlength="1"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.salesPartId.$error.required">This is a required field</span>
                                       <span ng-show="myForm.salesPartId.$error.minlength">Minimum length required is 3</span>
@@ -100,7 +100,7 @@
                        
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="description">description</label>
+                              <label class="col-md-2 control-lable" for="description">Description</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.SalesPart.description" id="description" class="form-control input-sm" placeholder="Enter description. [This field is validation free]"/>
                               </div>
@@ -109,34 +109,34 @@
                       
                         <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="invPartNo">Address</label>
+                              <label class="col-md-2 control-lable" for="invPartNo">Inventory Part No</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.SalesPart.invPartNo" id="invPartNo" class="form-control input-sm" placeholder="Enter invPartNo"/>
                               </div>
                           </div>
                       </div>
  
-   <div class="row">
+   					  <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="invConversionFactor">Address</label>
+                              <label class="col-md-2 control-lable" for="invConversionFactor">Inventory Conversion Factor</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.SalesPart.invConversionFactor" id="invConversionFactor" class="form-control input-sm" placeholder="Enter invConversionFactor. [This field is validation free]"/>
                               </div>
                           </div>
                       </div>
  
-   <div class="row">
+   					  <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="uom">Address</label>
+                              <label class="col-md-2 control-lable" for="uom">Unit of Measure</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.SalesPart.uom" id="uom" class="form-control input-sm" placeholder="Enter uom. [This field is validation free]"/>
                               </div>
                           </div>
                       </div>
  
-   <div class="row">
+   				  	  <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="priceCategory">Address</label>
+                              <label class="col-md-2 control-lable" for="priceCategory">Price Category</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.SalesPart.priceCategory" id="priceCategory" class="form-control input-sm" placeholder="Enter priceCategory [This field is validation free]"/>
                               </div>
@@ -146,7 +146,7 @@
  
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="generalCategory">Email</label>
+                              <label class="col-md-2 control-lable" for="generalCategory">General Category</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.SalesPart.generalCategory" id="generalCategory" class="generalCategory form-control input-sm" placeholder="Enter generalCategory" required/>
                                   <div class="has-error" ng-show="myForm.$dirty">
@@ -173,13 +173,13 @@
                   <table class="table table-hover">
                       <thead>
                           <tr>
-                              <th>salesPartId.</th>
-                              <th>description</th>
-                              <th>invPartNo</th>
-                              <th>invConversionFactor</th>
-                              <th>uom</th>
-                              <th>priceCategory</th>
-                              <th>generalCategory</th>
+                              <th>Sales Part Id</th>
+                              <th>Description</th>
+                              <th>Inventory Part No</th>
+                              <th>Inventory Conversion Factor</th>
+                              <th>Unit of Measure</th>
+                              <th>Price Category</th>
+                              <th>General Category</th>
                               <th width="20%"></th>
                           </tr>
                       </thead>
@@ -203,7 +203,7 @@
           </div>
       </div>
        
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+      <script src="webjars/angularjs/1.5.8/angular.js"></script>
       <script src="<c:url value='/static/js/app.js' />"></script>
       <script src="<c:url value='/static/js/service/sales_part_service.js' />"></script>
       <script src="<c:url value='/static/js/controller/sales_part_controller.js' />"></script>

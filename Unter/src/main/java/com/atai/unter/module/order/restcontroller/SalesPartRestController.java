@@ -139,9 +139,12 @@ public class SalesPartRestController {
         }
   
         currentSalesPart.setdescription(salesPart.getdescription());
-        //currentSalesPart.setAddress(salesPart.getAddress());
-        //currentSalesPart.setEmail(salesPart.getEmail());
-          
+        currentSalesPart.setInvPartNo(salesPart.getInvPartNo());
+        currentSalesPart.setInvConversionFactor(salesPart.getInvConversionFactor());
+        currentSalesPart.setUom(salesPart.getUom());
+        currentSalesPart.setPriceCategory(salesPart.getPriceCategory());
+        currentSalesPart.setGeneralCategory(salesPart.getGeneralCategory());
+         
         salesPartService.updateSalesPart(currentSalesPart);
         return new ResponseEntity<SalesPart>(currentSalesPart, HttpStatus.OK);
     }

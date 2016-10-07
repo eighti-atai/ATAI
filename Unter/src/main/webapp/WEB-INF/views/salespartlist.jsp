@@ -126,7 +126,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="invConversionFactor">Inventory Conversion Factor</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.SalesPart.invConversionFactor" id="invConversionFactor" class="invConversionFactor form-control input-sm" placeholder="Enter Inventory Conversion Factor" required/>
+                                  <input type="number" ng-model="ctrl.SalesPart.invConversionFactor" id="invConversionFactor" class="invConversionFactor form-control input-sm" placeholder="Enter Inventory Conversion Factor" required/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.salesPartId.$error.required">This is a required field</span>
                                       <span ng-show="myForm.salesPartId.$error.number">should be a number</span>

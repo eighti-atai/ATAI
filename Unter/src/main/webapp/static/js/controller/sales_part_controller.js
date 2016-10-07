@@ -61,7 +61,7 @@ angular.module('myApp').controller('SalesPartController', ['$scope', 'SalesPartS
             createSalesPart(self.SalesPart);
         }else{
             updateSalesPart(self.SalesPart, self.SalesPart.salesPartId);
-            console.log('SalesPart updated with id ', self.SalesPart.id);
+            console.log('SalesPart updated with id ', self.SalesPart.salesPartId);
         }
         reset();
     }

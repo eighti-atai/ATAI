@@ -150,20 +150,20 @@ public class SalesPartRestController {
     }
   
      
-    /* 
+    
     //------------------- Delete a User --------------------------------------------------------
       
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<SalesPart> deleteUser(@PathVariable("id") long id) {
-        System.out.println("Fetching & Deleting User with id " + id);
+    @RequestMapping(value = "/SalesPart/{salesPartId}", method = RequestMethod.DELETE)
+    public ResponseEntity<SalesPart> deleteUser(@PathVariable("salesPartId") String salesPartId) {
+        System.out.println("Fetching & Deleting User with id " + salesPartId);
   
-        User user = salesPartService.findById(id);
-        if (user == null) {
-            System.out.println("Unable to delete. User with id " + id + " not found");
+        SalesPart salesPart = salesPartService.getSalesPartById(salesPartId);
+        if (salesPart == null) {
+            System.out.println("Unable to delete. Sales Part with id " + salesPartId + " not found");
             return new ResponseEntity<SalesPart>(HttpStatus.NOT_FOUND);
         }
   
-        salesPartService.deleteUserById(id);
+        salesPartService.removeSalesPart(salesPartId);
         return new ResponseEntity<SalesPart>(HttpStatus.NO_CONTENT);
     }
   
@@ -171,7 +171,7 @@ public class SalesPartRestController {
      
     //------------------- Delete All Users --------------------------------------------------------
       
-    @RequestMapping(value = "/user/", method = RequestMethod.DELETE)
+    /*@RequestMapping(value = "/user/", method = RequestMethod.DELETE)
     public ResponseEntity<SalesPart> deleteAllUsers() {
         System.out.println("Deleting All Users");
   

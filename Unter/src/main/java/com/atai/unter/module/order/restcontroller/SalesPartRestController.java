@@ -53,6 +53,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.atai.unter.module.order.model.SalesPart;
@@ -67,6 +68,15 @@ public class SalesPartRestController {
   
      
     //-------------------Retrieve All Users--------------------------------------------------------
+    
+    
+    
+    @RequestMapping(value= "/salespartlist1",method = RequestMethod.GET)
+    public ModelAndView getIndexPage() {
+    	ModelAndView a = new ModelAndView("salespartlist");
+	  System.out.println("############################################# 01_1");
+        return a;
+    }
       
     @RequestMapping(value = "/SalesPart/", method = RequestMethod.GET)
     public ResponseEntity<List<SalesPart>> listAllSalesParts() {

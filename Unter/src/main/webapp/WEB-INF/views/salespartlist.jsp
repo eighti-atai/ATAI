@@ -77,7 +77,7 @@
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
   </head>
   <body ng-app="myApp" class="ng-cloak">
-      <div class="generic-container" data-ng-controller="SalesPartController as ctrl" ng-init="ctrl.init('SalesPart')">
+      <div class="generic-container" data-ng-controller="SalesPartController as ctrl" ng-init="ctrl.init('SalesPart',{salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null})">
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">Sales Parts</span></div>
               <div class="formcontainer">

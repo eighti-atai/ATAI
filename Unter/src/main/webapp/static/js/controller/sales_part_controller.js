@@ -2,7 +2,7 @@
  
 angular.module('myApp').controller('SalesPartController', ['$scope', 'SalesPartService', function($scope, SalesPartService) {
     var self = this;
-    self.SalesPart={salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null};
+    
     self.SalesParts=[];
  
     self.submit = submit;
@@ -14,7 +14,8 @@ angular.module('myApp').controller('SalesPartController', ['$scope', 'SalesPartS
  
     //fetchAllSalesParts();
  
-    function init(url){
+    function init(url,arr){
+    	self.SalesPart= arr;
     	SalesPartService.setRestServiceUri(url);
     	fetchAllSalesParts();
     }

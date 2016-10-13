@@ -77,17 +77,17 @@
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
   </head>
   <body ng-app="myApp" class="ng-cloak">
-      <div class="generic-container" data-ng-controller="SalesPartController as ctrl" ng-init="ctrl.init('SalesPart',{salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null})">
+      <div class="generic-container" data-ng-controller="RecordController as ctrl" ng-init="ctrl.init('SalesPart',{salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null})">
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">Sales Parts</span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-                      <input type="hidden" ng-model="ctrl.SalesPart.objid" /> 
+                      <input type="hidden" ng-model="ctrl.Record.objid" /> 
                       <div class="row">
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="salesPartId">Sales Part Id</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.SalesPart.salesPartId" id="salesPartId" class="salesPartId form-control input-sm" placeholder="Enter Sales Part Id " required ng-minlength="1"/>
+                                  <input type="text" ng-model="ctrl.Record.salesPartId" id="salesPartId" class="salesPartId form-control input-sm" placeholder="Enter Sales Part Id " required ng-minlength="1"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.salesPartId.$error.required">This is a required field</span>
                                       <span ng-show="myForm.salesPartId.$error.minlength">Minimum length required is 3</span>
@@ -102,7 +102,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="description">Description</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.SalesPart.description" id="description" class="description form-control input-sm" placeholder="Enter Description." required/>
+                                  <input type="text" ng-model="ctrl.Record.description" id="description" class="description form-control input-sm" placeholder="Enter Description." required/>
                               	  <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.salesPartId.$error.required">This is a required field</span>
                                   </div>
@@ -114,7 +114,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="invPartNo">Inventory Part No</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.SalesPart.invPartNo" id="invPartNo" class="invPartNo form-control input-sm" placeholder="Enter Inventory Part No" required/>
+                                  <input type="text" ng-model="ctrl.Record.invPartNo" id="invPartNo" class="invPartNo form-control input-sm" placeholder="Enter Inventory Part No" required/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.salesPartId.$error.required">This is a required field</span>
                                   </div>
@@ -126,7 +126,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="invConversionFactor">Inventory Conversion Factor</label>
                               <div class="col-md-7">
-                                  <input type="number" ng-model="ctrl.SalesPart.invConversionFactor" id="invConversionFactor" class="invConversionFactor form-control input-sm" placeholder="Enter Inventory Conversion Factor" required/>
+                                  <input type="number" ng-model="ctrl.Record.invConversionFactor" id="invConversionFactor" class="invConversionFactor form-control input-sm" placeholder="Enter Inventory Conversion Factor" required/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.salesPartId.$error.required">This is a required field</span>
                                       <span ng-show="myForm.salesPartId.$error.number">should be a number</span>
@@ -140,7 +140,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="uom">Unit of Measure</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.SalesPart.uom" id="uom" class="uom form-control input-sm" placeholder="Enter Unit of Measure" required/>
+                                  <input type="text" ng-model="ctrl.Record.uom" id="uom" class="uom form-control input-sm" placeholder="Enter Unit of Measure" required/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.salesPartId.$error.required">This is a required field</span>
                                       <span ng-show="myForm.salesPartId.$invalid">This field is invalid </span>
@@ -153,7 +153,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="priceCategory">Price Category</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.SalesPart.priceCategory" id="priceCategory" class="priceCategory form-control input-sm" placeholder="Enter Price Category" required/>
+                                  <input type="text" ng-model="ctrl.Record.priceCategory" id="priceCategory" class="priceCategory form-control input-sm" placeholder="Enter Price Category" required/>
                               	  <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.salesPartId.$error.required">This is a required field</span>
                                       <span ng-show="myForm.salesPartId.$invalid">This field is invalid </span>
@@ -167,7 +167,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="generalCategory">General Category</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.SalesPart.generalCategory" id="generalCategory" class="generalCategory form-control input-sm" placeholder="Enter General Category" required/>
+                                  <input type="text" ng-model="ctrl.Record.generalCategory" id="generalCategory" class="generalCategory form-control input-sm" placeholder="Enter General Category" required/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.generalCategory.$error.required">This is a required field</span>
                                       <span ng-show="myForm.generalCategory.$invalid">This field is invalid </span>
@@ -178,7 +178,7 @@
  
                       <div class="row">
                           <div class="form-actions floatRight">
-                              <input type="submit"  value="{{!ctrl.SalesPart.objid ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <input type="submit"  value="{{!ctrl.Record.objid ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                           </div>
                       </div>
@@ -203,7 +203,7 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr ng-repeat="u in ctrl.SalesParts">
+                          <tr ng-repeat="u in ctrl.Records">
                               <td><span ng-bind="u.salesPartId"></span></td>
                               <td><span ng-bind="u.description"></span></td>
                               <td><span ng-bind="u.invPartNo"></span></td>

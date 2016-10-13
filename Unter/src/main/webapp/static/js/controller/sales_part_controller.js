@@ -1,99 +1,99 @@
 'use strict';
  
-angular.module('myApp').controller('SalesPartController', ['$scope', 'SalesPartService', function($scope, SalesPartService) {
+angular.module('myApp').controller('RecordController', ['$scope', 'RecordService', function($scope, RecordService) {
     var self = this;
     
-    self.SalesParts=[];
- 
+    self.Records=[];
+    self.Record;
     self.submit = submit;
-    self.edit = edit;
+    self.edit   = edit;
     self.remove = remove;
-    self.reset = reset;
-    self.init = init;
+    self.reset  = reset;
+    self.init   = init;
  
  
-    //fetchAllSalesParts();
+    //fetchAllRecords();
  
     function init(url,arr){
-    	self.SalesPart= arr;
-    	SalesPartService.setRestServiceUri(url);
-    	fetchAllSalesParts();
+    	self.Record= arr;
+    	RecordService.setRestServiceUri(url);
+    	fetchAllRecords();
     }
     
-    function fetchAllSalesParts(){
-        SalesPartService.fetchAllSalesParts()
+    function fetchAllRecords(){
+        RecordService.fetchAllRecords()
             .then(
             function(d) {
-                self.SalesParts = d;
+                self.Records = d;
             },
             function(errResponse){
-                console.error('Error while fetching SalesParts');
+                console.error('Error while fetching Records');
             }
         );
     }
  
-    function createSalesPart(SalesPart){
-        SalesPartService.createSalesPart(SalesPart)
+    function createRecord(Record){
+        RecordService.createRecord(Record)
             .then(
-            fetchAllSalesParts,
+            fetchAllRecords,
             function(errResponse){
-                console.error('Error while creating SalesPart');
+                console.error('Error while creating Record');
             }
         );
     }
  
-    function updateSalesPart(SalesPart, salesPartId){
-        SalesPartService.updateSalesPart(SalesPart, salesPartId)
+    function updateRecord(Record, recordId){
+        RecordService.updateRecord(Record, recordId)
             .then(
-            fetchAllSalesParts,
+            fetchAllRecords,
             function(errResponse){
-                console.error('Error while updating SalesPart');
+                console.error('Error while updating Record');
             }
         );
     }
  
-    function deleteSalesPart(salesPartId){
-        SalesPartService.deleteSalesPart(salesPartId)
+    function deleteRecord(recordId){
+        RecordService.deleteRecord(recordId)
             .then(
-            fetchAllSalesParts,
+            fetchAllRecords,
             function(errResponse){
-                console.error('Error while deleting SalesPart');
+                console.error('Error while deleting Record');
             }
         );
     }
  
     function submit() {
-        if(self.SalesPart.objid===null){
-            console.log('Saving New SalesPart', self.SalesPart);
-            createSalesPart(self.SalesPart);
+        if(self.Record.objid===null){
+            console.log('Saving New Record', self.Record);
+            createRecord(self.Record);
         }else{
-            updateSalesPart(self.SalesPart, self.SalesPart.salesPartId);
-            console.log('SalesPart updated with id ', self.SalesPart.salesPartId);
+            updateRecord(self.Record, self.Record.recordId);
+            console.log('Record updated with id ', self.Record.recordId);
         }
         reset();
     }
  
-    function edit(salesPartId){
-        console.log('id to be edited', salesPartId);
-        for(var i = 0; i < self.SalesParts.length; i++){
-            if(self.SalesParts[i].salesPartId === salesPartId) {
-                self.SalesPart = angular.copy(self.SalesParts[i]);
+    function edit(recordId){
+        console.log('id to be edited', recordId);
+        for(var i = 0; i < self.Records.length; i++){
+            if(self.Records[i].recordId === recordId) {
+                self.Record = angular.copy(self.Records[i]);
                 break;
             }
         }
     }
  
-    function remove(salesPartId){
-        console.log('id to be deleted', salesPartId);
-        if(self.SalesPart.id === salesPartId) {//clean form if the SalesPart to be deleted is shown there.
+    function remove(recordId){
+        console.log('id to be deleted', recordId);
+        if(self.Record.id === recordId) {//clean form if the Record to be deleted is shown there.
             reset();
         }
-        deleteSalesPart(salesPartId);
+        deleteRecord(recordId);
     }
  
  
     function reset(){
-    	self.SalesPart={salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null};
+    	self.Record=Record;
         $scope.myForm.$setPristine(); //reset Form
     }
  

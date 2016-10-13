@@ -224,7 +224,7 @@
        
       <script src="webjars/angularjs/1.5.8/angular.js"></script>
       <script src="<c:url value='/static/js/app.js' />"></script>
-      <script src="<c:url value='/static/js/service/sales_part_service.js' />"></script>
-      <script src="<c:url value='/static/js/controller/sales_part_controller.js' />"></script>
+      <script src="<c:url value='/static/js/service/service.js' />"></script>
+      <script src="<c:url value='/static/js/controller/controller.js' />"></script>
   </body>
 </html>

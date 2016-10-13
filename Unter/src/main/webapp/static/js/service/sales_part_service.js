@@ -2,10 +2,11 @@
  
 angular.module('myApp').factory('SalesPartService', ['$http', '$q', function($http, $q){
  
-    var REST_SERVICE_URI = 'http://localhost:8080/Unter/SalesPart/';
+    var REST_SERVICE_URI;
  
     var factory = {
-        fetchAllSalesParts: fetchAllSalesParts,
+    	setRestServiceUri:setRestServiceUri,
+    	fetchAllSalesParts: fetchAllSalesParts,
         createSalesPart: createSalesPart,
         updateSalesPart:updateSalesPart,
         deleteSalesPart:deleteSalesPart
@@ -13,6 +14,12 @@ angular.module('myApp').factory('SalesPartService', ['$http', '$q', function($ht
  
     return factory;
  
+    function setRestServiceUri(url) {
+    	var deferred = $q.defer();
+    	REST_SERVICE_URI = 'http://localhost:8080/Unter/'+ url +'/';   
+        return deferred.promise;
+    }	
+    
     function fetchAllSalesParts() {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI)

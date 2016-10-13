@@ -9,10 +9,16 @@ angular.module('myApp').controller('SalesPartController', ['$scope', 'SalesPartS
     self.edit = edit;
     self.remove = remove;
     self.reset = reset;
+    self.init = init;
  
  
-    fetchAllSalesParts();
+    //fetchAllSalesParts();
  
+    function init(url){
+    	SalesPartService.setRestServiceUri(url);
+    	fetchAllSalesParts();
+    }
+    
     function fetchAllSalesParts(){
         SalesPartService.fetchAllSalesParts()
             .then(

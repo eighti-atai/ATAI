@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.atai.unter.module.invent.model.Site;
 import com.atai.unter.module.invent.service.SiteService;
 
-@Controller
+@RestController
 public class SiteController {
 
 	private SiteService siteService;
@@ -30,11 +32,12 @@ public class SiteController {
 	}
 	
 	@RequestMapping(value = "/sites", method=RequestMethod.GET)
-	public String listSites(Model model)
+	public ModelAndView listSites(Model model)
 	{
 		model.addAttribute("site", new Site());
 		model.addAttribute("listSites", this.siteService.listSites());
-		return "sites";
+		/*return "sites";*/
+		return new ModelAndView("sites").addObject("listSites", this.siteService.listSites());
 	}
 	
 	@RequestMapping(value = "/site/add")

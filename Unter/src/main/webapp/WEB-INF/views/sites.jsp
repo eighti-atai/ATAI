@@ -1,105 +1,142 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<!-- <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> -->
 <html>
 <head>
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
-<title>Insert title here</title>
+<title>Site</title>
 <style>
 .error {
 	color: #ff0000;
 	font-style: italic;
 	font-weight: bold;
 }
-</style>
-<script type="text/javascript">
-function search() {
-	document.getElementById("searchfield").value = "TRUE";
-    document.getElementById("site").submit();
+.formcontainer{
+	background-color: #DAE8E8;
+	padding: 20px;
 }
+.generic-container {
+  width:80%;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #EAE7E7;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 30px black;
+}
+body, #mainWrapper {
+	height: 70%;
+	background-color:rgb(245, 245, 245);
+}
+
+body, .form-control{
+	font-size:12px!important;
+}
+.floatRight{
+	float:right;
+	margin-right: 18px;
+}
+</style>
+
+<script src="webjars/angularjs/1.5.8/angular.js"></script>
+<script>
+	var siteApp = angular.module('siteApp', []);
+	siteApp.controller('contronl1', fun1);
+	fun1.$inject = ['$scope', '$http', '$q'];
+	
+	function fun1($scope, $http, $q)
+			{
+		
+			$scope.Record;
+			
+			
+			var init = function()
+			{
+				$scope.Record = {siteId: '', addressId: '', phoneNo1: '', phoneNo2: '', objid: '', searchfield: ''};
+			}
+			//init();
+			$scope.submit = function()
+				{
+					//alert('submit');
+					var deferred = $q.defer;
+					$http.post('http://localhost:8080/Unter/site/add', $scope.Record)
+					  .then(function(response) {
+						  deferred.resolve(response.data);
+					      $scope.myWelcome = response.data;
+					  },
+			            function(errResponse){
+			                console.error('Error while creating Record');
+			               // deferred.reject(errResponse);
+			            });
+					return deferred.promise;
+				}
+				$scope.search = function(){
+					$scope.Record.searchfield = 'TRUE';
+				    //submit();
+				    alert('Hello');
+				}
+				$scope.myWelcome = 'Hello';
+				init();
+			};
 </script>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 </head>
-<body>
+<body ng-app = "siteApp" ng-controller = "siteCtrl as ctrl" class = "ng-cloak">
+	<div class = "generic-container">
+		<div class = "panel panel-default">
+			<div class = "panel-heading">
+				<span class = "lead">Sites</span>
+			</div>
+			<div class = "formcontainer">
 	<!-- ----------------------------Add Site------------------------------------ -->
-	<h1>
-		Add a Site
-	</h1>
-	<c:url var="addAction" value="/site/add" ></c:url>
-	<form:form id="site" action="${addAction}" commandName="site">
-		<table>
-			<tr>
-				<td>
-					<form:label path="siteId">
-						<spring:message text="Site ID"/>
-					</form:label>
-				</td>
-				<td>
-					<form:input path="siteId" />
-				</td> 
-				<td>
-					<form:errors path="siteId" cssClass="error"></form:errors>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="addressId">
-						<spring:message text="Address ID"/>
-					</form:label>
-				</td>
-				<td>
-					<form:input path="addressId" />
-				</td> 
-			</tr>
-			<tr>
-				<td>
-					<form:label path="phoneNo1">
-						<spring:message text="Phone No 1"/>
-					</form:label>
-				</td>
-				<td>
-					<form:input path="phoneNo1" />
-				</td>
-				<td>
-					<form:errors path="phoneNo1" cssClass="error"></form:errors>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="phoneNo2">
-						<spring:message text="Phone No 2"/>
-					</form:label>
-				</td>
-				<td>
-					<form:input path="phoneNo2" />
-				</td>
-				<td>
-					<form:errors path="phoneNo2" cssClass="error"></form:errors>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:hidden path="objid"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="hidden" name="searchfield" id = "searchfield">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="1">
-					<!--<c:if test="${!empty site.siteId}">
-						<input type="submit"
-							value="<spring:message text="Edit Site"/>" />
-					</c:if> -->
-					<input type="submit"
-							value="<spring:message text="Save"/>" />
-					<button type="reset" value="Reset">Reset</button>
-					 <input type="button" value="Search" onclick="search()"/> 
-				</td>
-			</tr>
-		</table>	
-	</form:form>
+	<form ng-submit="submit()">
+			<div class = "row">
+				<div class = "col-md-12 form-group">
+					<label class = "col-md-2" for="siteId">Site ID</label>
+					<div class = "col-md-7" >
+						<input type = "text" ng-model = "Record.siteId" id = "siteId" class="form-control input-sm">
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class = "row">
+				<div class = "col-md-12 form-group">
+					<label class = "col-md-2" for = "addressId">Address ID</label>
+					<div class = "col-md-7">
+						<input type = "text" ng-model = "Record.addressId" id="addressId" class = "form-control input-sm">
+					</div>
+				</div>
+			</div>
+			<div class = "row">
+				<div class="col-md-12 form-group">
+					<label class = "col-md-2" for ="phoneNo1">Phone No 1</label>
+					<div class = "col-md-7">
+						<input type="number" ng-model = "Record.phoneNo1" id = "phoneNo1" class = "form-control input-sm">
+					</div>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-12 form-group">
+					<label class = "col-md-2" for = "phoneNo2">Phone No 2</label>
+					<div class = "col-md-7">
+						<input type = "number" ng-model = "Record.phoneNo2" id = "phoneNo2" class = "form-control input-sm">
+					</div>
+				</div>
+			</div>
+			<input type ="hidden" ng-model = "Record.objid" name = "objid" id="objid"/>
+			<input type ="hidden" ng-model = "Record.searchfield" name ="searchfield" id = "searchfield">
+			<div class="row">
+				<div class="floatRight">
+					<input type="submit" value="Save" class = "btn btn-sm btn-primary"/>
+					<button class = "btn btn-sm btn-warning" type="reset" value="Reset">Reset</button>
+					 <input type="button" value="Search" ng-click="search()" class = "btn btn-sm btn-success"/> 
+				</div>
+			</div>
+			{{myWelcome}}
+	</form>
 <br>
 	<!-- ----------------------------List Sites---------------------------------- -->
 	<div class="container">
@@ -128,6 +165,9 @@ function search() {
 				</tbody>
 			</table>
 		</c:if>
+	</div>
+			</div>
+		</div>
 	</div>
 	</body>
 </html>

@@ -40,7 +40,7 @@ public class SiteController {
 		return new ModelAndView("sites").addObject("listSites", this.siteService.listSites());
 	}
 	
-	@RequestMapping(value = "/site/add")
+	@RequestMapping(value = "/site/add", method= RequestMethod.POST)
 	public String addPerson(@ModelAttribute("site") Site site, 
 			@RequestParam("searchfield") String searchField, BindingResult bindingResult, Model model){
 	//public String addPerson(@Valid Site site, BindingResult bindingResult, Model model){	

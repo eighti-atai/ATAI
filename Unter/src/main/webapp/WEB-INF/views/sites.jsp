@@ -38,33 +38,32 @@ body, .form-control{
 	float:right;
 	margin-right: 18px;
 }
+.tablecontainer{
+	padding-left: 20px;
+}
 </style>
 
 <script src="webjars/angularjs/1.5.8/angular.js"></script>
 <script>
 	var siteApp = angular.module('siteApp', []);
-	siteApp.controller('contronl1', fun1);
-	fun1.$inject = ['$scope', '$http', '$q'];
-	
-	function fun1($scope, $http, $q)
-			{
-		
-			$scope.Record;
-			
-			
+	siteApp.controller('siteCtrl', ['$scope', '$http', '$q', function($scope, $http, $q){
+	$scope.Records = []		
 			var init = function()
 			{
 				$scope.Record = {siteId: '', addressId: '', phoneNo1: '', phoneNo2: '', objid: '', searchfield: ''};
+				
 			}
 			//init();
 			$scope.submit = function()
 				{
 					//alert('submit');
-					var deferred = $q.defer;
+					var deferred = $q.defer();
+					$scope.Record.searchfield = 'FALSE';
 					$http.post('http://localhost:8080/Unter/site/add', $scope.Record)
 					  .then(function(response) {
+						  alert('Record is successfully created');
 						  deferred.resolve(response.data);
-					      $scope.myWelcome = response.data;
+						  $scope.search();
 					  },
 			            function(errResponse){
 			                console.error('Error while creating Record');
@@ -73,13 +72,20 @@ body, .form-control{
 					return deferred.promise;
 				}
 				$scope.search = function(){
+					var deferred = $q.defer();
 					$scope.Record.searchfield = 'TRUE';
-				    //submit();
-				    alert('Hello');
+				    $http.get('http://localhost:8080/Unter/site/list')
+				    .then(function(response){
+				    	$scope.Records = response.data;
+				    },
+		            function(errResponse){
+		                console.error('Error while creating Record');
+		               // deferred.reject(errResponse);
+		            }
+				    );
 				}
-				$scope.myWelcome = 'Hello';
 				init();
-			};
+			}]);
 </script>
 <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 </head>
@@ -135,37 +141,34 @@ body, .form-control{
 					 <input type="button" value="Search" ng-click="search()" class = "btn btn-sm btn-success"/> 
 				</div>
 			</div>
-			{{myWelcome}}
 	</form>
+	</div>
+	</div>
 <br>
-	<!-- ----------------------------List Sites---------------------------------- -->
-	<div class="container">
-		<h3>Site List</h3>
-		<c:if test="${!empty listSites}">
-			<table class="table table-inverse">
-				<thead>
-				<tr>
-					<th width="80">Site ID</th>
-					<th width="120">Address ID</th>
-					<th width="120">Phone no 1</th>
-					<th width="120">Phone no 2</th>
-				</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${listSites}" var="site">
-						<tr>
-							<td>${site.siteId}</td>
-							<td>${site.addressId}</td>
-							<td>${site.phoneNo1}</td>
-							<td>${site.phoneNo2}</td>
+		<!-- ----------------------------List Sites---------------------------------- -->
+		<div class="panel panel-default">
+			<div class = "panel-heading lead">Site List</div>
+				<div class = "tablecontainer">
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th width="80">Site ID</th>
+						<th width="120">Address ID</th>
+						<th width="120">Phone no 1</th>
+						<th width="120">Phone no 2</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "rec in Records">
+							<td><span ng-bind = "rec.siteId"></span></td>
+							<td><span ng-bind = "rec.addressId"></span></td>
+							<td><span ng-bind = "rec.phoneNo1"></span></td>
+							<td><span ng-bind = "rec.phoneNo2"></span></td>
 							<td/>
 							<td/>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:if>
-	</div>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

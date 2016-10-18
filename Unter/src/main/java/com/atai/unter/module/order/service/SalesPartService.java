@@ -9,5 +9,6 @@ public interface SalesPartService{
 	public void updateSalesPart(SalesPart s);
 	public List<SalesPart> listSalesPart();
 	public SalesPart getSalesPartById(String salesPartId);
+	public SalesPart getSalesPartByObjid(String objid);
 	public void removeSalesPart(String salesPartId);
 	}

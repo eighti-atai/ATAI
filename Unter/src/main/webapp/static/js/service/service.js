@@ -51,9 +51,10 @@ angular.module('myApp').factory('RecordService', ['$http', '$q', function($http,
     }
  
  
-    function updateRecord(Record, salesPartId) {
+    function updateRecord(Record, objid) {
+    	 console.error('XXXXXXXXXXXXXXXXXXXXXX '+objid);
         var deferred = $q.defer();
-        $http.put(REST_SERVICE_URI+salesPartId, Record)
+        $http.put(REST_SERVICE_URI+objid, Record)
             .then(
             function (response) {
                 deferred.resolve(response.data);
@@ -66,9 +67,9 @@ angular.module('myApp').factory('RecordService', ['$http', '$q', function($http,
         return deferred.promise;
     }
  
-    function deleteRecord(salesPartId) {
+    function deleteRecord(objid) {
         var deferred = $q.defer();
-        $http.delete(REST_SERVICE_URI+salesPartId)
+        $http.delete(REST_SERVICE_URI+objid)
             .then(
             function (response) {
                 deferred.resolve(response.data);

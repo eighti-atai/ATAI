@@ -49,4 +49,15 @@ private SessionFactory sessionFactory;
 			session.delete(salesPart);
 		}
 	}
+	
+	public SalesPart getSalesPartByObjid(String objid) {
+		Session session = this.sessionFactory.getCurrentSession();	
+		System.out.println("@@@@@@@@@@@@@ 02");
+		List<SalesPart> salesPartList = session.createQuery("from SalesPart where objid = '" + objid+"'").list();
+		System.out.println("@@@@@@@@@@@@@ 03");
+		System.out.println("@@@@@@@@@@@@@ 04 "+salesPartList.size());
+		SalesPart salesPart = salesPartList.get(0);
+		
+		return salesPart;
+	}
 }

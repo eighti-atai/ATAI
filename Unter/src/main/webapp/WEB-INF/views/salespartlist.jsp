@@ -82,7 +82,7 @@
               <div class="panel-heading"><span class="lead">Sales Parts</span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-                      <input type="hidden" ng-model="ctrl.Record.objid" /> 
+                      <input type="text" ng-model="ctrl.Record.objid" /> 
                       <div class="row">
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="salesPartId">Sales Part Id</label>
@@ -213,7 +213,7 @@
                               <td><span ng-bind="u.generalCategory"></span></td>
                               
                               <td>
-                              <button type="button" ng-click="ctrl.edit(u.salesPartId)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.salesPartId)" class="btn btn-danger custom-width">Remove</button>
+                              <button type="button" ng-click="ctrl.edit(u.objid)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.objid)" class="btn btn-danger custom-width">Remove</button>
                               </td>
                           </tr>
                       </tbody>

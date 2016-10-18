@@ -26,10 +26,10 @@ public class UserController {
 	//-------------------Retrieve Single User--------------------------------------------------------
     
     @RequestMapping(value = "/User/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> getUser(@PathVariable("userId") int userId) {
+    public ResponseEntity<User> getUser(@PathVariable("userId") Integer userId) {
         System.out.println("Fetching Sales Part with id " + userId);
         User user = userService.getUserById(userId);
-        if (userId == null)) {
+        if (userId == null) {
             System.out.println("Sales Part with id " + userId + " not found");
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }

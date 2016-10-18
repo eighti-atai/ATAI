@@ -47,8 +47,8 @@ public class Site implements Serializable{
 		this.objid = objid;
 	}
 
-	//@OneToMany(mappedBy = "site")
-	//private Set<InventoryLocation> invLocations;
+	/*@OneToMany(mappedBy = "site")
+	private Set<InventoryLocation> invLocations;*/
 
 	public String getSiteId() {
 		return siteId;
@@ -79,9 +79,9 @@ public class Site implements Serializable{
 		this.address = address;
 	}
 
-	//public void setInvLocations(Set<InventoryLocation> invLocations) {
-	//	this.invLocations = invLocations;
-	//}
+	/*public void setInvLocations(Set<InventoryLocation> invLocations) {
+		this.invLocations = invLocations;
+	}*/
 
 	public void setPhoneNo1(int phoneNo1) {
 		this.phoneNo1 = phoneNo1;
@@ -95,9 +95,9 @@ public class Site implements Serializable{
 		this.phoneNo2 = phoneNo2;
 	}
 
-	//public Set<InventoryLocation> getInvLocations() {
-	//	return invLocations;
-	//}
+	/*public Set<InventoryLocation> getInvLocations() {
+		return invLocations;
+	}*/
 	
 	
 }

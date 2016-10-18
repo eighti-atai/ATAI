@@ -47,11 +47,21 @@ body, .form-control{
 <script>
 	var siteApp = angular.module('siteApp', []);
 	siteApp.controller('siteCtrl', ['$scope', '$http', '$q', function($scope, $http, $q){
-	$scope.Records = []		
+		$scope.Records = [];
+		$scope.editArray = [];
+		$scope.counter = 0;
 			var init = function()
 			{
 				$scope.Record = {siteId: '', addressId: '', phoneNo1: '', phoneNo2: '', objid: '', searchfield: ''};
 				
+			}
+			
+			var initEditArray = function()
+			{
+				for (count = 0; count < $scope.Records.length; count++)
+					{
+						editArray[count] = 'FALSE';
+					}
 			}
 			//init();
 			$scope.submit = function()
@@ -67,7 +77,7 @@ body, .form-control{
 					  },
 			            function(errResponse){
 			                console.error('Error while creating Record');
-			               // deferred.reject(errResponse);
+			                deferred.reject(errResponse);
 			            });
 					return deferred.promise;
 				}
@@ -77,6 +87,7 @@ body, .form-control{
 				    $http.get('http://localhost:8080/Unter/site/list')
 				    .then(function(response){
 				    	$scope.Records = response.data;
+				    	//initEditArray();
 				    },
 		            function(errResponse){
 		                console.error('Error while creating Record');
@@ -159,13 +170,11 @@ body, .form-control{
 					</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = "rec in Records">
-							<td><span ng-bind = "rec.siteId"></span></td>
+						<tr ng-repeat = "rec in Records track by $index">
+							<td><span ng-bind = Records[$index].siteId></span></td>
 							<td><span ng-bind = "rec.addressId"></span></td>
 							<td><span ng-bind = "rec.phoneNo1"></span></td>
 							<td><span ng-bind = "rec.phoneNo2"></span></td>
-							<td/>
-							<td/>
 						</tr>
 					</tbody>
 				</table>

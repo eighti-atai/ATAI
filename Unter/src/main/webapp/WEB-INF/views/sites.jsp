@@ -179,15 +179,26 @@ body, .form-control{
 					</thead>
 					<tbody>
 						<tr ng-repeat = "rec in Records track by $index">
-							<td><span ng-bind = Records[$index].siteId></span></td>
-							<td><span ng-bind = "rec.addressId"></span></td>
-							<td><span ng-bind = "rec.phoneNo1"></span></td>
-							<td><span ng-bind = "rec.phoneNo2"></span></td>
-							<td><span ng-bind = "editArray[$index]"></span></td>
+							<div class="animate-switch-container" ng-switch on="editArray[$index]">
+								<div class="animate-switch" ng-switch-when='FALSE'>
+									<td><span ng-bind = Records[$index].siteId></span></td>
+									<td><span ng-bind = "rec.addressId"></span></td>
+									<td><span ng-bind = "rec.phoneNo1"></span></td>
+									<td><span ng-bind = "rec.phoneNo2"></span></td>
+									<td><span ng-bind = "editArray[$index]"></span></td>
+								</div>
+								<div  ng-switch-when='TRUE'>
+									<td><input type = "text" ng-bind = Records[$index].siteId></td>
+									<td><input type = "text" ng-bind = "rec.addressId"></td>
+									<td><input type = "text" ng-bind = "rec.phoneNo1"></td>
+									<td><input type = "text" ng-bind = "rec.phoneNo2"></td>
+									<td><span ng-bind = "editArray[$index]"></span></td>
+								</div>
+							</div>
 							<td><button type="button" class="btn btn-default" aria-label="Edit" ng-click = "changeEditMode($index)">
-  								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								</button>
-							</td>
+		  								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+										</button>
+									</td>
 						</tr>
 					</tbody>
 				</table>

@@ -63,6 +63,14 @@ body, .form-control{
 						$scope.editArray[count] = 'FALSE';
 					}
 			}
+			
+			$scope.changeEditMode = function(index)
+			{
+				if ($scope.editArray[index] = 'FALSE')
+				{
+					$scope.editArray[index] = 'TRUE';
+				}
+			}
 			//init();
 			$scope.submit = function()
 				{
@@ -175,7 +183,8 @@ body, .form-control{
 							<td><span ng-bind = "rec.addressId"></span></td>
 							<td><span ng-bind = "rec.phoneNo1"></span></td>
 							<td><span ng-bind = "rec.phoneNo2"></span></td>
-							<td><button type="button" class="btn btn-default" aria-label="Left Align">
+							<td><span ng-bind = "editArray[$index]"></span></td>
+							<td><button type="button" class="btn btn-default" aria-label="Edit" ng-click = "changeEditMode($index)">
   								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 								</button>
 							</td>

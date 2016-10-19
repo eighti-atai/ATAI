@@ -60,7 +60,7 @@ body, .form-control{
 			{
 				for (count = 0; count < $scope.Records.length; count++)
 					{
-						editArray[count] = 'FALSE';
+						$scope.editArray[count] = 'FALSE';
 					}
 			}
 			//init();
@@ -69,7 +69,7 @@ body, .form-control{
 					//alert('submit');
 					var deferred = $q.defer();
 					$scope.Record.searchfield = 'FALSE';
-					$http.post('http://localhost:8080/Unter/site/add', $scope.Record)
+					$http.post('/Unter/site/add', $scope.Record)
 					  .then(function(response) {
 						  alert('Record is successfully created');
 						  deferred.resolve(response.data);
@@ -84,10 +84,10 @@ body, .form-control{
 				$scope.search = function(){
 					var deferred = $q.defer();
 					$scope.Record.searchfield = 'TRUE';
-				    $http.get('http://localhost:8080/Unter/site/list')
+				    $http.get('/Unter/site/list')
 				    .then(function(response){
 				    	$scope.Records = response.data;
-				    	//initEditArray();
+				    	initEditArray();
 				    },
 		            function(errResponse){
 		                console.error('Error while creating Record');
@@ -175,6 +175,10 @@ body, .form-control{
 							<td><span ng-bind = "rec.addressId"></span></td>
 							<td><span ng-bind = "rec.phoneNo1"></span></td>
 							<td><span ng-bind = "rec.phoneNo2"></span></td>
+							<td><button type="button" class="btn btn-default" aria-label="Left Align">
+  								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								</button>
+							</td>
 						</tr>
 					</tbody>
 				</table>

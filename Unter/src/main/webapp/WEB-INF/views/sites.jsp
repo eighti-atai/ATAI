@@ -44,34 +44,116 @@ body, .form-control{
 </style>
 
 <script src="webjars/angularjs/1.5.8/angular.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script> -->
 <script>
 	var siteApp = angular.module('siteApp', []);
-	siteApp.controller('siteCtrl', ['$scope', '$http', '$q', function($scope, $http, $q){
+	siteApp.controller('siteCtrl', ['$scope', '$http', '$q', '$compile', function($scope, $http, $q, $compile){
 		$scope.Records = [];
 		$scope.editArray = [];
+		$scope.bShow = [];
 		$scope.counter = 0;
+		$message = false;
+		Records1 = '';
+		tableHead = '';
+		tableBody = '';
 			var init = function()
 			{
-				$scope.Record = {siteId: '', addressId: '', phoneNo1: '', phoneNo2: '', objid: '', searchfield: ''};
-				
+				$scope.Record = {address: '', addressId: '', objid: '', phoneNo1: '', phoneNo2: '', siteId: ''};
+				//$scope.Record1 = {siteId: '', addressId: '', phoneNo1: '', phoneNo2: '', objid: '', searchfield: ''};
+				tableHead = "<table class='table table-hover'>"+
+								"<thead>"+
+								"<tr>"+
+								"	<th width='80'>Site ID</th>"+
+								"	<th width='120'>Address ID</th>"+
+								"	<th width='120'>Phone no 1</th>"+
+								"	<th width='120'>Phone no 2</th>"+
+								"	<button type='button' class='btn btn-default' aria-label='Edit' ng-click = 'newRow()'>"+
+								"		<span class='glyphicon glyphicon-plus' aria-hidden='true'></span>"+
+								"	</button>"+
+								"</tr>"+
+								"</thead>"+
+								"<tbody>";
+				target.innerHTML = tableHead;
+				$compile(target)($scope);
 			}
 			
 			var initEditArray = function()
 			{
 				for (count = 0; count < $scope.Records.length; count++)
 					{
-						$scope.editArray[count] = 'FALSE';
+						$scope.editArray[count] = 'false';
+						$scope.bShow[count] = false;
 					}
 			}
 			
 			$scope.changeEditMode = function(index)
 			{
-				if ($scope.editArray[index] = 'FALSE')
+				if ($scope.editArray[index] = 'false')
 				{
-					$scope.editArray[index] = 'TRUE';
+					$scope.editArray[index] = 'true';
+					$scope.bShow[index] = true;
 				}
 			}
+			
+			$scope.changeToEditMode = function()
+			{
+				if (val = 'true')
+				{
+					return true;
+				}
+				return false;
+			}
+			
+			$scope.changeToNormalMode = function()
+			{
+				if (val = 'false')
+				{
+					return false;
+				}
+				return false;
+			}
+			
+			$scope.generateHtml = function()
+			{
+				Records1 = tableHead;
+				for (i=0; i<$scope.Records.length; i++)
+				{
+					tableBody = tableBody +"<tr>" +
+											"<td><span ng-bind = Records["+i+"].siteId></span></td>" +
+											"<td><span ng-bind = Records["+i+"].addressId></span></td>" +
+											"<td><span ng-bind = Records["+i+"].phoneNo1></span></td>" +
+											"<td><span ng-bind = Records["+i+"].phoneNo2></span></td>"+
+											"<td><span ng-bind = editArray["+i+"]></span></td>"+
+											"<td>"+
+												"<button type='button' class='btn btn-default' aria-label='Edit' ng-click = 'changeEditMode("+i+")'>"+
+													"<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>"+
+												"</button>"+
+											"</td>"+
+										 "</tr>";													
+				}
+				tableBody = tableBody + 
+							"</tbody>"+
+						"</table>";
+				// setting table header
+				Records1 = tableHead + tableBody;
+				target.innerHTML = Records1;
+				$compile(target)($scope);
+				//$scope.$apply();
+			}
 			//init();
+			$scope.newRow = function(){
+				$scope.Records.push($scope.Record);
+				tableBody ="<tr>" +
+								"<td><input type = 'text' ng-bind = Records["+$scope.Records.length+"].siteId></td>"+
+								"<td><input type = 'text' ng-bind = Records["+$scope.Records.length+"].addressId></td>"+
+								"<td><input type = 'text' ng-bind = Records["+$scope.Records.length+"].phoneNo1></td>"+
+								"<td><input type = 'text' ng-bind = Records["+$scope.Records.length+"].phoneNo2></td>"+
+							"</tr>" + tableBody;
+			 	Records1 = tableHead + tableBody;
+				target.innerHTML = Records1;
+				$compile(target)($scope);
+			}
+			
 			$scope.submit = function()
 				{
 					//alert('submit');
@@ -96,6 +178,7 @@ body, .form-control{
 				    .then(function(response){
 				    	$scope.Records = response.data;
 				    	initEditArray();
+				    	$scope.generateHtml();
 				    },
 		            function(errResponse){
 		                console.error('Error while creating Record');
@@ -104,6 +187,7 @@ body, .form-control{
 				    );
 				}
 				init();
+				
 			}]);
 </script>
 <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
@@ -168,40 +252,20 @@ body, .form-control{
 		<div class="panel panel-default">
 			<div class = "panel-heading lead">Site List</div>
 				<div class = "tablecontainer">
-				<table class="table table-hover">
-					<thead>
-					<tr>
-						<th width="80">Site ID</th>
-						<th width="120">Address ID</th>
-						<th width="120">Phone no 1</th>
-						<th width="120">Phone no 2</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat = "rec in Records track by $index">
-							<div class="animate-switch-container" ng-switch on="editArray[$index]">
-								<div class="animate-switch" ng-switch-when='FALSE'>
-									<td><span ng-bind = Records[$index].siteId></span></td>
-									<td><span ng-bind = "rec.addressId"></span></td>
-									<td><span ng-bind = "rec.phoneNo1"></span></td>
-									<td><span ng-bind = "rec.phoneNo2"></span></td>
-									<td><span ng-bind = "editArray[$index]"></span></td>
-								</div>
-								<div  ng-switch-when='TRUE'>
-									<td><input type = "text" ng-bind = Records[$index].siteId></td>
-									<td><input type = "text" ng-bind = "rec.addressId"></td>
-									<td><input type = "text" ng-bind = "rec.phoneNo1"></td>
-									<td><input type = "text" ng-bind = "rec.phoneNo2"></td>
-									<td><span ng-bind = "editArray[$index]"></span></td>
-								</div>
-							</div>
-							<td><button type="button" class="btn btn-default" aria-label="Edit" ng-click = "changeEditMode($index)">
-		  								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-										</button>
-									</td>
-						</tr>
-					</tbody>
-				</table>
+<!-- 				<table class="table table-hover"> -->
+<!-- 					<thead> -->
+<!-- 					<tr> -->
+<!-- 						<th width="80">Site ID</th> -->
+<!-- 						<th width="120">Address ID</th> -->
+<!-- 						<th width="120">Phone no 1</th> -->
+<!-- 						<th width="120">Phone no 2</th> -->
+<!-- 					</tr> -->
+<!-- 					</thead> -->
+<!-- 					<tbody> -->
+						<div id = "target"></div>
+						
+<!-- 					</tbody> -->
+<!-- 				</table> -->
 			</div>
 		</div>
 	</div>

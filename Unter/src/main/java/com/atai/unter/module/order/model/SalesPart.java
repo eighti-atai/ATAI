@@ -17,7 +17,7 @@ public class SalesPart {
 	@Column(name = "inv_part_id")
 	private String invPartNo;
 	@Column(name = "inv_conversion_factor")
-	private String invConversionFactor;
+	private Integer invConversionFactor;
 	@Column(name = "uom")
 	private String uom;
 	@Column(name = "price_category")
@@ -46,10 +46,10 @@ public class SalesPart {
 	public void setInvPartNo(String invPartNo) {
 		this.invPartNo = invPartNo;
 	}
-	public String getInvConversionFactor() {
+	public Integer getInvConversionFactor() {
 		return invConversionFactor;
 	}
-	public void setInvConversionFactor(String invConversionFactor) {
+	public void setInvConversionFactor(Integer invConversionFactor) {
 		this.invConversionFactor = invConversionFactor;
 	}
 	public String getUom() {

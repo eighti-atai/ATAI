@@ -41,5 +41,11 @@ public class SalesPartServiceImpl implements SalesPartService {
 	public void removeSalesPart(String salesPartId) {
 		salesPartDao.removeSalesPart(salesPartId);
 	}
+	
+	@Transactional(readOnly = true)
+	public SalesPart getSalesPartByObjid(String objid) {
+		System.out.println("@@@@@@@@@@@@@ 01");
+		return salesPartDao.getSalesPartByObjid(objid);
+	}
 
 }

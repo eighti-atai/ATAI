@@ -67,7 +67,7 @@ public class SalesPartRestController {
     SalesPartService salesPartService;  //Service which will do all data retrieval/manipulation work
   
      
-    //-------------------Retrieve All Users--------------------------------------------------------
+    //-------------------Retrieve All Records--------------------------------------------------------
     
     
     
@@ -90,10 +90,10 @@ public class SalesPartRestController {
   
   
      
-    //-------------------Retrieve Single User--------------------------------------------------------
+    //-------------------Retrieve Single Record--------------------------------------------------------
       
     @RequestMapping(value = "/SalesPart/{salesPartId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SalesPart> getUser(@PathVariable("salesPartId") String salesPartId) {
+    public ResponseEntity<SalesPart> getSalesPart(@PathVariable("salesPartId") String salesPartId) {
         System.out.println("Fetching Sales Part with id " + salesPartId);
         SalesPart salesPart = salesPartService.getSalesPartById(salesPartId);
         if (salesPart == null) {
@@ -105,7 +105,7 @@ public class SalesPartRestController {
   
       
       
-    //-------------------Create a User--------------------------------------------------------
+    //-------------------Create--------------------------------------------------------
       
     @RequestMapping(value = "/SalesPart/", method = RequestMethod.POST)
     public ResponseEntity<Void> createSalesPart(@RequestBody SalesPart salesPart,    UriComponentsBuilder ucBuilder) {
@@ -125,50 +125,51 @@ public class SalesPartRestController {
   
      
       
-    //------------------- Update a User --------------------------------------------------------
+    //------------------- Update --------------------------------------------------------
       
-    @RequestMapping(value = "/SalesPart/{salesPartId}", method = RequestMethod.PUT)
-    public ResponseEntity<SalesPart> updateUser(@PathVariable("salesPartId") String salesPartId, @RequestBody SalesPart salesPart) {
-        System.out.println("Updating SalesPart " + salesPartId);
-          
-        SalesPart currentSalesPart = salesPartService.getSalesPartById(salesPartId);
+    @RequestMapping(value = "/SalesPart/{objid:.+}", method = RequestMethod.PUT)
+    public ResponseEntity<SalesPart> updateSalesPart(@PathVariable("objid") String objid, @RequestBody SalesPart salesPart) {
+        SalesPart currentSalesPart = salesPartService.getSalesPartByObjid(objid);
           
         if (currentSalesPart==null) {
-            System.out.println("salesPart with id " + salesPartId + " not found");
+            System.out.println("objid with id " + objid + " not found");
             return new ResponseEntity<SalesPart>(HttpStatus.NOT_FOUND);
         }
   
         currentSalesPart.setdescription(salesPart.getdescription());
-        //currentSalesPart.setAddress(salesPart.getAddress());
-        //currentSalesPart.setEmail(salesPart.getEmail());
-          
+        currentSalesPart.setInvPartNo(salesPart.getInvPartNo());
+        currentSalesPart.setInvConversionFactor(salesPart.getInvConversionFactor());
+        currentSalesPart.setUom(salesPart.getUom());
+        currentSalesPart.setPriceCategory(salesPart.getPriceCategory());
+        currentSalesPart.setGeneralCategory(salesPart.getGeneralCategory());
+         
         salesPartService.updateSalesPart(currentSalesPart);
         return new ResponseEntity<SalesPart>(currentSalesPart, HttpStatus.OK);
     }
   
      
-    /* 
-    //------------------- Delete a User --------------------------------------------------------
+    
+    //------------------- Delete --------------------------------------------------------
       
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<SalesPart> deleteUser(@PathVariable("id") long id) {
-        System.out.println("Fetching & Deleting User with id " + id);
+    @RequestMapping(value = "/SalesPart/{objid:.+}", method = RequestMethod.DELETE)
+    public ResponseEntity<SalesPart> deleteSalesPart(@PathVariable("objid") String objid) {
+        System.out.println("Fetching & Deleting User with id " + objid);
   
-        User user = salesPartService.findById(id);
-        if (user == null) {
-            System.out.println("Unable to delete. User with id " + id + " not found");
+        SalesPart salesPart = salesPartService.getSalesPartByObjid(objid);
+        if (salesPart == null) {
+            System.out.println("Unable to delete. Sales Part with id " + objid + " not found");
             return new ResponseEntity<SalesPart>(HttpStatus.NOT_FOUND);
         }
   
-        salesPartService.deleteUserById(id);
+        salesPartService.removeSalesPart(salesPart.getsalesPartId());
         return new ResponseEntity<SalesPart>(HttpStatus.NO_CONTENT);
     }
   
       
      
-    //------------------- Delete All Users --------------------------------------------------------
+    //------------------- Delete All Records --------------------------------------------------------
       
-    @RequestMapping(value = "/user/", method = RequestMethod.DELETE)
+    /*@RequestMapping(value = "/user/", method = RequestMethod.DELETE)
     public ResponseEntity<SalesPart> deleteAllUsers() {
         System.out.println("Deleting All Users");
   

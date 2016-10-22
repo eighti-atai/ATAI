@@ -265,21 +265,11 @@ body, .form-control{
 		<!-- ----------------------------List Sites---------------------------------- -->
 		<div class="panel panel-default">
 			<div class = "panel-heading lead">Site List</div>
-				<div class = "tablecontainer">
-<!-- 				<table class="table table-hover"> -->
-<!-- 					<thead> -->
-<!-- 					<tr> -->
-<!-- 						<th width="80">Site ID</th> -->
-<!-- 						<th width="120">Address ID</th> -->
-<!-- 						<th width="120">Phone no 1</th> -->
-<!-- 						<th width="120">Phone no 2</th> -->
-<!-- 					</tr> -->
-<!-- 					</thead> -->
-<!-- 					<tbody> -->
-						<div id = "target"></div>
-						
-<!-- 					</tbody> -->
-<!-- 				</table> -->
+			<div class = "tablecontainer">
+
+					<div id = "target"></div>
+					
+
 			</div>
 		</div>
 	</div>

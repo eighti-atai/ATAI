@@ -97,24 +97,6 @@ body, .form-control{
 				$scope.generateHtml();
 			}
 			
-			$scope.changeToEditMode = function()
-			{
-				if (val = 'true')
-				{
-					return true;
-				}
-				return false;
-			}
-			
-			$scope.changeToNormalMode = function()
-			{
-				if (val = 'false')
-				{
-					return false;
-				}
-				return false;
-			}
-			
 			$scope.generateHtml = function()
 			{
 				Records1 = tableHead;
@@ -123,8 +105,8 @@ body, .form-control{
 				{
 					if ($scope.editArray[i] == 'false')
 					{
-						tableBody = tableBody +"<tr>" +
-												"<td><span ng-bind = Records["+i+"].siteId></span></td>" +
+						tableBody = tableBody +"<tr ng-dblclick = 'changeEditMode("+i+")'>" +
+												"<td ondblclick = 'changeEditMode("+i+")'><span ng-bind = Records["+i+"].siteId></span></td>" +
 												"<td><span ng-bind = Records["+i+"].addressId></span></td>" +
 												"<td><span ng-bind = Records["+i+"].phoneNo1></span></td>" +
 												"<td><span ng-bind = Records["+i+"].phoneNo2></span></td>"+

@@ -118,6 +118,7 @@ body, .form-control{
 			$scope.generateHtml = function()
 			{
 				Records1 = tableHead;
+				tableBody = '';
 				for (i=0; i<$scope.Records.length; i++)
 				{
 					if ($scope.editArray[i] == 'false')

@@ -88,11 +88,13 @@ body, .form-control{
 			
 			$scope.changeEditMode = function(index)
 			{
-				if ($scope.editArray[index] = 'false')
+				if ($scope.editArray[index] == 'false')
 				{
 					$scope.editArray[index] = 'true';
 					$scope.bShow[index] = true;
 				}
+				tableBody = '';
+				$scope.generateHtml();
 			}
 			
 			$scope.changeToEditMode = function()
@@ -118,18 +120,30 @@ body, .form-control{
 				Records1 = tableHead;
 				for (i=0; i<$scope.Records.length; i++)
 				{
-					tableBody = tableBody +"<tr>" +
-											"<td><span ng-bind = Records["+i+"].siteId></span></td>" +
-											"<td><span ng-bind = Records["+i+"].addressId></span></td>" +
-											"<td><span ng-bind = Records["+i+"].phoneNo1></span></td>" +
-											"<td><span ng-bind = Records["+i+"].phoneNo2></span></td>"+
-											"<td><span ng-bind = editArray["+i+"]></span></td>"+
-											"<td>"+
-												"<button type='button' class='btn btn-default' aria-label='Edit' ng-click = 'changeEditMode("+i+")'>"+
-													"<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>"+
-												"</button>"+
-											"</td>"+
-										 "</tr>";													
+					if ($scope.editArray[i] == 'false')
+					{
+						tableBody = tableBody +"<tr>" +
+												"<td><span ng-bind = Records["+i+"].siteId></span></td>" +
+												"<td><span ng-bind = Records["+i+"].addressId></span></td>" +
+												"<td><span ng-bind = Records["+i+"].phoneNo1></span></td>" +
+												"<td><span ng-bind = Records["+i+"].phoneNo2></span></td>"+
+												"<td><span ng-bind = editArray["+i+"]></span></td>"+
+												"<td>"+
+													"<button type='button' class='btn btn-default' aria-label='Edit' ng-click = 'changeEditMode("+i+")'>"+
+														"<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>"+
+													"</button>"+
+												"</td>"+
+											 "</tr>";	
+						}
+					else
+					{
+						tableBody = tableBody +"<tr>" +
+													"<td><input type = 'text' ng-model = Records["+i+"].siteId></td>"+
+													"<td><input type = 'text' ng-model = Records["+i+"].addressId></td>"+
+													"<td><input type = 'text' ng-model = Records["+i+"].phoneNo1></td>"+
+													"<td><input type = 'text' ng-model = Records["+i+"].phoneNo2></td>"+
+												"</tr>";
+					}
 				}
 				tableBody = tableBody + 
 							"</tbody>"+

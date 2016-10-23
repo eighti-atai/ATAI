@@ -41,8 +41,46 @@ body, .form-control{
 .tablecontainer{
 	padding-left: 20px;
 }
+#div1, #div2 { 
+     width: 350px; 
+     height: 70px; 
+     padding: 10px;
+     color: green; 
+/* /*     border: 1px solid #aaaaaa; */ */
+} 
+.dropzone{
+	 width: 350px;
+    height: 70px;
+    padding: 10px;
+/*     color: green; */
+}
 </style>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
 
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    document.getElementById("div1").style.border = "dashed";
+	document.getElementById("div2").style.border = "dashed";
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    document.getElementById("div1").style.border = "";
+	document.getElementById("div2").style.border = "";
+}
+
+function changeBorder()
+{
+	document.getElementById("div1").style.border = "";
+	document.getElementById("div2").style.border = "";
+	
+}
+</script>
 <script src="webjars/angularjs/1.5.8/angular.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script> -->
 <script>
@@ -183,6 +221,7 @@ body, .form-control{
 		            }
 				    );
 				}
+				
 				init();
 				
 			}]);
@@ -192,8 +231,13 @@ body, .form-control{
 <body ng-app = "siteApp" ng-controller = "siteCtrl as ctrl" class = "ng-cloak">
 	<div class = "generic-container">
 		<div class = "panel panel-default">
-			<div class = "panel-heading">
-				<span class = "lead">Sites</span>
+			<div class = "container">
+			<div class = "row">
+				<div class = "panel-heading col-sm-1">
+					<span class = "lead">Sites</span>
+				</div>
+				<div class= "col-sm-1 dropzone" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			</div>
 			</div>
 			<div class = "formcontainer">
 	<!-- ----------------------------Add Site------------------------------------ -->
@@ -248,6 +292,38 @@ body, .form-control{
 		<!-- ----------------------------List Sites---------------------------------- -->
 		<div class="panel panel-default">
 			<div class = "panel-heading lead">Site List</div>
+			<div class = "container">
+			<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" class = "dropzone">
+			
+				<table id="drag1" draggable="true" ondragstart="drag(event)" ondragend="changeBorder()">
+					<tr>
+						<td>
+							<p><span style="cursor:move" class = "glyphicon glyphicon-menu-hamburger"   ></span></p>
+						</td>
+						<td>
+							<button class = "btn btn-default btn-lg" ">
+								<span class="glyphicon glyphicon-save-file"></span>
+							</button>
+						</td>
+						<td>
+							<button class = "btn btn-default btn-lg" >
+								<span class="glyphicon glyphicon-plus"></span>
+							</button>
+						</td>
+						<td>
+							<button class = "btn btn-default btn-lg">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</td>
+						<td>
+							<button class = "btn btn-default btn-lg">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</td>
+					</tr>
+				</table>
+				</div>
+			</div>
 			<div class = "tablecontainer">
 
 					<div id = "target"></div>

@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('myApp').controller('RecordController', ['$scope', 'RecordService', function($scope, RecordService) {
+angular.module('myApp').controller('RecordController', ['$scope', 'RecordService', function($scope, RecordService, data) {
     var self = this;
     
     self.Records=[];

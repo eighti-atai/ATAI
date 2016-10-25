@@ -4,7 +4,7 @@ angular.module('myApp').controller('RecordController', ['$scope', 'RecordService
     var self = this;
     
     self.Records=[];
-    self.Record = {salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null};
+    self.Record ;
     self.EmptyRecord;
     self.submit = submit;
     self.edit   = edit;
@@ -16,8 +16,8 @@ angular.module('myApp').controller('RecordController', ['$scope', 'RecordService
     //fetchAllRecords();
  
     function init(url,arr){
-    	//self.Record= arr;
-    	self.EmptyRecord = arr;
+    	self.Record= arr;
+    	self.EmptyRecord = angular.copy(self.Record);
     	RecordService.setRestServiceUri(url);
     	fetchAllRecords();
     }
@@ -95,7 +95,7 @@ angular.module('myApp').controller('RecordController', ['$scope', 'RecordService
  
  
     function reset(){
-    	self.Record = {salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null};
+    	self.Record = self.EmptyRecord;
         $scope.myForm.$setPristine(); //reset Form
     }
  

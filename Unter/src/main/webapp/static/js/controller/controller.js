@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('myApp').controller('RecordController', ['$scope', 'RecordService','Rec', function($scope, RecordService,Rec) {
+angular.module('generalModule').controller('RecordController', ['$scope', 'RecordService','EntityService', function($scope, RecordService,EntityService) {
     var self = this;
     
     self.Records=[];
@@ -16,10 +16,10 @@ angular.module('myApp').controller('RecordController', ['$scope', 'RecordService
  
     //fetchAllRecords();
  
-    function init(url,arr){
-    	self.Record= Rec.record;
-    	self.EmptyRecord = angular.copy(self.Record);
-    	RecordService.setRestServiceUri(Rec.entity);
+    function init(){
+    	self.Record= EntityService.record;
+    	//self.EmptyRecord = angular.copy(EntityService.record);
+    	RecordService.setRestServiceUri(EntityService.name);
     	fetchAllRecords();
     }
     
@@ -96,7 +96,7 @@ angular.module('myApp').controller('RecordController', ['$scope', 'RecordService
  
  
     function reset(){
-    	self.Record = self.EmptyRecord;
+    	self.Record = EntityService.emptyRecord;
         $scope.myForm.$setPristine(); //reset Form
     }
  

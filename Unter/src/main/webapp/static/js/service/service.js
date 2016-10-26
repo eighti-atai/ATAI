@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('myApp').factory('RecordService', ['$http', '$q', function($http, $q){
+angular.module('generalModule').factory('RecordService', ['$http', '$q', function($http, $q){
  
     var REST_SERVICE_URI;
  
@@ -10,7 +10,6 @@ angular.module('myApp').factory('RecordService', ['$http', '$q', function($http,
         createRecord: createRecord,
         updateRecord:updateRecord,
         deleteRecord:deleteRecord,
-        entity :''
     };
  
     return factory;

@@ -76,8 +76,8 @@
      <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
   </head>
-  <body ng-app="myApp" class="ng-cloak">
-      <div class="generic-container" data-ng-controller="RecordController as ctrl" ng-init="ctrl.init('SalesPart',{salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null})">
+  <body ng-app="generalModule" class="ng-cloak">
+      <div class="generic-container" data-ng-controller="RecordController as ctrl" ng-init="ctrl.init()">
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">Sales Parts</span></div>
               <div class="formcontainer">
@@ -226,5 +226,6 @@
       <script src="<c:url value='/static/js/app.js' />"></script>
       <script src="<c:url value='/static/js/service/service.js' />"></script>
       <script src="<c:url value='/static/js/controller/controller.js' />"></script>
+      <script src="<c:url value='/static/js/entity/SalesPart.js' />"></script>
   </body>
 </html>

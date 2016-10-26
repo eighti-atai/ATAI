@@ -9,7 +9,8 @@ angular.module('myApp').factory('RecordService', ['$http', '$q', function($http,
     	fetchAllRecords: fetchAllRecords,
         createRecord: createRecord,
         updateRecord:updateRecord,
-        deleteRecord:deleteRecord
+        deleteRecord:deleteRecord,
+        entity :''
     };
  
     return factory;

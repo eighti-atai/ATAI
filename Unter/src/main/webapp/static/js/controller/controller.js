@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('myApp').controller('RecordController', ['$scope', 'RecordService', function($scope, RecordService, data) {
+angular.module('myApp').controller('RecordController', ['$scope', 'RecordService','Rec', function($scope, RecordService,Rec) {
     var self = this;
     
     self.Records=[];
@@ -11,14 +11,15 @@ angular.module('myApp').controller('RecordController', ['$scope', 'RecordService
     self.remove = remove;
     self.reset  = reset;
     self.init   = init;
+    self.entity = '';
  
  
     //fetchAllRecords();
  
     function init(url,arr){
-    	self.Record= arr;
+    	self.Record= Rec.record;
     	self.EmptyRecord = angular.copy(self.Record);
-    	RecordService.setRestServiceUri(url);
+    	RecordService.setRestServiceUri(Rec.entity);
     	fetchAllRecords();
     }
     

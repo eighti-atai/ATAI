@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">-->
 		
 <beans xmlns="http://www.springframework.org/schema/beans"
+	   
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
@@ -34,7 +35,7 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/unter" />
 		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="root" />
 	</bean>
 	
 	<!-- Hibernate 5 SessionFactory Bean definition. Add your beans under <beans:list> defined in the model package. kanchana-->
@@ -62,6 +63,22 @@
 			</props>
 		</property>
 	</bean>
+	
+	
+	<!-- Configure the entity manager factory bean added by jeewan-for security implementation cannot be removed later-->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.hellokoding.account.model"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
 	
 	<!--<beans:bean id="locationDAO" class="com.atai.unter.module.purch.dao.LocationDaoImpl">
 		<beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
@@ -104,6 +121,14 @@
 	</bean>
 	<bean id="salesPartService" class="com.atai.unter.module.order.service.SalesPartServiceImpl">
 		<property name="salesPartDao" ref="salesPartDao"></property>
+	</bean>
+	
+	<bean id="userDao" class="com.atai.unter.module.enterprise.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="roleDao" class="com.atai.unter.module.enterprise.dao.RoleDaoImpl">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>
 	
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">

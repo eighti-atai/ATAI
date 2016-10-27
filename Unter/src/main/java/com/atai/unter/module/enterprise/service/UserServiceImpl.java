@@ -1,64 +1,42 @@
 package com.atai.unter.module.enterprise.service;
 
-import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import com.atai.unter.module.enterprise.dao.RoleDao;
 import com.atai.unter.module.enterprise.dao.UserDao;
 import com.atai.unter.module.enterprise.model.User;
+
+
+import java.util.HashSet;
+
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private RoleDao roleDao;
 
-private UserDao userDao;
-	
-	/* (non-Javadoc)
-	 * @see com.atai.unter.module.enterprise.service.UserService#setUserDao(com.atai.unter.module.enterprise.dao.UserDao)
+    /* (non-Javadoc)
+	 * @see com.atai.unter.module.enterprise.service.UserService#save(com.atai.unter.module.enterprise.model.User)
 	 */
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
+    @Override
+    public void save(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(roleDao.listRoles());
+        userDao.addUser(user);
+    }
 
-	/* (non-Javadoc)
-	 * @see com.atai.unter.module.enterprise.service.UserService#addService(com.atai.unter.module.enterprise.model.User)
+    /* (non-Javadoc)
+	 * @see com.atai.unter.module.enterprise.service.UserService#findByUsername(java.lang.String)
 	 */
-	@Transactional
-	public void addService(User user) {
-		userDao.addUser(user);
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.atai.unter.module.enterprise.service.UserService#updateUser(com.atai.unter.module.enterprise.model.User)
-	 */
-	@Transactional
-	public void updateUser(User user) {
-		userDao.updateUser(user);
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.atai.unter.module.enterprise.service.UserService#listUsers()
-	 */
-	@Transactional(readOnly = true)
-	public List<User> listUsers() {
-		return userDao.listUsers();
-	}
-
-	/* (non-Javadoc)
-	 * @see com.atai.unter.module.enterprise.service.UserService#getUserById(int)
-	 */
-	@Transactional(readOnly = true)
-	public User getUserById(int userId) {
-		return userDao.getUserById(userId);
-	}
-
-	/* (non-Javadoc)
-	 * @see com.atai.unter.module.enterprise.service.UserService#removeUser(int)
-	 */
-	@Transactional
-	public void removeUser(int userid) {
-		userDao.removeUser(userid);
-
-	}
-	
+    @Override
+    public User findByUsername(String username) {
+        return userDao.findByUsername(username);
+    }
 }

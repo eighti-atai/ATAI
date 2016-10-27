@@ -32,6 +32,7 @@ public interface UserDao {
 	 * @see com.atai.unter.module.enterprise.dao.UserDao#getAddressById(int)
 	 */
 	User getUserById(int userId);
+	User findByUsername(String username);
 
 	/* (non-Javadoc)
 	 * @see com.atai.unter.module.enterprise.dao.UserDao#removeAddress(int)

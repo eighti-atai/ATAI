@@ -14,9 +14,9 @@ angular.module('generalModule').factory('RecordService', ['$http', '$q', functio
  
     return factory;
  
-    function setRestServiceUri(url) {
+    function setRestServiceUri(entity) {
     	var deferred = $q.defer();
-    	REST_SERVICE_URI = 'http://localhost:8080/Unter/'+ url +'/';   
+    	REST_SERVICE_URI = 'http://localhost:8080/Unter/'+ entity +'/';   
         return deferred.promise;
     }	
     

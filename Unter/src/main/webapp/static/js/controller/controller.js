@@ -96,7 +96,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
  
  
     function reset(){
-    	self.Record = EntityService.emptyRecord;
+    	self.Record = EntityService.emptyRecord();
         $scope.myForm.$setPristine(); //reset Form
     }
  

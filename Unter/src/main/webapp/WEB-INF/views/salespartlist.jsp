@@ -180,6 +180,7 @@
                           <div class="form-actions floatRight">
                               <input type="submit"  value="{{!ctrl.Record.objid ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+                               <button type="button" ng-click="ctrl.updateAll()" class="btn btn-warning btn-sm" >Save All</button>
                           </div>
                       </div>
                   </form>
@@ -203,21 +204,40 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr ng-repeat="u in ctrl.Records">
-                              <td><span ng-bind="u.salesPartId"></span></td>
-                              <td><span ng-bind="u.description"></span></td>
-                              <td><span ng-bind="u.invPartNo"></span></td>
-                              <td><span ng-bind="u.invConversionFactor"></span></td>
-                              <td><span ng-bind="u.uom"></span></td>
-                              <td><span ng-bind="u.priceCategory"></span></td>
-                              <td><span ng-bind="u.generalCategory"></span></td>
+                          <tr ng-repeat="u in ctrl.Records" >
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.salesPartId"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.description"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.invPartNo"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.invConversionFactor"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.uom"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.priceCategory"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.generalCategory"></span></td>
                               
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.salesPartId"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.description"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.invPartNo"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.invConversionFactor"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.uom"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.priceCategory"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.generalCategory"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.objid"/></td>
                               <td>
-                              <button type="button" ng-click="ctrl.edit(u.objid)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.objid)" class="btn btn-danger custom-width">Remove</button>
+                              <button type="button" ng-click="ctrl.editRow(u.objid)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.objid)" class="btn btn-danger custom-width">Remove</button>
                               </td>
                           </tr>
                       </tbody>
                   </table>
+                  
+                 <!--  <input type="text" ng-model="ctrl.Records[1].salesPartId"/>
+                  ctrl.Record = ctrl.Records[1]
+                              <input type="text" ng-model="u.description"/>
+                              <input type="text" ng-model="u.invPartNo"/>
+                              <input type="text" ng-model="u.invConversionFactor"/>
+                             <input type="text" ng-model="u.uom"/>
+                              <input type="text" ng-model="u.priceCategory"/>
+                              <input type="text" ng-model="u.generalCategory"/>
+                              <input type="text" ng-model="u.objid"/>
+                              <td> {{$index}} </td> -->
               </div>
           </div>
       </div>

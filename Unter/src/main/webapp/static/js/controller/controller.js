@@ -4,6 +4,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     var self = this;
     
     self.Records=[];
+    self.Rows=[];
     self.Record ;
     self.EmptyRecord;
     self.submit = submit;
@@ -11,6 +12,9 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     self.remove = remove;
     self.reset  = reset;
     self.init   = init;
+    self.change   = change;
+    self.editRow   = editRow;
+    self.updateAll = updateAll;
     self.entity = '';
  
  
@@ -84,6 +88,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
                 break;
             }
         }
+        updateRecord(self.Record, objid);
     }
  
     function remove(objid){
@@ -94,10 +99,37 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
         deleteRecord(objid);
     }
  
+    function change(objid){
+    	for(var i = 0; i < self.Rows.length; i++){
+            if(self.Rows[i] === objid) {
+                return true;
+            }
+        }
+    	return false;
+        
+    }
  
+    function editRow(objid){
+    	self.Rows.push(objid);
+    	return false;
+    }
+    
+    function updateAll(){
+        for(var j = 0; j < self.Rows.length; j++){
+	        for(var i = 0; i < self.Records.length; i++){
+	            if(self.Records[i].objid === self.Rows[j]) {
+	                self.Record = angular.copy(self.Records[i]);
+	                break;
+	            }
+	        }
+	        updateRecord(self.Record, self.Rows[j]);
+        }
+        self.Rows = [];
+    }
     function reset(){
     	self.Record = EntityService.emptyRecord();
         $scope.myForm.$setPristine(); //reset Form
+        
     }
  
 }]);

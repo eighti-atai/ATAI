@@ -125,6 +125,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
 	        updateRecord(self.Record, self.Rows[j]);
         }
         self.Rows = [];
+        reset();
     }
     function reset(){
     	self.Record = EntityService.emptyRecord();

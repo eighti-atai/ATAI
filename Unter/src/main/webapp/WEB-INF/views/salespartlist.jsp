@@ -204,7 +204,7 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr ng-repeat="u in ctrl.Records" >
+                          <tr ng-repeat="u in ctrl.Records | startFrom:ctrl.currentPage*ctrl.pageSize | limitTo:ctrl.pageSize " >
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.salesPartId"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.description"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.invPartNo"></span></td>
@@ -226,8 +226,15 @@
                               </td>
                           </tr>
                       </tbody>
+                      
                   </table>
-                  
+                  <button ng-disabled="ctrl.currentPage == 0" ng-click="ctrl.currentPage=ctrl.currentPage-1">
+        						Previous
+    					  </button>
+    						{{ctrl.currentPage+1}}/{{ctrl.numberOfPages()}}
+    					  <button ng-disabled="ctrl.currentPage >= ctrl.Records.length/ctrl.pageSize - 1" ng-click="ctrl.currentPage=ctrl.currentPage+1">
+       						 	Next
+    					  </button>
                  <!--  <input type="text" ng-model="ctrl.Records[1].salesPartId"/>
                   ctrl.Record = ctrl.Records[1]
                               <input type="text" ng-model="u.description"/>
@@ -246,6 +253,7 @@
       <script src="<c:url value='/static/js/app.js' />"></script>
       <script src="<c:url value='/static/js/service/service.js' />"></script>
       <script src="<c:url value='/static/js/controller/controller.js' />"></script>
+      <script src="<c:url value='/static/js/filter/filter.js' />"></script>
       <script src="<c:url value='/static/js/entity/SalesPart.js' />"></script>
   </body>
 </html>

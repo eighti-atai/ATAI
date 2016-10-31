@@ -15,10 +15,13 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     self.change   = change;
     self.editRow   = editRow;
     self.updateAll = updateAll;
+    self.numberOfPages = numberOfPages;
     self.entity = '';
+    self.currentPage  = 0;
+    self.pageSize  = 5;
  
  
-    //fetchAllRecords();
+    
  
     function init(){
     	self.Record= EntityService.record;
@@ -130,6 +133,10 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     	self.Record = EntityService.emptyRecord();
         $scope.myForm.$setPristine(); //reset Form
         
+    }
+    
+    function numberOfPages() {
+        return Math.ceil(self.Records.length/self.pageSize);                
     }
  
 }]);

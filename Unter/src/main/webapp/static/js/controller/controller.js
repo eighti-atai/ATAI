@@ -88,7 +88,6 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
                 break;
             }
         }
-        updateRecord(self.Record, objid);
     }
  
     function remove(objid){

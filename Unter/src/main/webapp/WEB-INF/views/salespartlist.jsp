@@ -213,13 +213,13 @@
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.priceCategory"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.generalCategory"></span></td>
                               
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.salesPartId" style="width: 80px;"/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.description" style="width: 80px;"/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.invPartNo" style="width: 80px;"/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.invConversionFactor" style="width: 80px;"/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.uom" style="width: 80px;"/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.priceCategory" style="width: 80px;"/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.generalCategory" style="width: 80px;"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.salesPartId"style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.description" style="width: 100%""/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.invPartNo"style="width: 100%""/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.invConversionFactor" style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.uom" style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.priceCategory" style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.generalCategory" style="width: 100%"/></td>
                               <!-- <td ng-if="ctrl.change(u.objid)"><input type="hidden" ng-model="u.objid" style="width: 80px;"/></td> -->
                               <td>
                               <button type="button" ng-click="ctrl.editRow(u.objid)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.objid)" class="btn btn-danger custom-width">Remove</button>

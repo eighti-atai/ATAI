@@ -23,6 +23,9 @@ body, .form-control{
 
 .tablecontainer{
 	padding-left: 20px;
+	overflow-x: auto;
+	border : #bbb solid 1px;
+	resize:both;
 }
 
 .generic-container {

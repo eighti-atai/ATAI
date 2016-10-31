@@ -229,10 +229,10 @@
                       
                   </table>
                   <button ng-disabled="ctrl.currentPage == 0" ng-click="ctrl.currentPage=ctrl.currentPage-1">
-        						Previous
-    					  </button>
+        			Previous
+    			  </button>
     						{{ctrl.currentPage+1}}/{{ctrl.numberOfPages()}}
-    					  <button ng-disabled="ctrl.currentPage >= ctrl.Records.length/ctrl.pageSize - 1" ng-click="ctrl.currentPage=ctrl.currentPage+1">
+    			  <button ng-disabled="ctrl.currentPage >= ctrl.Records.length/ctrl.pageSize - 1" ng-click="ctrl.currentPage=ctrl.currentPage+1">
        						 	Next
     					  </button>
                  <!--  <input type="text" ng-model="ctrl.Records[1].salesPartId"/>

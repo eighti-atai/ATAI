@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('myApp').factory('RecordService', ['$http', '$q', function($http, $q){
+angular.module('generalModule').factory('RecordService', ['$http', '$q', function($http, $q){
  
     var REST_SERVICE_URI;
  
@@ -9,14 +9,14 @@ angular.module('myApp').factory('RecordService', ['$http', '$q', function($http,
     	fetchAllRecords: fetchAllRecords,
         createRecord: createRecord,
         updateRecord:updateRecord,
-        deleteRecord:deleteRecord
+        deleteRecord:deleteRecord,
     };
  
     return factory;
  
-    function setRestServiceUri(url) {
+    function setRestServiceUri(entity) {
     	var deferred = $q.defer();
-    	REST_SERVICE_URI = 'http://localhost:8080/Unter/'+ url +'/';   
+    	REST_SERVICE_URI = 'http://localhost:8080/Unter/'+ entity +'/';   
         return deferred.promise;
     }	
     

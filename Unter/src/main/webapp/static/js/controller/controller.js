@@ -1,24 +1,32 @@
 'use strict';
  
-angular.module('myApp').controller('RecordController', ['$scope', 'RecordService', function($scope, RecordService) {
+angular.module('generalModule').controller('RecordController', ['$scope', 'RecordService','EntityService', function($scope, RecordService,EntityService) {
     var self = this;
     
     self.Records=[];
-    self.Record = {salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null};
+    self.Rows=[];
+    self.Record ;
     self.EmptyRecord;
     self.submit = submit;
     self.edit   = edit;
     self.remove = remove;
     self.reset  = reset;
     self.init   = init;
+    self.change   = change;
+    self.editRow   = editRow;
+    self.updateAll = updateAll;
+    self.numberOfPages = numberOfPages;
+    self.entity = '';
+    self.currentPage  = 0;
+    self.pageSize  = 5;
  
  
-    //fetchAllRecords();
+    
  
-    function init(url,arr){
-    	//self.Record= arr;
-    	self.EmptyRecord = arr;
-    	RecordService.setRestServiceUri(url);
+    function init(){
+    	self.Record= EntityService.record;
+    	//self.EmptyRecord = angular.copy(EntityService.record);
+    	RecordService.setRestServiceUri(EntityService.name);
     	fetchAllRecords();
     }
     
@@ -93,10 +101,42 @@ angular.module('myApp').controller('RecordController', ['$scope', 'RecordService
         deleteRecord(objid);
     }
  
+    function change(objid){
+    	for(var i = 0; i < self.Rows.length; i++){
+            if(self.Rows[i] === objid) {
+                return true;
+            }
+        }
+    	return false;
+        
+    }
  
+    function editRow(objid){
+    	self.Rows.push(objid);
+    	return false;
+    }
+    
+    function updateAll(){
+        for(var j = 0; j < self.Rows.length; j++){
+	        for(var i = 0; i < self.Records.length; i++){
+	            if(self.Records[i].objid === self.Rows[j]) {
+	                self.Record = angular.copy(self.Records[i]);
+	                break;
+	            }
+	        }
+	        updateRecord(self.Record, self.Rows[j]);
+        }
+        self.Rows = [];
+        reset();
+    }
     function reset(){
-    	self.Record = {salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null};
+    	self.Record = EntityService.emptyRecord();
         $scope.myForm.$setPristine(); //reset Form
+        
+    }
+    
+    function numberOfPages() {
+        return Math.ceil(self.Records.length/self.pageSize);                
     }
  
 }]);

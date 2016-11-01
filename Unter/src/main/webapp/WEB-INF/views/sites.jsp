@@ -41,8 +41,46 @@ body, .form-control{
 .tablecontainer{
 	padding-left: 20px;
 }
+#div1, #div2 { 
+     width: 350px; 
+     height: 70px; 
+     padding: 10px;
+     color: green; 
+/* /*     border: 1px solid #aaaaaa; */ */
+} 
+.dropzone{
+	 width: 350px;
+    height: 70px;
+    padding: 10px;
+/*     color: green; */
+}
 </style>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
 
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    document.getElementById("div1").style.border = "dashed";
+	document.getElementById("div2").style.border = "dashed";
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    document.getElementById("div1").style.border = "";
+	document.getElementById("div2").style.border = "";
+}
+
+function changeBorder()
+{
+	document.getElementById("div1").style.border = "";
+	document.getElementById("div2").style.border = "";
+	
+}
+</script>
 <script src="webjars/angularjs/1.5.8/angular.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script> -->
 <script>
@@ -88,48 +126,45 @@ body, .form-control{
 			
 			$scope.changeEditMode = function(index)
 			{
-				if ($scope.editArray[index] = 'false')
+				if ($scope.editArray[index] == 'false')
 				{
 					$scope.editArray[index] = 'true';
 					$scope.bShow[index] = true;
 				}
-			}
-			
-			$scope.changeToEditMode = function()
-			{
-				if (val = 'true')
-				{
-					return true;
-				}
-				return false;
-			}
-			
-			$scope.changeToNormalMode = function()
-			{
-				if (val = 'false')
-				{
-					return false;
-				}
-				return false;
+				tableBody = '';
+				$scope.generateHtml();
 			}
 			
 			$scope.generateHtml = function()
 			{
 				Records1 = tableHead;
+				tableBody = '';
 				for (i=0; i<$scope.Records.length; i++)
 				{
-					tableBody = tableBody +"<tr>" +
-											"<td><span ng-bind = Records["+i+"].siteId></span></td>" +
-											"<td><span ng-bind = Records["+i+"].addressId></span></td>" +
-											"<td><span ng-bind = Records["+i+"].phoneNo1></span></td>" +
-											"<td><span ng-bind = Records["+i+"].phoneNo2></span></td>"+
-											"<td><span ng-bind = editArray["+i+"]></span></td>"+
-											"<td>"+
-												"<button type='button' class='btn btn-default' aria-label='Edit' ng-click = 'changeEditMode("+i+")'>"+
-													"<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>"+
-												"</button>"+
-											"</td>"+
-										 "</tr>";													
+					if ($scope.editArray[i] == 'false')
+					{
+						tableBody = tableBody +"<tr ng-dblclick = 'changeEditMode("+i+")'>" +
+												"<td ondblclick = 'changeEditMode("+i+")'><span ng-bind = Records["+i+"].siteId></span></td>" +
+												"<td><span ng-bind = Records["+i+"].addressId></span></td>" +
+												"<td><span ng-bind = Records["+i+"].phoneNo1></span></td>" +
+												"<td><span ng-bind = Records["+i+"].phoneNo2></span></td>"+
+												"<td><span ng-bind = editArray["+i+"]></span></td>"+
+												"<td>"+
+													"<button type='button' class='btn btn-default' aria-label='Edit' ng-click = 'changeEditMode("+i+")'>"+
+														"<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>"+
+													"</button>"+
+												"</td>"+
+											 "</tr>";	
+						}
+					else
+					{
+						tableBody = tableBody +"<tr>" +
+													"<td><input type = 'text' ng-model = Records["+i+"].siteId></td>"+
+													"<td><input type = 'text' ng-model = Records["+i+"].addressId></td>"+
+													"<td><input type = 'text' ng-model = Records["+i+"].phoneNo1></td>"+
+													"<td><input type = 'text' ng-model = Records["+i+"].phoneNo2></td>"+
+												"</tr>";
+					}
 				}
 				tableBody = tableBody + 
 							"</tbody>"+
@@ -186,6 +221,7 @@ body, .form-control{
 		            }
 				    );
 				}
+				
 				init();
 				
 			}]);
@@ -195,8 +231,13 @@ body, .form-control{
 <body ng-app = "siteApp" ng-controller = "siteCtrl as ctrl" class = "ng-cloak">
 	<div class = "generic-container">
 		<div class = "panel panel-default">
-			<div class = "panel-heading">
-				<span class = "lead">Sites</span>
+			<div class = "container">
+			<div class = "row">
+				<div class = "panel-heading col-sm-1">
+					<span class = "lead">Sites</span>
+				</div>
+				<div class= "col-sm-1 dropzone" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			</div>
 			</div>
 			<div class = "formcontainer">
 	<!-- ----------------------------Add Site------------------------------------ -->
@@ -251,21 +292,43 @@ body, .form-control{
 		<!-- ----------------------------List Sites---------------------------------- -->
 		<div class="panel panel-default">
 			<div class = "panel-heading lead">Site List</div>
-				<div class = "tablecontainer">
-<!-- 				<table class="table table-hover"> -->
-<!-- 					<thead> -->
-<!-- 					<tr> -->
-<!-- 						<th width="80">Site ID</th> -->
-<!-- 						<th width="120">Address ID</th> -->
-<!-- 						<th width="120">Phone no 1</th> -->
-<!-- 						<th width="120">Phone no 2</th> -->
-<!-- 					</tr> -->
-<!-- 					</thead> -->
-<!-- 					<tbody> -->
-						<div id = "target"></div>
-						
-<!-- 					</tbody> -->
-<!-- 				</table> -->
+			<div class = "container">
+			<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" class = "dropzone">
+			
+				<table id="drag1" draggable="true" ondragstart="drag(event)" ondragend="changeBorder()">
+					<tr>
+						<td>
+							<p><span style="cursor:move" class = "glyphicon glyphicon-menu-hamburger"   ></span></p>
+						</td>
+						<td>
+							<button class = "btn btn-default btn-lg" ">
+								<span class="glyphicon glyphicon-save-file"></span>
+							</button>
+						</td>
+						<td>
+							<button class = "btn btn-default btn-lg" >
+								<span class="glyphicon glyphicon-plus"></span>
+							</button>
+						</td>
+						<td>
+							<button class = "btn btn-default btn-lg">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</td>
+						<td>
+							<button class = "btn btn-default btn-lg">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</td>
+					</tr>
+				</table>
+				</div>
+			</div>
+			<div class = "tablecontainer">
+
+					<div id = "target"></div>
+					
+
 			</div>
 		</div>
 	</div>

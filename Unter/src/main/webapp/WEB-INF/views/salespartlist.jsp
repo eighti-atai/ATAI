@@ -76,13 +76,13 @@
      <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
   </head>
-  <body ng-app="myApp" class="ng-cloak">
-      <div class="generic-container" data-ng-controller="RecordController as ctrl" ng-init="ctrl.init('SalesPart',{salesPartId:'',description:'',invPartNo:'',invConversionFactor:'',uom:'',priceCategory:'',generalCategory:'',objid:null})">
+  <body ng-app="generalModule" class="ng-cloak">
+      <div class="generic-container" data-ng-controller="RecordController as ctrl" ng-init="ctrl.init()">
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">Sales Parts</span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-                      <input type="text" ng-model="ctrl.Record.objid" /> 
+                      <input type="hidden" ng-model="ctrl.Record.objid" /> 
                       <div class="row">
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="salesPartId">Sales Part Id</label>
@@ -180,6 +180,7 @@
                           <div class="form-actions floatRight">
                               <input type="submit"  value="{{!ctrl.Record.objid ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+                               <button type="button" ng-click="ctrl.updateAll()" class="btn btn-warning btn-sm" >Save All</button>
                           </div>
                       </div>
                   </form>
@@ -203,21 +204,47 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr ng-repeat="u in ctrl.Records">
-                              <td><span ng-bind="u.salesPartId"></span></td>
-                              <td><span ng-bind="u.description"></span></td>
-                              <td><span ng-bind="u.invPartNo"></span></td>
-                              <td><span ng-bind="u.invConversionFactor"></span></td>
-                              <td><span ng-bind="u.uom"></span></td>
-                              <td><span ng-bind="u.priceCategory"></span></td>
-                              <td><span ng-bind="u.generalCategory"></span></td>
+                          <tr ng-repeat="u in ctrl.Records | startFrom:ctrl.currentPage*ctrl.pageSize | limitTo:ctrl.pageSize " >
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.salesPartId"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.description"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.invPartNo"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.invConversionFactor"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.uom"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.priceCategory"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.generalCategory"></span></td>
                               
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.salesPartId"style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.description" style="width: 100%""/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.invPartNo"style="width: 100%""/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.invConversionFactor" style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.uom" style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.priceCategory" style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.generalCategory" style="width: 100%"/></td>
+                              <!-- <td ng-if="ctrl.change(u.objid)"><input type="hidden" ng-model="u.objid" style="width: 80px;"/></td> -->
                               <td>
-                              <button type="button" ng-click="ctrl.edit(u.objid)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.objid)" class="btn btn-danger custom-width">Remove</button>
+                              <button type="button" ng-click="ctrl.editRow(u.objid)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.objid)" class="btn btn-danger custom-width">Remove</button>
                               </td>
                           </tr>
                       </tbody>
+                      
                   </table>
+                  <button ng-disabled="ctrl.currentPage == 0" ng-click="ctrl.currentPage=ctrl.currentPage-1">
+        			Previous
+    			  </button>
+    						{{ctrl.currentPage+1}}/{{ctrl.numberOfPages()}}
+    			  <button ng-disabled="ctrl.currentPage >= ctrl.Records.length/ctrl.pageSize - 1" ng-click="ctrl.currentPage=ctrl.currentPage+1">
+       						 	Next
+    					  </button>
+                 <!--  <input type="text" ng-model="ctrl.Records[1].salesPartId"/>
+                  ctrl.Record = ctrl.Records[1]
+                              <input type="text" ng-model="u.description"/>
+                              <input type="text" ng-model="u.invPartNo"/>
+                              <input type="text" ng-model="u.invConversionFactor"/>
+                             <input type="text" ng-model="u.uom"/>
+                              <input type="text" ng-model="u.priceCategory"/>
+                              <input type="text" ng-model="u.generalCategory"/>
+                              <input type="text" ng-model="u.objid"/>
+                              <td> {{$index}} </td> -->
               </div>
           </div>
       </div>
@@ -226,5 +253,7 @@
       <script src="<c:url value='/static/js/app.js' />"></script>
       <script src="<c:url value='/static/js/service/service.js' />"></script>
       <script src="<c:url value='/static/js/controller/controller.js' />"></script>
+      <script src="<c:url value='/static/js/filter/filter.js' />"></script>
+      <script src="<c:url value='/static/js/entity/SalesPart.js' />"></script>
   </body>
 </html>

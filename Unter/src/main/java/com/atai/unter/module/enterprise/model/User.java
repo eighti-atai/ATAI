@@ -6,14 +6,14 @@ import javax.persistence.*;
 
 import java.util.Set;
 import java.util.List;
+import com.atai.unter.module.enterprise.model.Role;
 
 @Entity
 @Table(name = "user_tab")
 public class User {
 	@Id
 	@Column(name = "user_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+    private String userId;
 	@Column(name = "user_name")
     private String userName;
 	@Column(name = "password")
@@ -24,11 +24,11 @@ public class User {
     @JoinTable(name = "user_role_tab", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> userRoles;
    
-    public Long getId() {
+    public String getId() {
         return userId;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.userId = id;
     }
 

@@ -53,6 +53,8 @@
 				<value>com.atai.unter.module.order.model.SalesPartPrice</value>
 				<value>com.atai.unter.module.invent.model.InventoryPartCost</value>
 				<value>com.atai.unter.module.invent.model.InvPartInStock</value>
+				<value>com.atai.unter.module.enterprise.model.User</value>
+				<value>com.atai.unter.module.enterprise.model.Role</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

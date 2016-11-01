@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import com.atai.unter.module.enterprise.model.User;
 
 @Entity
 @Table(name = "role_tab")
@@ -18,18 +19,18 @@ public class Role {
 	@Id
 	@Column(name = "role_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long roleId;
+	private String roleId;
 	
-	@Column(name = "name")
+	@Column(name = "role_name")
 	private String name;
-	@ManyToMany(mappedBy = "roles")
+	@ManyToMany(mappedBy = "userRoles")
 	private List<User> users;
 
-    public Long getId() {
+    public String getId() {
         return roleId;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.roleId = id;
     }
 

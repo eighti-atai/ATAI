@@ -4,6 +4,7 @@ package com.atai.unter.module.enterprise.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.atai.unter.module.enterprise.dao.RoleDao;
 import com.atai.unter.module.enterprise.dao.UserDao;
@@ -25,8 +26,9 @@ public class UserServiceImpl implements UserService {
     /* (non-Javadoc)
 	 * @see com.atai.unter.module.enterprise.service.UserService#save(com.atai.unter.module.enterprise.model.User)
 	 */
-    @Override
+    @Transactional
     public void save(User user) {
+    	user.setId("2");
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(roleDao.listRoles());
         userDao.addUser(user);
@@ -35,7 +37,7 @@ public class UserServiceImpl implements UserService {
     /* (non-Javadoc)
 	 * @see com.atai.unter.module.enterprise.service.UserService#findByUsername(java.lang.String)
 	 */
-    @Override
+    @Transactional
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }

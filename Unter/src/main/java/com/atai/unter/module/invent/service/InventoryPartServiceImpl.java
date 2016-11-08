@@ -21,6 +21,7 @@ public class InventoryPartServiceImpl implements InventoryPartService {
 
 	@Transactional
 	public void addInventoryPart(InventoryPart invPart) {
+		invPart.setObjid(invPart.toString());
 		this.invPartDao.addInventoryPart(invPart);
 	}
 

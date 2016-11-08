@@ -1,4 +1,4 @@
-package com.atai.unter.module.invent.model;
+package com.atai.unter.module.enterprise.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -18,7 +18,7 @@ import com.atai.unter.module.enterprise.model.Address;
 
 @Entity
 @Table(name = "site_tab")
-public class SiteOld implements Serializable{
+public class Site implements Serializable{
 
 	@Id
 	@Column(name = "site_id")

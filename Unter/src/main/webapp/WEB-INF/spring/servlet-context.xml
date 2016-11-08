@@ -35,7 +35,7 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/unter" />
 		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="arjunkan3+" />
 	</bean>
 	
 	<!-- Hibernate 5 SessionFactory Bean definition. Add your beans under <beans:list> defined in the model package. kanchana-->
@@ -47,7 +47,7 @@
 				<value>com.atai.unter.module.purch.model.Location</value>
 				<value>com.atai.unter.module.invent.model.InventoryPart</value>
 				<value>com.atai.unter.module.enterprise.model.Address</value>
-				<value>com.atai.unter.module.invent.model.Site</value>
+				<value>com.atai.unter.module.invent.model.SiteOld</value>
 				<value>com.atai.unter.module.invent.model.InventoryLocation</value>
 				<value>com.atai.unter.module.order.model.SalesPart</value>
 				<value>com.atai.unter.module.order.model.SalesPartPrice</value>
@@ -55,6 +55,7 @@
 				<value>com.atai.unter.module.invent.model.InvPartInStock</value>
 				<value>com.atai.unter.module.enterprise.model.User</value>
 				<value>com.atai.unter.module.enterprise.model.Role</value>
+				<value>com.atai.unter.module.enterprise.model.Site</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -104,12 +105,14 @@
 		<property name="addressDao" ref="addressDao"></property>
 	</bean>
 	
-	<bean id="siteDao" class="com.atai.unter.module.invent.dao.SiteDaoImpl">
+	<bean id="siteDaoOld" class="com.atai.unter.module.invent.dao.SiteDaoImplOld">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>
-	<bean id="siteService" class="com.atai.unter.module.invent.service.SiteServiceImpl">
-		<property name="siteDao" ref="siteDao"></property>
+	<bean id="siteServiceOld" class="com.atai.unter.module.invent.service.SiteServiceImplOld">
+		<property name="siteDao" ref="siteDaoOld"></property>
 	</bean>
+	
+	
 
 	<bean id="invLocationDao" class="com.atai.unter.module.invent.dao.InventoryLocationDaoImpl">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />

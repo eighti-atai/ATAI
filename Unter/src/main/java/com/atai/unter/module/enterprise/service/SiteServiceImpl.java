@@ -1,42 +1,43 @@
-package com.atai.unter.module.invent.service;
+package com.atai.unter.module.enterprise.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.atai.unter.module.invent.dao.SiteDaoOld;
-import com.atai.unter.module.invent.model.SiteOld;
+import com.atai.unter.module.enterprise.dao.SiteDao;
+import com.atai.unter.module.enterprise.model.Site;
 
-
-public class SiteServiceImplOld implements SiteServiceOld{
-	private SiteDaoOld siteDao;
+@Service
+public class SiteServiceImpl implements SiteService{
+	private SiteDao siteDao;
 	
 	
-
-	public void setSiteDao(SiteDaoOld siteDao) {
+	@Autowired
+	public void setSiteDao(SiteDao siteDao) {
 		this.siteDao = siteDao;
 	}
 
 	@Transactional
-	public void addSite(SiteOld site) {
+	public void addSite(Site site) {
 		site.setObjid(site.toString());
 		siteDao.addData(site);
 	}
 
 	@Transactional
-	public void updateSite(SiteOld site) {
+	public void updateSite(Site site) {
 		siteDao.updateData(site);
 		
 	}
 
 	@Transactional(readOnly = true)
-	public List<SiteOld> listSites() {
+	public List<Site> listSites() {
 		return siteDao.listData();
 	}
 
 	@Transactional(readOnly = true)
-	public SiteOld getSiteById(String siteId) {
+	public Site getSiteById(String siteId) {
 		return siteDao.getSiteById(siteId);
 	}
 

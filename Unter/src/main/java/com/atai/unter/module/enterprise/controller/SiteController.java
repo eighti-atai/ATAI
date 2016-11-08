@@ -1,4 +1,4 @@
-package com.atai.unter.module.invent.controller;
+package com.atai.unter.module.enterprise.controller;
 
 import java.util.List;
 
@@ -24,44 +24,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.atai.unter.module.invent.model.SiteOld;
-import com.atai.unter.module.invent.service.SiteServiceOld;
+import com.atai.unter.module.enterprise.model.Site;
+import com.atai.unter.module.enterprise.service.SiteService;
 
 @RestController
-public class SiteControllerOld {
+public class SiteController {
 
-	private SiteServiceOld siteService;
-	Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+	private SiteService siteService;
+	//Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 	
 	@Autowired
-	public void setSiteService(SiteServiceOld siteService) {
+	public void setSiteService(SiteService siteService) {
 		this.siteService = siteService;
 	}
 	
-	@RequestMapping(value = "/sites", method=RequestMethod.GET)
+	@RequestMapping(value = "/site2", method=RequestMethod.GET)
 	public ModelAndView listSites(Model model)
 	{
-		model.addAttribute("site", new SiteOld());
+		model.addAttribute("site", new Site());
 		model.addAttribute("listSites", this.siteService.listSites());
 		/*return "sites";*/
-		return new ModelAndView("sites");//.addObject("listSites", this.siteService.listSites());
+		return new ModelAndView("site2");//.addObject("listSites", this.siteService.listSites());
 	}
 	
 	@CrossOrigin(origins = "http://kanslk1:8080", maxAge = 3600)
-	@RequestMapping(value = "/site/list", method = RequestMethod.GET)
-	public ResponseEntity<List<SiteOld>> listSites2()
+	@RequestMapping(value = "/Site", method = RequestMethod.GET)
+	public ResponseEntity<List<Site>> listSites2()
 	{
-		List<SiteOld> sites = this.siteService.listSites();
+		List<Site> sites = this.siteService.listSites();
 		System.out.println("test-------------------");
-		return new ResponseEntity<List<SiteOld>>(sites, HttpStatus.OK);
+		return new ResponseEntity<List<Site>>(sites, HttpStatus.OK);
 		//model.addAttribute("site", new Site());
 		//model.addAttribute("listSites", this.siteService.listSites());
 		/*return "sites";*/
 		//return new ModelAndView("sites").addObject("listSites", this.siteService.listSites());
 	}
 	
-	@RequestMapping(value = "/site/add", method= RequestMethod.POST)
-	public ResponseEntity<Void> addPerson(@RequestBody SiteOld site){
+	@RequestMapping(value = "/site2/add", method= RequestMethod.POST)
+	public ResponseEntity<Void> addPerson(@RequestBody Site site){
 	//public String addPerson(@Valid Site site, BindingResult bindingResult, Model model){	
 	
 		/*if (searchField.equals("TRUE"))

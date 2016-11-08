@@ -1,11 +1,11 @@
 package com.atai.unter.module.invent.dao;
 
 import com.atai.unter.generic.interfaces.DataAcccessObject;
-import com.atai.unter.module.invent.model.Site;
+import com.atai.unter.module.invent.model.SiteOld;
 
-public interface SiteDao extends DataAcccessObject<Site> {
+public interface SiteDaoOld extends DataAcccessObject<SiteOld> {
 
-	public Site getSiteById(String siteId);
+	public SiteOld getSiteById(String siteId);
 
 	public void removeSite(String siteId);
 }

@@ -17,6 +17,8 @@ public class InventoryPart {
 	
 	private String uom;
 	
+	private String objid;
+	
 	@Column(name="reorder_level")
 	private double reorderLevel;
 	
@@ -53,50 +55,10 @@ public class InventoryPart {
 	public void setSafetyStockLevel(double safetyStockLevel) {
 		this.safetyStockLevel = safetyStockLevel;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((invPartNo == null) ? 0 : invPartNo.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(reorderLevel);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(safetyStockLevel);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((uom == null) ? 0 : uom.hashCode());
-		return result;
+	public String getObjid() {
+		return objid;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		InventoryPart other = (InventoryPart) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (invPartNo == null) {
-			if (other.invPartNo != null)
-				return false;
-		} else if (!invPartNo.equals(other.invPartNo))
-			return false;
-		if (Double.doubleToLongBits(reorderLevel) != Double.doubleToLongBits(other.reorderLevel))
-			return false;
-		if (Double.doubleToLongBits(safetyStockLevel) != Double.doubleToLongBits(other.safetyStockLevel))
-			return false;
-		if (uom == null) {
-			if (other.uom != null)
-				return false;
-		} else if (!uom.equals(other.uom))
-			return false;
-		return true;
+	public void setObjid(String objid) {
+		this.objid = objid;
 	}
-	
-	
 }

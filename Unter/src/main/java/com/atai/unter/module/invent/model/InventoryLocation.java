@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.atai.unter.module.enterprise.model.Site;
+
 @Entity
 @Table(name = "inventory_location_tab")
 public class InventoryLocation {

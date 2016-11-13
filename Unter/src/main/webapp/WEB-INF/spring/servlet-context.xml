@@ -35,7 +35,7 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/unter" />
 		<property name="username" value="root" />
-		<property name="password" value="arjunkan3+" />
+		<property name="password" value="root" />
 	</bean>
 	
 	<!-- Hibernate 5 SessionFactory Bean definition. Add your beans under <beans:list> defined in the model package. kanchana-->
@@ -128,7 +128,11 @@
 		<property name="salesPartDao" ref="salesPartDao"></property>
 	</bean>
 	
-	<bean id="userDao" class="com.atai.unter.module.enterprise.dao.UserDaoImpl">
+	<bean id="AbstractDao" class="com.atai.unter.generic.dao" abstract ="true">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="userDao" class="com.atai.unter.module.enterprise.dao.UserDaoImpl" parent="AbstractDao">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>
 	

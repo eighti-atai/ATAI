@@ -12,22 +12,39 @@ import com.atai.unter.module.enterprise.dao.UserDao;
 import com.atai.unter.module.enterprise.model.Role;
 import com.atai.unter.module.enterprise.model.User;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UserDetailsServiceImpl implements UserDetailsService{
     private UserDao userDao;
 
+    @Autowired
+    private UserService userService;
+    
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(username);
+    		User user = userService.findByUsername(username);
+    		System.out.println("User : "+user);
+    		if(user==null){
+    			System.out.println("User not found");
+    			throw new UsernameNotFoundException("Username not found");
+    		}
+    			return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), 
+    				 user.getState().equals("Active"), true, true, true, getGrantedAuthorities(user));
+    	}
 
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (Role role : user.getRoles()){
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
-
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
-    }
+    	
+    	private List<GrantedAuthority> getGrantedAuthorities(User user){
+    		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+    		
+    		for(Role userRole : user.getRoles()){
+    			System.out.println("UserProfile : "+userRole);
+    			authorities.add(new SimpleGrantedAuthority("ROLE_"+userRole.getName()));
+    		}
+    		System.out.print("authorities :"+authorities);
+    		return authorities;
+    	}
 }

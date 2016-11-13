@@ -5,30 +5,40 @@ import javax.persistence.*;
 //import org.hibernate.mapping.List;
 
 import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 import com.atai.unter.module.enterprise.model.Role;
+import com.atai.unter.module.enterprise.model.User;
 
 @Entity
 @Table(name = "user_tab")
 public class User {
 	@Id
 	@Column(name = "user_id")
-    private String userId;
-	@Column(name = "user_name")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int userId;
+	
+	@Column(name = "user_name", unique=true, nullable=false)
     private String userName;
-	@Column(name = "password")
+	
+	@Column(name = "password", nullable=false)
     private String password;
+	
 	@Transient
     private String passwordConfirm;
+	
+	@Column(name="state", nullable=false)
+    private String state=State.ACTIVE.getState();
+	
 	@ManyToMany
     @JoinTable(name = "user_role_tab", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> userRoles;
+    private Set<Role> userRoles = new HashSet<Role>();
    
-    public String getId() {
+    public int getId() {
         return userId;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.userId = id;
     }
 
@@ -56,12 +66,54 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
+    public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
     
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return userRoles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.userRoles = roles;
     }
+    
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + userId;
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof User))
+			return false;
+		User other = (User) obj;
+		if (userId != other.userId)
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + userId + ", userName=" + userName + ", password=" + password
+				 + ", state=" + state + ", userRole=" + userRoles +"]";
+	}
+
 }

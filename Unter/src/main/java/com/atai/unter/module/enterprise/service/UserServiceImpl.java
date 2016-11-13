@@ -8,10 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.atai.unter.module.enterprise.dao.RoleDao;
 import com.atai.unter.module.enterprise.dao.UserDao;
+import com.atai.unter.module.enterprise.model.Role;
 import com.atai.unter.module.enterprise.model.User;
-
+import com.atai.unter.module.enterprise.model.UserRoleTypes;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,9 +30,10 @@ public class UserServiceImpl implements UserService {
 	 */
     @Transactional
     public void save(User user) {
-    	user.setId("2");
+    	Set<Role> roles = new HashSet<Role>();
+    	roles.add(roleDao.getRoleById(1));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(roleDao.listRoles());
+        user.setRoles(roles);
         userDao.addUser(user);
     }
 
@@ -39,6 +42,6 @@ public class UserServiceImpl implements UserService {
 	 */
     @Transactional
     public User findByUsername(String username) {
-        return userDao.findByUsername(username);
+        return userDao.findByUserName(username);
     }
 }

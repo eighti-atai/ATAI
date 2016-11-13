@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.atai.unter.module.invent.model.InventoryLocation;
 import com.atai.unter.module.invent.model.InventoryLocationKey;
-import com.atai.unter.module.invent.model.Site;
+import com.atai.unter.module.enterprise.model.Site;
 import com.atai.unter.module.invent.service.InventoryLocationService;
-import com.atai.unter.module.invent.service.SiteService;
-import com.atai.unter.module.invent.service.SiteServiceImpl;
+import com.atai.unter.module.enterprise.service.SiteService;
+import com.atai.unter.module.enterprise.service.SiteServiceImpl;
 
 @Controller
 public class InventoryLocationController {

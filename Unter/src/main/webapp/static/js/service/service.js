@@ -1,8 +1,10 @@
 'use strict';
  
-angular.module('generalModule').factory('RecordService', ['$http', '$q', function($http, $q){
+angular.module('generalModule').factory('RecordService', ['$http', '$q', '$location', function($http, $q, $location){
  
     var REST_SERVICE_URI;
+    var current_url;
+    var base_url;
  
     var factory = {
     	setRestServiceUri:setRestServiceUri,
@@ -16,7 +18,10 @@ angular.module('generalModule').factory('RecordService', ['$http', '$q', functio
  
     function setRestServiceUri(entity) {
     	var deferred = $q.defer();
-    	REST_SERVICE_URI = 'http://localhost:8080/Unter/'+ entity +'/';   
+    	current_url = $location.absUrl();
+    	base_url = current_url.substr(0, current_url.indexOf('Unter')+6);
+    	REST_SERVICE_URI = base_url + entity +'/';   
+    	
         return deferred.promise;
     }	
     

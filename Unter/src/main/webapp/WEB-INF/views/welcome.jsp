@@ -32,7 +32,10 @@
         </form>
 
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-
+		<a href = "${contextPath}/salespartlist1"> Sales Price List </a>
+		<a href = "${contextPath}/addresses"> Address </a>
+		<a href = "${contextPath}/site2"> Site </a>
+		<a href = "${contextPath}/showAddInventoryPart"> Inventory Part</a>
     </c:if>
 
 </div>

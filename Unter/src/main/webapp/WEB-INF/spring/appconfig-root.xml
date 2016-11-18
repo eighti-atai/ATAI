@@ -9,5 +9,7 @@
     <import resource="servlet-context.xml"/>
 
     <import resource="appconfig-security.xml"/>
+    
+    <bean id = "csrfHeadFilter" class="com.atai.unter.security.filter.CsrfHeaderFilter"></bean>
 
 </beans>

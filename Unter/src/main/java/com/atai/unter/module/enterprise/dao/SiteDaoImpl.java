@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.atai.unter.generic.interfaces.DataAcccessObject;
 import com.atai.unter.module.enterprise.model.Site;
+import com.atai.unter.module.order.model.SalesPart;
 
 @Repository
 public class SiteDaoImpl implements SiteDao
@@ -49,6 +50,14 @@ public class SiteDaoImpl implements SiteDao
 		if (site != null){
 			session.delete(site);
 		}
+	}
+	
+	public Site getSiteByObjid(String objid) {
+		Session session = this.sessionFactory.getCurrentSession();	
+		List<Site> siteList = session.createQuery("from Site where objid = '" + objid+"'").list();
+		Site site = siteList.get(0);
+		
+		return site;
 	}
 	
 }

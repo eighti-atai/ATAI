@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.atai.unter.module.enterprise.dao.SiteDao;
 import com.atai.unter.module.enterprise.model.Site;
+import com.atai.unter.module.order.model.SalesPart;
 
 @Service
 public class SiteServiceImpl implements SiteService{
@@ -47,5 +48,8 @@ public class SiteServiceImpl implements SiteService{
 		
 	}
 
-	
+	@Transactional(readOnly = true)
+	public Site getSiteByObjid(String objid) {
+		return siteDao.getSiteByObjid(objid);
+	}
 }

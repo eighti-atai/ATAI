@@ -15,17 +15,20 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.atai.unter.module.enterprise.model.Site;
 import com.atai.unter.module.enterprise.service.SiteService;
+import com.atai.unter.module.order.model.SalesPart;
+
 
 @RestController
 public class SiteController {
@@ -94,4 +97,18 @@ public class SiteController {
 		//}
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
+	
+	@RequestMapping(value = "/Site/{objid:.+}", method = RequestMethod.DELETE)
+	public ResponseEntity<Site> deleteSite(@PathVariable("objid") String objid) {
+        System.out.println("Fetching & Deleting Site with id " + objid);
+  
+        Site site = siteService.getSiteByObjid(objid);
+        if (site == null) {
+            System.out.println("Unable to delete. Sales Part with id " + objid + " not found");
+            return new ResponseEntity<Site>(HttpStatus.NOT_FOUND);
+        }
+  
+        siteService.removeSite(site.getSiteId());
+        return new ResponseEntity<Site>(HttpStatus.NO_CONTENT);
+    }
 }

@@ -10,6 +10,8 @@
 
     <import resource="appconfig-security.xml"/>
     
-    <bean id = "csrfHeadFilter" class="com.atai.unter.security.filter.CsrfHeaderFilter"></bean>
-
+<!--     <bean id = "csrfHeadFilter" class="com.atai.unter.security.filter.CsrfHeaderFilter"></bean> -->
+<!--     <bean id="csrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository"> -->
+<!--     <property name="headerName" value="X-XSRF-TOKEN" /> -->
+<!-- </bean> -->
 </beans>

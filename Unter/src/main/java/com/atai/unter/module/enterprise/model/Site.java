@@ -27,7 +27,8 @@ public class Site implements Serializable{
 	@Column(name = "address_id")
 	private int addressId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	//@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "address_id",insertable = false, updatable = false)
 	private Address address;
 	

@@ -49,6 +49,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -127,7 +128,7 @@ public class SalesPartRestController {
       
     //------------------- Update --------------------------------------------------------
       
-    @RequestMapping(value = "/SalesPart/{objid:.+}", method = RequestMethod.PUT)
+    /*@RequestMapping(value = "/SalesPart/{objid:.+}", method = RequestMethod.PUT)
     public ResponseEntity<SalesPart> updateSalesPart(@PathVariable("objid") String objid, @RequestBody SalesPart salesPart) {
         SalesPart currentSalesPart = salesPartService.getSalesPartByObjid(objid);
           
@@ -145,9 +146,22 @@ public class SalesPartRestController {
          
         salesPartService.updateSalesPart(currentSalesPart);
         return new ResponseEntity<SalesPart>(currentSalesPart, HttpStatus.OK);
-    }
+    }*/
   
-     
+     @PutMapping(value = "/SalesPart")
+     public ResponseEntity<SalesPart> updateSalesPart(@RequestBody SalesPart newSalesPart) {
+         SalesPart oldSalesPart = salesPartService.getSalesPartByObjid(newSalesPart.getObjid());
+           
+         if (oldSalesPart==null) {
+             System.out.println("objid with id " + newSalesPart.getObjid() + " not found");
+             return new ResponseEntity<SalesPart>(HttpStatus.NOT_FOUND);
+         }
+   
+         newSalesPart.setsalesPartId(oldSalesPart.getsalesPartId());
+          
+         salesPartService.updateSalesPart(newSalesPart);
+         return new ResponseEntity<SalesPart>(newSalesPart, HttpStatus.OK);
+     }
     
     //------------------- Delete --------------------------------------------------------
       

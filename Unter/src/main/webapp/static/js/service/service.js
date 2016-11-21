@@ -59,7 +59,7 @@ angular.module('generalModule').factory('RecordService', ['$http', '$q', '$locat
     function updateRecord(Record, objid) {
     	 console.error('XXXXXXXXXXXXXXXXXXXXXX '+objid);
         var deferred = $q.defer();
-        $http.put(REST_SERVICE_URI+objid, Record)
+        $http.put(REST_SERVICE_URI, Record)
             .then(
             function (response) {
                 deferred.resolve(response.data);

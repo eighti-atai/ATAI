@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,45 +59,23 @@ public class SiteController {
 		List<Site> sites = this.siteService.listSites();
 		System.out.println("test-------------------");
 		return new ResponseEntity<List<Site>>(sites, HttpStatus.OK);
-		//model.addAttribute("site", new Site());
-		//model.addAttribute("listSites", this.siteService.listSites());
-		/*return "sites";*/
-		//return new ModelAndView("sites").addObject("listSites", this.siteService.listSites());
 	}
 	
-	@RequestMapping(value = "/site2/add", method= RequestMethod.POST)
-	public ResponseEntity<Void> addPerson(@RequestBody Site site){
-	//public String addPerson(@Valid Site site, BindingResult bindingResult, Model model){	
+	@PostMapping(value = "/Site")
+	public ResponseEntity<Void> addSite(@RequestBody Site site){
 	
-		/*if (searchField.equals("TRUE"))
-		{
-			site = siteService.getSiteById(site.getSiteId());
-			model.addAttribute("site", site);
-			return "sites";
-		}
-		else
-		{*/
-			//validator.validate(site, bindingResult);
-			/*System.out.println("--------------- in the addPerson Controller");
-			if (bindingResult.hasErrors())
-			{
-				System.out.println("Binding errors -----------------------");
-				return "sites";
-			}*/
-			//model.addAttribute("site", site);
-			if (site.getObjid().equals(""))
-			{
-				System.out.println("Site object will be added");
-				this.siteService.addSite(site);
-			}
-			else
-			{
-				System.out.println("Site object will be updated");
-				this.siteService.updateSite(site);
-			}
-			
-		//}
-			return new ResponseEntity<Void>(HttpStatus.CREATED);
+		System.out.println("Site object will be added");
+		this.siteService.addSite(site);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	}
+	
+	@PutMapping(value = "/Site")
+	ResponseEntity<Site> modifySite(@RequestBody Site newSite)
+	{
+		Site oldSite = siteService.getSiteByObjid(newSite.getObjid());
+		newSite.setSiteId(oldSite.getSiteId());
+		this.siteService.updateSite(newSite);
+		return new ResponseEntity<Site>(newSite, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/Site/{objid:.+}", method = RequestMethod.DELETE)

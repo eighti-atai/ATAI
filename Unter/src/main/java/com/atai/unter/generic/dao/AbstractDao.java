@@ -7,6 +7,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -77,11 +78,21 @@ public class AbstractDao<PK extends Serializable, T> {
 	private void setValue(T entity, Criteria criteria, Field field) throws Exception
 	{
 		String fieldName;
+		String fieldValue;
 		field.setAccessible(true);
 		if (!checkIfNull(entity, field))
 		{
 			fieldName = field.getName();
-			criteria.add(Restrictions.eq(fieldName, field.get(entity)));
+			fieldValue = field.get(entity).toString();
+			System.out.println("field value is ----------------------"+fieldValue);
+			if(fieldValue.contains("%"))
+			{
+				criteria.add(Restrictions.ilike(fieldName, field.get(entity)));
+			}
+			else
+			{
+				criteria.add(Restrictions.eq(fieldName, field.get(entity)));
+			}
 		}
 		
 	}

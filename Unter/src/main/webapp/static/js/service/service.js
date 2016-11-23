@@ -86,5 +86,20 @@ angular.module('generalModule').factory('RecordService', ['$http', '$q', '$locat
         );
         return deferred.promise;
     }
+    
+    function searchRecord(Record) {
+        var deferred = $q.defer();
+        $http.post(REST_SERVICE_URI+"Search/", Record)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while creating Record');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
  
 }]);

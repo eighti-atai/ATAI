@@ -91,4 +91,12 @@ public class SiteController {
         siteService.removeSite(site.getSiteId());
         return new ResponseEntity<Site>(HttpStatus.NO_CONTENT);
     }
+	
+	@PostMapping(value = "/Site/Search")
+	ResponseEntity<List<Site>> searchSite(@RequestBody Site site)
+	{
+		List<Site> sites = this.siteService.executeSelectQuery(site);
+		System.out.println("test-------------------");
+		return new ResponseEntity<List<Site>>(sites, HttpStatus.OK);
+	}
 }

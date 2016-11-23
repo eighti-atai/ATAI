@@ -52,4 +52,9 @@ public class SiteServiceImpl implements SiteService{
 	public Site getSiteByObjid(String objid) {
 		return siteDao.getSiteByObjid(objid);
 	}
+
+	@Transactional(readOnly = true)
+	public List<Site> executeSelectQuery(Site site) {
+		return siteDao.executeSelectQuery(site);
+	}
 }

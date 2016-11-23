@@ -7,12 +7,13 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.atai.unter.generic.dao.AbstractDao;
 import com.atai.unter.generic.interfaces.DataAcccessObject;
 import com.atai.unter.module.enterprise.model.Site;
 import com.atai.unter.module.order.model.SalesPart;
 
 @Repository
-public class SiteDaoImpl implements SiteDao
+public class SiteDaoImpl extends AbstractDao<String, Site> implements SiteDao 
 {
 	private SessionFactory sessionFactory;
 	

@@ -15,6 +15,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     self.change   = change;
     self.editRow   = editRow;
     self.updateAll = updateAll;
+    self.searchRecords = searchRecords;
     self.numberOfPages = numberOfPages;
     self.entity = '';
     self.currentPage  = 0;
@@ -83,6 +84,18 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
         reset();
     }
  
+    function searchRecords(){
+        RecordService.searchRecord(self.Record)
+            .then(
+            function(d) {
+                self.Records = d;
+            },
+            function(errResponse){
+                console.error('Error while fetching Records');
+            }
+        );
+    }
+    
     function edit(objid){
         console.log('id to be edited', objid);
         for(var i = 0; i < self.Records.length; i++){

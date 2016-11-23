@@ -3,15 +3,12 @@ package com.atai.unter.generic.dao;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AbstractDao<PK extends Serializable, T> {

@@ -48,7 +48,6 @@ public class SiteController {
 	{
 		model.addAttribute("site", new Site());
 		model.addAttribute("listSites", this.siteService.listSites());
-		/*return "sites";*/
 		return new ModelAndView("site2");//.addObject("listSites", this.siteService.listSites());
 	}
 	
@@ -57,7 +56,6 @@ public class SiteController {
 	public ResponseEntity<List<Site>> listSites2()
 	{
 		List<Site> sites = this.siteService.listSites();
-		System.out.println("test-------------------");
 		return new ResponseEntity<List<Site>>(sites, HttpStatus.OK);
 	}
 	
@@ -96,7 +94,6 @@ public class SiteController {
 	ResponseEntity<List<Site>> searchSite(@RequestBody Site site)
 	{
 		List<Site> sites = this.siteService.executeSelectQuery(site);
-		System.out.println("test-------------------");
 		return new ResponseEntity<List<Site>>(sites, HttpStatus.OK);
 	}
 }

@@ -21,6 +21,17 @@ public class InventoryLocation {
 	@ManyToOne
 	@JoinColumn(name = "site_id", referencedColumnName = "site_id", insertable = false, updatable = false)
 	private Site site;
+	
+	private String objid;
+	
+	public String getObjid() {
+		return objid;
+	}
+
+	public void setObjid(String objid) {
+		this.objid = objid;
+	}
+
 
 	public InventoryLocationKey getId() {
 		return id;

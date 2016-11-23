@@ -36,6 +36,7 @@
 		<a href = "${contextPath}/addresses"> Address </a>
 		<a href = "${contextPath}/site2"> Site </a>
 		<a href = "${contextPath}/showAddInventoryPart"> Inventory Part</a>
+		<a href = "${contextPath}/invlocations"> Inventory Location</a>
     </c:if>
 
 </div>

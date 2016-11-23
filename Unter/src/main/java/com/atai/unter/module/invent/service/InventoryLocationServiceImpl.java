@@ -44,5 +44,15 @@ public class InventoryLocationServiceImpl implements InventoryLocationService{
 	public void removeInventoryLocation(InventoryLocationKey invLocationId) {
 		invLocationDao.removeInventoryLocation(invLocationId);
 	}
+	
+	@Transactional(readOnly = true)
+	public InventoryLocation getInventoryLocationByObjid(String objid) {
+		return invLocationDao.getInventoryLocationByObjid(objid);
+	}
+
+	@Transactional(readOnly = true)
+	public List<InventoryLocation> executeSelectQuery(InventoryLocation invLocation) {
+		return invLocationDao.executeSelectQuery(invLocation);
+	}
 
 }

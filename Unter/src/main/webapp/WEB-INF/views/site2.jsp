@@ -169,7 +169,7 @@
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.phoneNo1"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.phoneNo2"></span></td>
                                                             
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.addressId"style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.siteId"style="width: 100%"/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.addressId" style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.phoneNo1"style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.phoneNo2" style="width: 100%"/></td>

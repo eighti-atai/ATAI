@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `unter`.`inventory_location_tab` (
   `site_id` VARCHAR(5) NOT NULL,
   `inv_location_id` VARCHAR(5) NOT NULL,
   `inv_location_type` VARCHAR(10) NULL,
+  `objid` VARCHAR2(1000) NOT NULL,
   PRIMARY KEY (`site_id`, `inv_location_id`),
   CONSTRAINT `site_id`
     FOREIGN KEY (`site_id`)

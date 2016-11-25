@@ -22,6 +22,7 @@ public class InventoryLocationServiceImpl implements InventoryLocationService{
 
 	@Transactional
 	public void addData(InventoryLocation p) {
+		p.setObjid(p.toString());
 		invLocationDao.addData(p);
 	}
 

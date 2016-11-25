@@ -38,8 +38,6 @@ public class InventoryLocationController {
 	@GetMapping(value = "/invlocations")
 	public ModelAndView listLocation(Model model)
 	{
-		/*model.addAttribute("site", new Site());
-		model.addAttribute("listSites", this.siteService.listSites());*/
 		return new ModelAndView("inventorylocations");//.addObject("listSites", this.siteService.listSites());
 	}
 	

@@ -98,7 +98,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="siteId">Site Id</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.siteId" id="siteId" class="salesPartId form-control input-sm" placeholder="Enter Site Id " required ng-minlength="1"/>
+                                  <input type="text" ng-model="ctrl.Record.id.siteId" id="siteId" class="salesPartId form-control input-sm" placeholder="Enter Site Id " required ng-minlength="1"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.siteId.$error.required">This is a required field</span>
                                       <span ng-show="myForm.siteId.$error.minlength">Minimum length required is 3</span>
@@ -112,7 +112,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="invLocationId">Location ID</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.invLocationId" id="invLocationId" class="description form-control input-sm" placeholder="Enter Location Id." required/>
+                                  <input type="text" ng-model="ctrl.Record.id.invLocationId" id="invLocationId" class="description form-control input-sm" placeholder="Enter Location Id." required/>
                               	  <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.invLocationId.$error.required">This is a required field</span>
                                   </div>
@@ -159,12 +159,12 @@
                       </thead>
                       <tbody>
                           <tr ng-repeat="u in ctrl.Records | startFrom:ctrl.currentPage*ctrl.pageSize | limitTo:ctrl.pageSize " >
-                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.siteId"></span></td>
-                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.invLocationId"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.id.siteId"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.id.invLocationId"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.invLocationType"></span></td>
                                                                                           
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.siteId"style="width: 100%"/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.invLocationId" style="width: 100%""/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.id.siteId"style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.id.invLocationId" style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.invLocationType"style="width: 100%""/></td>
                               <!-- <td ng-if="ctrl.change(u.objid)"><input type="hidden" ng-model="u.objid" style="width: 80px;"/></td> -->
                               <td>

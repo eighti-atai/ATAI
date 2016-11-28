@@ -2,6 +2,7 @@ package com.atai.unter.generic.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AbstractDao<PK extends Serializable, T> {
 	
 	private final Class<T> persistentClass;
-    
+	    
     @SuppressWarnings("unchecked")
     public AbstractDao(){
         this.persistentClass =(Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
@@ -51,19 +52,19 @@ public class AbstractDao<PK extends Serializable, T> {
 	// Following code section is for search queries, under developement Kanchana
 	public List<T> executeSelectQuery(T entity)
 	{
-		Criteria criteria = getSession().createCriteria(persistentClass);
-		createCriteria(entity, criteria);
+		Criteria criteria = getSession().createCriteria(persistentClass, "mainquery");
+		createCriteria(entity, criteria, null);
 		List<T> results = criteria.list();
 		return results;
 	}
 	
-	private void createCriteria(T entity, Criteria criteria)
+	private void createCriteria(Object entity, Criteria criteria, String alias)
 	{
-		Field[] fields = persistentClass.getDeclaredFields();
+		Field[] fields = entity.getClass().getDeclaredFields();
 		for (Field field : fields) {
 			try {
 				if (field.getName()!="objid")
-					setValue(entity, criteria, field);
+					setValue(entity, criteria, field, alias);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -72,32 +73,61 @@ public class AbstractDao<PK extends Serializable, T> {
 		}
 	}
 	
-	private void setValue(T entity, Criteria criteria, Field field) throws Exception
+	private void setValue(Object entity, Criteria criteria, Field field, String alias) throws Exception
 	{
 		String fieldName;
 		String fieldValue;
 		field.setAccessible(true);
+		Method method;
+		char[] fieldNameArray;
+		
 		if (!checkIfNull(entity, field))
-		{
-			fieldName = field.getName();
-			fieldValue = field.get(entity).toString();
-			System.out.println("field value is ----------------------"+fieldValue);
-			if(fieldValue.contains("%"))
+		{ 
+			Class<?> c = field.getType();
+			
+			if(field.getClass().isPrimitive() || (c.getTypeName() == "java.lang.String"))
 			{
-				criteria.add(Restrictions.ilike(fieldName, field.get(entity)));
+				fieldName = field.getName();
+				fieldValue = field.get(entity).toString();
+				System.out.println("field value is ----------------------"+fieldValue);
+				if(fieldValue.contains("%"))
+				{
+					if (alias == null)
+					{
+						criteria.add(Restrictions.ilike(fieldName, field.get(entity)));
+					}
+					else
+					{
+						criteria.add(Restrictions.ilike(alias + "."+fieldName, field.get(entity)));
+					}
+				}
+				else
+				{
+					if (alias == null)
+					{
+						criteria.add(Restrictions.eq(fieldName, field.get(entity)));
+					}
+					else
+					{
+						criteria.add(Restrictions.eq(alias + "."+fieldName, field.get(entity)));
+					}
+				}
 			}
 			else
 			{
-				criteria.add(Restrictions.eq(fieldName, field.get(entity)));
+				fieldName = field.getName();
+				fieldNameArray = field.getName().toCharArray();
+				fieldNameArray[0] = Character.toUpperCase(fieldNameArray[0]);
+				method = entity.getClass().getMethod("get"+(new String(fieldNameArray)));
+				createCriteria(method.invoke(entity), criteria, fieldName);
 			}
 		}
 		
 	}
 	
 	
-	private boolean checkIfNull(T entity, Field field) throws Exception
+	private boolean checkIfNull(Object entity, Field field) throws Exception
 	{
-		boolean isNull = true;
 		if (field.getType().equals(Integer.TYPE))
 		{
 			if (field.getInt(entity) != 0)
@@ -141,9 +171,11 @@ public class AbstractDao<PK extends Serializable, T> {
 		else
 		{
 			if (field.get(entity) != null)
+			{
 				return false;
+			}
 		}
 		return true;
 	}
-	
+		
 }

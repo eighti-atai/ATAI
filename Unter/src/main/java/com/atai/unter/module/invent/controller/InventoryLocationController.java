@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.atai.unter.module.invent.model.InventoryLocation;
@@ -26,7 +27,7 @@ import com.atai.unter.module.invent.service.InventoryLocationService;
 import com.atai.unter.module.enterprise.service.SiteService;
 import com.atai.unter.module.enterprise.service.SiteServiceImpl;
 
-@Controller
+@RestController
 public class InventoryLocationController {
 	private InventoryLocationService invLocationService;
 

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.atai.unter.module.enterprise.dao.AddressDao;
 import com.atai.unter.module.enterprise.model.Address;
+import com.atai.unter.module.enterprise.model.Site;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -43,6 +44,16 @@ public class AddressServiceImpl implements AddressService {
 	public void removeAddress(int addressId) {
 		addressDao.removeAddress(addressId);
 
+	}
+	
+	@Transactional(readOnly = true)
+	public Address getAddressByObjid(String objid) {
+		return addressDao.getAddressByObjid(objid);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Address> executeSelectQuery(Address address) {
+		return addressDao.executeSelectQuery(address);
 	}
 
 }

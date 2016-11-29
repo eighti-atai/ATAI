@@ -18,6 +18,16 @@ public class Address {
 	private String city;
 	
 	private String country;
+	
+	private String objid;
+
+	public String getObjid() {
+		return objid;
+	}
+
+	public void setObjid(String objid) {
+		this.objid = objid;
+	}
 
 	public int getAddressId() {
 		return addressId;

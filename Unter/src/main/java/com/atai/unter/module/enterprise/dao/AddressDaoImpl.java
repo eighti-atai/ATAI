@@ -5,10 +5,13 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+
+import com.atai.unter.generic.dao.AbstractDao;
 import com.atai.unter.module.enterprise.model.Address;
+import com.atai.unter.module.enterprise.model.Site;
 
 @Repository
-public class AddressDaoImpl implements AddressDao {
+public class AddressDaoImpl extends AbstractDao<String, Address> implements AddressDao {
 
 	private SessionFactory sessionFactory;
 	
@@ -49,6 +52,14 @@ public class AddressDaoImpl implements AddressDao {
 			session.delete(address);
 		}
 
+	}
+	
+	public Address getAddressByObjid(String objid) {
+		Session session = this.sessionFactory.getCurrentSession();	
+		List<Address> addressList = session.createQuery("from Address where objid = '" + objid+"'").list();
+		Address address = addressList.get(0);
+		
+		return address;
 	}
 
 }

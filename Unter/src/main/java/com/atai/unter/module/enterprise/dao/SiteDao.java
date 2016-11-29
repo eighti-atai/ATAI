@@ -12,5 +12,6 @@ public interface SiteDao extends DataAcccessObject<Site> {
 	public void removeSite(String siteId);
 	
 	public Site getSiteByObjid(String objid);
+	
 	public List<Site> executeSelectQuery(Site site);
 }

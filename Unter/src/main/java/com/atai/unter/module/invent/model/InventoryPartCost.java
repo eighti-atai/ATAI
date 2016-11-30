@@ -37,8 +37,8 @@ public class InventoryPartCost implements Serializable{
 
 	@ManyToOne
 	@JoinColumns({
-	@JoinColumn(name = "site_id", insertable = false, updatable = false),
-	@JoinColumn(name = "inv_part_no", insertable = false, updatable = false)})
+	@JoinColumn(name = "site_id", referencedColumnName = "site_id", insertable = false, updatable = false),
+	@JoinColumn(name = "inv_part_no", referencedColumnName = "inv_part_no", insertable = false, updatable = false)})
 	private InventoryPart inventoryPart;
 
 	public InventoryPartCostKey getId() {

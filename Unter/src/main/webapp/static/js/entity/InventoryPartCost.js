@@ -4,12 +4,12 @@ entityModule.factory('EntityService', ['$http', '$q', function($http, $q){
 
     var entityRec = {
         name   :'InventoryPartCost',
-        record :{id:{invPartNo:'',invPartCostNo:''},cost:'',objid:null},
+        record :{id:{siteId:'',invPartNo:'',invPartCostNo:''},cost:'',objid:null},
         emptyRecord :emptyRecord
     };
     return entityRec;
     
     function emptyRecord() {
-        return {id:{invPartNo:'',invPartCostNo:''},cost:'',objid:null};
+        return {id:{siteId:'',invPartNo:'',invPartCostNo:''},cost:'',objid:null};
     }	
 }]);

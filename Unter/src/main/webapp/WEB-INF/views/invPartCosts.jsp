@@ -95,6 +95,20 @@
 					  
 					  <div class="row">
                           <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="siteId">Site Id</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.Record.id.siteId" id="siteId" class="salesPartId form-control input-sm" placeholder="Enter Site Id " required ng-minlength="1"/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.siteId.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.siteId.$error.minlength">Minimum length required is 3</span>
+                                      <span ng-show="myForm.siteId.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+					  
+					  <div class="row">
+                          <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="invPartNo">Inventory Part No</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.Record.id.invPartNo" id="invPartNo" class="salesPartId form-control input-sm" placeholder="Enter Inventory Part No " required ng-minlength="1"/>
@@ -151,6 +165,7 @@
                   <table class="table table-hover">
                       <thead>
                           <tr>
+                          	  <th>Site Id</th>
                               <th>Inventory Part No</th>
                               <th>Inventory Part Cost No</th>
                               <th>Cost</th>
@@ -159,10 +174,12 @@
                       </thead>
                       <tbody>
                           <tr ng-repeat="u in ctrl.Records | startFrom:ctrl.currentPage*ctrl.pageSize | limitTo:ctrl.pageSize " >
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.id.siteId"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.id.invPartNo"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.id.invPartCostNo"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.cost"></span></td>
-                                                                                          
+                                   
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.id.siteId"style="width: 100%"/></td>                                                       
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.id.invPartNo"style="width: 100%"/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.id.invPartCostNo" style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.cost"style="width: 100%""/></td>

@@ -73,7 +73,7 @@ public class InventoryLocationController {
   
         InventoryLocation invLocation = invLocationService.getInventoryLocationByObjid(objid);
         if (invLocation == null) {
-            System.out.println("Unable to delete. Sales Part with id " + objid + " not found");
+            System.out.println("Unable to delete. Inventory Location with id " + objid + " not found");
             return new ResponseEntity<InventoryLocation>(HttpStatus.NOT_FOUND);
         }
   
@@ -82,7 +82,7 @@ public class InventoryLocationController {
     }
 	
 	@PostMapping(value = "/InventoryLocation/Search")
-	ResponseEntity<List<InventoryLocation>> searchSite(@RequestBody InventoryLocation invLocation)
+	ResponseEntity<List<InventoryLocation>> searchInventoryLocation(@RequestBody InventoryLocation invLocation)
 	{
 		List<InventoryLocation> invLocations = this.invLocationService.executeSelectQuery(invLocation);
 		return new ResponseEntity<List<InventoryLocation>>(invLocations, HttpStatus.OK);

@@ -7,11 +7,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.atai.unter.generic.dao.AbstractDao;
 import com.atai.unter.module.invent.model.InventoryPartCost;
 import com.atai.unter.module.invent.model.InventoryPartCostKey;
 
 @Repository
-public class InventoryPartCostDaoImpl implements InventoryPartCostDao{
+public class InventoryPartCostDaoImpl  extends AbstractDao<InventoryPartCostKey, InventoryPartCost> implements InventoryPartCostDao{
 
 	SessionFactory sessionFactory;
 	
@@ -43,7 +44,19 @@ public class InventoryPartCostDaoImpl implements InventoryPartCostDao{
 
 	public void removeInventoryPartCost(InventoryPartCostKey invPartCostId) {
 		Session session = sessionFactory.getCurrentSession();
-		session.delete(session.load(InventoryPartCost.class, invPartCostId));
+		InventoryPartCost invPartCost = session.load(InventoryPartCost.class, invPartCostId);
+		if (invPartCost != null)
+		{
+			session.delete(invPartCost);
+		}
+	}
+
+	public InventoryPartCost getInventoryPartCostByObjid(String objid) {
+		Session session = this.sessionFactory.getCurrentSession();	
+		List<InventoryPartCost> invPartCostList = session.createQuery("from InventoryPartCost where objid = '" + objid+"'").list();
+		InventoryPartCost invPartCost = invPartCostList.get(0);
+		
+		return invPartCost;
 	}
 
 	

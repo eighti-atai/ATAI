@@ -24,6 +24,16 @@ public class InventoryPartCost implements Serializable{
 	
 	private BigDecimal cost;
 	
+	private String objid;
+	
+	public String getObjid() {
+		return objid;
+	}
+
+	public void setObjid(String objid) {
+		this.objid = objid;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "inv_part_no", insertable = false, updatable = false)
 	private InventoryPart inventoryPart;

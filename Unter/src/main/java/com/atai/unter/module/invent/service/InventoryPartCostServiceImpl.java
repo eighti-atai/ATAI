@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.atai.unter.module.invent.dao.InventoryPartCostDao;
+import com.atai.unter.module.invent.model.InventoryLocation;
 import com.atai.unter.module.invent.model.InventoryPartCost;
 import com.atai.unter.module.invent.model.InventoryPartCostKey;
 
@@ -22,6 +23,7 @@ public class InventoryPartCostServiceImpl implements InventoryPartCostService{
 
 	@Transactional
 	public void addData(InventoryPartCost p) {
+		p.setObjid(p.toString());
 		inventoryPartCostDao.addData(p);
 		
 	}
@@ -44,6 +46,17 @@ public class InventoryPartCostServiceImpl implements InventoryPartCostService{
 	@Transactional
 	public void removeInventoryPartCost(InventoryPartCostKey invPartCostId) {
 		inventoryPartCostDao.removeInventoryPartCost(invPartCostId);
+	}
+	
+		
+	@Transactional(readOnly = true)
+	public List<InventoryPartCost> executeSelectQuery(InventoryPartCost inventoryPartCost) {
+		return inventoryPartCostDao.executeSelectQuery(inventoryPartCost);
+	}
+
+	@Transactional(readOnly = true)
+	public InventoryPartCost getInventoryPartCostByObjid(String objid) {
+		return inventoryPartCostDao.getInventoryPartCostByObjid(objid);
 	}
 	
 	

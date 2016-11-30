@@ -20,6 +20,7 @@ public class AddressServiceImpl implements AddressService {
 
 	@Transactional
 	public void addService(Address address) {
+		address.setObjid(address.toString());
 		addressDao.addAddress(address);
 
 	}

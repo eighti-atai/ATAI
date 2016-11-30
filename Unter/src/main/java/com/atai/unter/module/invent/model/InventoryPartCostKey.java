@@ -12,6 +12,17 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class InventoryPartCostKey implements Serializable {
 
+	@Column(name = "site_id")
+	private String siteId;
+	
+	public String getSiteId() {
+		return siteId;
+	}
+
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
+	}
+
 	@Column(name  ="inv_part_no")
 	private String invPartNo;
 	
@@ -45,6 +56,7 @@ public class InventoryPartCostKey implements Serializable {
 		int result = 1;
 		result = prime * result + invPartCostNo;
 		result = prime * result + ((invPartNo == null) ? 0 : invPartNo.hashCode());
+		result = prime * result + ((siteId == null) ? 0 : siteId.hashCode());
 		return result;
 	}
 
@@ -64,9 +76,13 @@ public class InventoryPartCostKey implements Serializable {
 				return false;
 		} else if (!invPartNo.equals(other.invPartNo))
 			return false;
+		if (siteId == null) {
+			if (other.siteId != null)
+				return false;
+		} else if (!siteId.equals(other.siteId))
+			return false;
 		return true;
 	}
 
-	
-	
+		
 }

@@ -11,6 +11,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
@@ -35,7 +36,9 @@ public class InventoryPartCost implements Serializable{
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "inv_part_no", insertable = false, updatable = false)
+	@JoinColumns({
+	@JoinColumn(name = "site_id", insertable = false, updatable = false),
+	@JoinColumn(name = "inv_part_no", insertable = false, updatable = false)})
 	private InventoryPart inventoryPart;
 
 	public InventoryPartCostKey getId() {

@@ -1,10 +1,17 @@
 CREATE TABLE `unter`.`inventory_part_tab` (
+  `site_id` VARCHAR(5)` NOT NULL,
   `inv_part_no` VARCHAR(30) NOT NULL,
   `description` VARCHAR(200) NULL,
   `uom` VARCHAR(10) NULL,
   `reorder_level` DOUBLE NULL,
   `safety_stock_level` DOUBLE NULL,
-  PRIMARY KEY (`inv_part_no`));
+  PRIMARY KEY (`site_id`,`inv_part_no`),
+  CONSTRAINT `site_fk`
+    FOREIGN KEY (`site_id`)
+    REFERENCES `unter`.`site_tab` (`site_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
   
 CREATE TABLE IF NOT EXISTS site_tab (
 site_id VARCHAR(5) PRIMARY KEY,
@@ -24,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `unter`.`inventory_location_tab` (
   `inv_location_type` VARCHAR(10) NULL,
   `objid` VARCHAR(1000) NOT NULL,
   PRIMARY KEY (`site_id`, `inv_location_id`),
-  CONSTRAINT `site_id`
+  CONSTRAINT `site_fk`
     FOREIGN KEY (`site_id`)
     REFERENCES `unter`.`site_tab` (`site_id`)
     ON DELETE NO ACTION
@@ -32,14 +39,15 @@ CREATE TABLE IF NOT EXISTS `unter`.`inventory_location_tab` (
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `unter`.`inventory_part_cost_tab` (   
+CREATE TABLE IF NOT EXISTS `unter`.`inventory_part_cost_tab` ( 
+`site_id` VARCHAR(5)` NOT NULL,
 `inv_part_no` VARCHAR(10) NOT NULL,   
 `inv_part_cost_no` INT NOT NULL,   
 `cost` NUMERIC(20,2) NULL, 
 `objid` VARCHAR(1000) NOT NULL,
-PRIMARY KEY (`inv_part_no`, `inv_part_cost_no`),   
-CONSTRAINT `inv_part_no`     FOREIGN KEY (`inv_part_no`)     
-REFERENCES `unter`.`inventory_part_tab` (`inv_part_no`)     
+PRIMARY KEY (`site_id`,`inv_part_no`, `inv_part_cost_no`),   
+CONSTRAINT `inv_part_fk`     FOREIGN KEY (`site_id`,`inv_part_no`)     
+REFERENCES `unter`.`inventory_part_tab` (`site_id`,`inv_part_no`)     
 ON DELETE NO ACTION     ON UPDATE NO ACTION) ENGINE = InnoDB;
 
 

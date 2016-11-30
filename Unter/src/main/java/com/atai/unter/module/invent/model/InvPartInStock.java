@@ -32,6 +32,7 @@ public class InvPartInStock implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumns({
+		@JoinColumn(name = "site_id", insertable = false, updatable = false),
 		@JoinColumn(name = "inv_part_no", insertable = false, updatable = false),
 		@JoinColumn(name = "inv_part_cost_no", insertable = false, updatable = false)
 	})

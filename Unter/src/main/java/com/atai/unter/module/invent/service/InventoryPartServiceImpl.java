@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.atai.unter.module.invent.dao.InventoryPartDao;
 import com.atai.unter.module.invent.model.InventoryPart;
+import com.atai.unter.module.invent.model.InventoryPartKey;
 
 @Service
 public class InventoryPartServiceImpl implements InventoryPartService {
@@ -25,9 +26,9 @@ public class InventoryPartServiceImpl implements InventoryPartService {
 		this.invPartDao.addData(invPart);
 	}
 
+	@Transactional
 	public void updateData(InventoryPart invPart) {
-		// TODO Auto-generated method stub
-
+		invPartDao.updateData(invPart);
 	}
 
 	@Transactional
@@ -42,9 +43,8 @@ public class InventoryPartServiceImpl implements InventoryPartService {
 		return null;
 	}
 
-	public void removeInventoryPart(String invPartNo) {
-		// TODO Auto-generated method stub
-
+	public void removeInventoryPart(InventoryPartKey invPartId) {
+		invPartDao.remove(invPartId);
 	}
 	
 	@Transactional(readOnly = true)

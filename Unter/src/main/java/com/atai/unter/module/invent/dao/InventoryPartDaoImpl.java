@@ -16,6 +16,15 @@ import com.atai.unter.module.invent.model.InventoryPartKey;
 public class InventoryPartDaoImpl extends AbstractDao<InventoryPartKey, InventoryPart> implements InventoryPartDao {
 
 	private SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	
 	public void addData(InventoryPart p) {
 		Session session  = sessionFactory.getCurrentSession();
@@ -65,13 +74,4 @@ public class InventoryPartDaoImpl extends AbstractDao<InventoryPartKey, Inventor
 			session.delete(invPart);
 		}
 	}
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
 }

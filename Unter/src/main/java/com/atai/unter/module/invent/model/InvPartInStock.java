@@ -22,19 +22,29 @@ public class InvPartInStock implements Serializable{
 	
 	@Column(name = "stock_qty")
 	private int stockQuantity;
+	
+	private String objid;
 		
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	public String getObjid() {
+		return objid;
+	}
+	public void setObjid(String objid) {
+		this.objid = objid;
+	}
+
+
+	@ManyToOne//(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumns({
-		@JoinColumn(name = "site_id", insertable = false, updatable = false),
-		@JoinColumn(name = "inv_location_id", insertable = false, updatable = false)
+		@JoinColumn(name = "site_id", referencedColumnName = "site_id", insertable = false, updatable = false),
+		@JoinColumn(name = "inv_location_id", referencedColumnName = "inv_location_id", insertable = false, updatable = false)
 	})
 	private InventoryLocation invLocation;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne//(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumns({
-		@JoinColumn(name = "site_id", insertable = false, updatable = false),
-		@JoinColumn(name = "inv_part_no", insertable = false, updatable = false),
-		@JoinColumn(name = "inv_part_cost_no", insertable = false, updatable = false)
+		@JoinColumn(name = "site_id", referencedColumnName = "site_id", insertable = false, updatable = false),
+		@JoinColumn(name = "inv_part_no", referencedColumnName = "inv_part_no", insertable = false, updatable = false),
+		@JoinColumn(name = "inv_part_cost_no", referencedColumnName = "inv_part_cost_no", insertable = false, updatable = false)
 	})
 	private InventoryPartCost invPartCost;
 	

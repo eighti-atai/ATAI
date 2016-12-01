@@ -21,6 +21,7 @@ public class InvPartInStockServiceImpl implements InvPartInStockService{
 
 	@Transactional
 	public void addData(InvPartInStock p) {
+		p.setObjid(p.toString());
 		invPartInStockDao.addData(p);
 		
 	}

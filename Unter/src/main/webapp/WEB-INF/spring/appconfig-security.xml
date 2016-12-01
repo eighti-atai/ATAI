@@ -24,6 +24,7 @@
         <intercept-url pattern="/invlocations" access="hasRole('USER') or hasRole('ADMIN')"/>
         <intercept-url pattern="/addresses" access="hasRole('USER') or hasRole('ADMIN')"/>
         <intercept-url pattern="/invPartCosts" access="hasRole('USER') or hasRole('ADMIN')"/>
+        <intercept-url pattern="/invpartinstocks" access="hasRole('USER') or hasRole('ADMIN')"/>
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/login?logout" />
         <csrf token-repository-ref="tokenRepository"/>

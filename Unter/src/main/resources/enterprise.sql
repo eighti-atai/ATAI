@@ -29,3 +29,12 @@ CREATE TABLE `user_role_tab` (
   KEY `fk_user_role_roleid_idx` (`role_id`),
   CONSTRAINT `fk_user_role_roleid` FOREIGN KEY (`role_id`) REFERENCES `role_tab` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_user_role_userid` FOREIGN KEY (`user_id`) REFERENCES `user_tab` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE);
+  
+  CREATE TABLE customer_tab (
+  customer_id VARCHAR(5) PRIMARY KEY,
+  customer_name VARCHAR(100) NOT NULL,
+  nic			VARCHAR(15),
+  address_id	INT(12),
+  phone_no_1 VARCHAR(15),
+  phone_no_2 VARCHAR(15),
+  CONSTRAINT fk_address FOREIGN KEY(address_id) REFERENCES address_tab(address_id) ON DELETE NO ACTION);

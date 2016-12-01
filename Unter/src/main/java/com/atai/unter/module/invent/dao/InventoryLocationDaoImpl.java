@@ -52,7 +52,7 @@ public class InventoryLocationDaoImpl extends AbstractDao<InventoryLocationKey, 
 		}
 	}
 	
-	public InventoryLocation getInventoryLocationByObjid(String objid) {
+	public InventoryLocation getByObjid(String objid) {
 		Session session = this.sessionFactory.getCurrentSession();	
 		List<InventoryLocation> invLocationList = session.createQuery("from InventoryLocation where objid = '" + objid+"'").list();
 		InventoryLocation invLocation = invLocationList.get(0);

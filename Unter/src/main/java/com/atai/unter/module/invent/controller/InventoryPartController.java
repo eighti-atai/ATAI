@@ -79,7 +79,7 @@ public class InventoryPartController {
 	@RequestMapping(value="/inventoryParts", method=RequestMethod.GET)
 	public ResponseEntity<List<InventoryPart>> getRecords()
 	{
-		List<InventoryPart> invParts = this.invPartService.listInventoryParts();
+		List<InventoryPart> invParts = this.invPartService.listData();
 		return new ResponseEntity<List<InventoryPart>>(invParts, HttpStatus.OK);
 	}
 	
@@ -96,7 +96,7 @@ public class InventoryPartController {
 		}
 		else
 		{
-			invPartService.addInventoryPart(inventoryPart);
+			invPartService.addData(inventoryPart);
 			return "redirect:/inventoryPart";
 		}
 	}

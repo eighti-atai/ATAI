@@ -47,8 +47,8 @@ public class InventoryLocationServiceImpl implements InventoryLocationService{
 	}
 	
 	@Transactional(readOnly = true)
-	public InventoryLocation getInventoryLocationByObjid(String objid) {
-		return invLocationDao.getInventoryLocationByObjid(objid);
+	public InventoryLocation getByObjid(String objid) {
+		return invLocationDao.getByObjid(objid);
 	}
 
 	@Transactional(readOnly = true)

@@ -12,7 +12,4 @@ public interface InventoryPartCostDao extends DataAcccessObject<InventoryPartCos
 
 	public void removeInventoryPartCost(InventoryPartCostKey invPartCostId);
 	
-	public InventoryPartCost getInventoryPartCostByObjid(String objid);
-	
-	public List<InventoryPartCost> executeSelectQuery(InventoryPartCost inventoryPartCost);
 }

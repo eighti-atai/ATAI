@@ -7,10 +7,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.atai.unter.generic.dao.AbstractDao;
 import com.atai.unter.module.invent.model.InvPartInStock;
+import com.atai.unter.module.invent.model.InventoryLocation;
 
 @Repository
-public class InvPartInStockDaoImpl implements InvPartInStockDao{
+public class InvPartInStockDaoImpl extends AbstractDao<InvPartInStock.InvPartInStockKey, InvPartInStock> implements InvPartInStockDao{
 
 	SessionFactory sessionFactory;
 	
@@ -47,5 +49,11 @@ public class InvPartInStockDaoImpl implements InvPartInStockDao{
 		
 	}
 
-	
+	public InvPartInStock getByObjid(String objid) {
+		Session session = this.sessionFactory.getCurrentSession();	
+		List<InvPartInStock> invPartInStockList = session.createQuery("from InvPartInStock where objid = '" + objid+"'").list();
+		InvPartInStock invPartInStock = invPartInStockList.get(0);
+		
+		return invPartInStock;
+	}
 }

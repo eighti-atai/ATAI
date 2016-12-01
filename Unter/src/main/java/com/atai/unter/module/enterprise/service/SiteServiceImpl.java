@@ -21,19 +21,19 @@ public class SiteServiceImpl implements SiteService{
 	}
 
 	@Transactional
-	public void addSite(Site site) {
+	public void addData(Site site) {
 		site.setObjid(site.toString());
 		siteDao.addData(site);
 	}
 
 	@Transactional
-	public void updateSite(Site site) {
+	public void updateData(Site site) {
 		siteDao.updateData(site);
 		
 	}
 
 	@Transactional(readOnly = true)
-	public List<Site> listSites() {
+	public List<Site> listData() {
 		return siteDao.listData();
 	}
 
@@ -49,12 +49,13 @@ public class SiteServiceImpl implements SiteService{
 	}
 
 	@Transactional(readOnly = true)
-	public Site getSiteByObjid(String objid) {
-		return siteDao.getSiteByObjid(objid);
+	public Site getByObjid(String objid) {
+		return siteDao.getByObjid(objid);
 	}
 
 	@Transactional(readOnly = true)
 	public List<Site> executeSelectQuery(Site site) {
 		return siteDao.executeSelectQuery(site);
 	}
+	
 }

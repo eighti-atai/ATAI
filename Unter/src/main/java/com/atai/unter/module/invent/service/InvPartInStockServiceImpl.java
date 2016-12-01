@@ -46,5 +46,13 @@ public class InvPartInStockServiceImpl implements InvPartInStockService{
 		invPartInStockDao.removeInvPartInStock(invPartCostId);
 	}
 
-	
+	@Transactional(readOnly = true)
+	public List<InvPartInStock> executeSelectQuery(InvPartInStock invPartInStock) {
+		return invPartInStockDao.executeSelectQuery(invPartInStock);
+	}
+
+	@Transactional(readOnly = true)
+	public InvPartInStock getByObjid(String objid) {
+		return invPartInStockDao.getByObjid(objid);
+	}
 }

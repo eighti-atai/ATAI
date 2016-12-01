@@ -47,7 +47,7 @@ public class SiteController {
 	public ModelAndView listSites(Model model)
 	{
 		model.addAttribute("site", new Site());
-		model.addAttribute("listSites", this.siteService.listSites());
+		model.addAttribute("listSites", this.siteService.listData());
 		return new ModelAndView("site2");//.addObject("listSites", this.siteService.listSites());
 	}
 	
@@ -55,7 +55,7 @@ public class SiteController {
 	@RequestMapping(value = "/Site", method = RequestMethod.GET)
 	public ResponseEntity<List<Site>> listSites2()
 	{
-		List<Site> sites = this.siteService.listSites();
+		List<Site> sites = this.siteService.listData();
 		return new ResponseEntity<List<Site>>(sites, HttpStatus.OK);
 	}
 	
@@ -63,16 +63,16 @@ public class SiteController {
 	public ResponseEntity<Void> addSite(@RequestBody Site site){
 	
 		System.out.println("Site object will be added");
-		this.siteService.addSite(site);
+		this.siteService.addData(site);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
 	@PutMapping(value = "/Site")
 	ResponseEntity<Site> modifySite(@RequestBody Site newSite)
 	{
-		Site oldSite = siteService.getSiteByObjid(newSite.getObjid());
+		Site oldSite = siteService.getByObjid(newSite.getObjid());
 		newSite.setSiteId(oldSite.getSiteId());
-		this.siteService.updateSite(newSite);
+		this.siteService.updateData(newSite);
 		return new ResponseEntity<Site>(newSite, HttpStatus.OK);
 	}
 	
@@ -80,7 +80,7 @@ public class SiteController {
 	public ResponseEntity<Site> deleteSite(@PathVariable("objid") String objid) {
         System.out.println("Fetching & Deleting Site with id " + objid);
   
-        Site site = siteService.getSiteByObjid(objid);
+        Site site = siteService.getByObjid(objid);
         if (site == null) {
             System.out.println("Unable to delete. Sales Part with id " + objid + " not found");
             return new ResponseEntity<Site>(HttpStatus.NOT_FOUND);

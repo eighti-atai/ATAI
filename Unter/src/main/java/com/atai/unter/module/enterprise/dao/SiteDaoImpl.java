@@ -53,7 +53,7 @@ public class SiteDaoImpl extends AbstractDao<String, Site> implements SiteDao
 		}
 	}
 	
-	public Site getSiteByObjid(String objid) {
+	public Site getByObjid(String objid) {
 		Session session = this.sessionFactory.getCurrentSession();	
 		List<Site> siteList = session.createQuery("from Site where objid = '" + objid+"'").list();
 		Site site = siteList.get(0);

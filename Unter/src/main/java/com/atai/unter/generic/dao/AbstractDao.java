@@ -85,7 +85,7 @@ public class AbstractDao<PK extends Serializable, T> {
 		{ 
 			Class<?> c = field.getType();
 			
-			if(c.isPrimitive() || (c.getTypeName() == "java.lang.String"))
+			if(c.isPrimitive() || (c.getTypeName() == "java.lang.String") || (c.getTypeName() == "java.math.BigDecimal"))
 			{
 				fieldName = field.getName();
 				fieldValue = field.get(entity).toString();

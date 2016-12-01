@@ -56,7 +56,7 @@ public class InventoryPartCostController {
 	@PutMapping(value = "/InventoryPartCost")
 	ResponseEntity<InventoryPartCost> modifyInventoryPartCost(@RequestBody InventoryPartCost newInvPartCost)
 	{
-		InventoryPartCost oldInvPartCost = invPartCostService.getInventoryPartCostByObjid(newInvPartCost.getObjid());
+		InventoryPartCost oldInvPartCost = invPartCostService.getByObjid(newInvPartCost.getObjid());
 		newInvPartCost.setId(oldInvPartCost.getId());
 		invPartCostService.updateData(newInvPartCost);
 		return new ResponseEntity<InventoryPartCost>(newInvPartCost, HttpStatus.OK);
@@ -67,7 +67,7 @@ public class InventoryPartCostController {
 	public ResponseEntity<InventoryPartCost> deleteInventoryPartCost(@PathVariable("objid") String objid) {
         System.out.println("Fetching & Deleting Cost with id " + objid);
   
-        InventoryPartCost invPartCost = invPartCostService.getInventoryPartCostByObjid(objid);
+        InventoryPartCost invPartCost = invPartCostService.getByObjid(objid);
         if (invPartCost == null) {
             System.out.println("Unable to delete. Inventory Part Cost with id " + objid + " not found");
             return new ResponseEntity<InventoryPartCost>(HttpStatus.NOT_FOUND);

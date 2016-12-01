@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.atai.unter.module.enterprise.model.Site;
 import com.atai.unter.module.order.dao.SalesPartPriceDao;
 import com.atai.unter.module.order.model.SalesPartPrice;
 import com.atai.unter.module.order.model.SalesPartPriceKey;
@@ -43,6 +45,16 @@ public class SalesPartPriceServiceImpl implements SalesPartPriceService{
 	@Transactional
 	public void removeSalesPartPrice(SalesPartPriceKey id) {
 		salesPartPriceDao.removeSalesPartPrice(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public SalesPartPrice getByObjid(String objid) {
+		return salesPartPriceDao.getByObjid(objid);
+	}
+
+	@Transactional(readOnly = true)
+	public List<SalesPartPrice> executeSelectQuery(SalesPartPrice salesPartPrice) {
+		return salesPartPriceDao.executeSelectQuery(salesPartPrice);
 	}
 
 }

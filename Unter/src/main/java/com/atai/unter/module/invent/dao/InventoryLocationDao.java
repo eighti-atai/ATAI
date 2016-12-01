@@ -10,6 +10,4 @@ public interface InventoryLocationDao extends DataAcccessObject<InventoryLocatio
 
 	public InventoryLocation getInventoryLocationById(InventoryLocationKey invLocationId);
 	public void removeInventoryLocation(InventoryLocationKey invLocationId);
-	public InventoryLocation getInventoryLocationByObjid(String objid);
-	public List<InventoryLocation> executeSelectQuery(InventoryLocation inventoryLocation);
 }

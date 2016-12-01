@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import com.atai.unter.generic.dao.AbstractDao;
 import com.atai.unter.module.invent.model.InventoryLocation;
@@ -11,6 +12,7 @@ import com.atai.unter.module.invent.model.InventoryLocationKey;
 import com.atai.unter.module.invent.model.InventoryPart;
 import com.atai.unter.module.invent.model.InventoryPartKey;
 
+@Repository
 public class InventoryPartDaoImpl extends AbstractDao<InventoryPartKey, InventoryPart> implements InventoryPartDao {
 
 	private SessionFactory sessionFactory;
@@ -47,7 +49,7 @@ public class InventoryPartDaoImpl extends AbstractDao<InventoryPartKey, Inventor
 		}
 	}
 
-	public InventoryPart getInventoryPartByObjid(String objid) {
+	public InventoryPart getByObjid(String objid) {
 		Session session = this.sessionFactory.getCurrentSession();	
 		List<InventoryPart> invPartList = session.createQuery("from InventoryPart where objid = '" + objid+"'").list();
 		InventoryPart invPart = invPartList.get(0);

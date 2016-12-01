@@ -61,7 +61,7 @@ public class InventoryLocationController {
 	@PutMapping(value = "/InventoryLocation")
 	ResponseEntity<InventoryLocation> modifyLocation(@RequestBody InventoryLocation newLocation)
 	{
-		InventoryLocation oldLocation = invLocationService.getInventoryLocationByObjid(newLocation.getObjid());
+		InventoryLocation oldLocation = invLocationService.getByObjid(newLocation.getObjid());
 		newLocation.setId(oldLocation.getId());
 		invLocationService.updateData(newLocation);
 		return new ResponseEntity<InventoryLocation>(newLocation, HttpStatus.OK);
@@ -71,7 +71,7 @@ public class InventoryLocationController {
 	public ResponseEntity<InventoryLocation> deleteLocation(@PathVariable("objid") String objid) {
         System.out.println("Fetching & Deleting Location with id " + objid);
   
-        InventoryLocation invLocation = invLocationService.getInventoryLocationByObjid(objid);
+        InventoryLocation invLocation = invLocationService.getByObjid(objid);
         if (invLocation == null) {
             System.out.println("Unable to delete. Inventory Location with id " + objid + " not found");
             return new ResponseEntity<InventoryLocation>(HttpStatus.NOT_FOUND);

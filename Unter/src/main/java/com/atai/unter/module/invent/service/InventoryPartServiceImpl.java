@@ -20,30 +20,40 @@ public class InventoryPartServiceImpl implements InventoryPartService {
 	}*/
 
 	@Transactional
-	public void addInventoryPart(InventoryPart invPart) {
+	public void addData(InventoryPart invPart) {
 		invPart.setObjid(invPart.toString());
-		this.invPartDao.addInventoryPart(invPart);
+		this.invPartDao.addData(invPart);
 	}
 
-	public void updateInventoryPart(InventoryPart invPart) {
+	public void updateData(InventoryPart invPart) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Transactional
-	public List<InventoryPart> listInventoryParts() {
-		return this.invPartDao.listInventoryParts();
+	public List<InventoryPart> listData() {
+		return this.invPartDao.listData();
 	}
 
 	@Transactional
 	public InventoryPart getInventoryPartByNo(String invPartNo) {
-		return this.invPartDao.getInventoryPartByNo(invPartNo);
+		//return this.invPartDao.getInventoryPartByNo(invPartNo);
 		//return new InventoryPart();
+		return null;
 	}
 
 	public void removeInventoryPart(String invPartNo) {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Transactional(readOnly = true)
+	public List<InventoryPart> executeSelectQuery(InventoryPart inventoryPart) {
+		return invPartDao.executeSelectQuery(inventoryPart);
+	}
 
+	@Transactional(readOnly = true)
+	public InventoryPart getByObjid(String objid) {
+		return invPartDao.getByObjid(objid);
+	}
 }

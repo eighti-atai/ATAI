@@ -10,6 +10,4 @@ public interface InventoryPartDao extends DataAcccessObject<InventoryPart>{
 
 	public InventoryPart getInventoryPartById(InventoryPartKey invPartId);
 	public void remove(InventoryPartKey invPartId);
-	public InventoryPart getInventoryPartByObjid(String objid);
-	public void removeInventoryPart(InventoryPartKey invPartId);
 }

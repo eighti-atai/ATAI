@@ -5,10 +5,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.atai.unter.generic.dao.AbstractDao;
 import com.atai.unter.generic.interfaces.DataAcccessObject;
+import com.atai.unter.module.invent.model.InvPartInStock;
 import com.atai.unter.module.invent.model.SiteOld;
 
-public class SiteDaoImplOld implements SiteDaoOld
+public class SiteDaoImplOld extends AbstractDao<String, SiteOld> implements SiteDaoOld
 {
 	private SessionFactory sessionFactory;
 	
@@ -45,6 +47,14 @@ public class SiteDaoImplOld implements SiteDaoOld
 		if (site != null){
 			session.delete(site);
 		}
+	}
+	
+	public SiteOld getByObjid(String objid) {
+		Session session = this.sessionFactory.getCurrentSession();	
+		List<SiteOld> siteList = session.createQuery("from SiteOld where objid = '" + objid+"'").list();
+		SiteOld site = siteList.get(0);
+		
+		return site;
 	}
 	
 }

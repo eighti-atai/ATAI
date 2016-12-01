@@ -10,6 +10,4 @@ public interface InventoryLocationService extends Service<InventoryLocation>{
 
 	public InventoryLocation getInventoryLocationById(InventoryLocationKey invLocationId);
 	public void removeInventoryLocation(InventoryLocationKey invLocationId);
-	public InventoryLocation getInventoryLocationByObjid(String objid);
-	public List<InventoryLocation> executeSelectQuery(InventoryLocation invLocation);
 }

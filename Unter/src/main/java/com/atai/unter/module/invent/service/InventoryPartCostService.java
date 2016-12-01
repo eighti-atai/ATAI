@@ -11,8 +11,4 @@ public interface InventoryPartCostService extends Service<InventoryPartCost>{
 	public InventoryPartCost getInventoryPartCostById(InventoryPartCostKey invPartCostId);
 
 	public void removeInventoryPartCost(InventoryPartCostKey invPartCostId);
-	
-	public InventoryPartCost getInventoryPartCostByObjid(String objid);
-	
-	public List<InventoryPartCost> executeSelectQuery(InventoryPartCost inventoryPartCost);
 }

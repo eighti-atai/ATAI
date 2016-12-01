@@ -7,13 +7,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.atai.unter.module.invent.model.InventoryPartCost;
-import com.atai.unter.module.order.model.SalesPart;
+import com.atai.unter.generic.dao.AbstractDao;
 import com.atai.unter.module.order.model.SalesPartPrice;
 import com.atai.unter.module.order.model.SalesPartPriceKey;
 
 @Repository
-public class SalesPartPriceDaoImpl implements SalesPartPriceDao {
+public class SalesPartPriceDaoImpl extends AbstractDao<SalesPartPriceKey, SalesPartPrice> implements SalesPartPriceDao {
 
 	private SessionFactory sessionFactory;
 	
@@ -46,6 +45,14 @@ public class SalesPartPriceDaoImpl implements SalesPartPriceDao {
 	public void removeSalesPartPrice(SalesPartPriceKey id) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(session.load(SalesPartPrice.class, id));
+	}
+	
+	public SalesPartPrice getByObjid(String objid) {
+		Session session = this.sessionFactory.getCurrentSession();	
+		List<SalesPartPrice> salesPartPriceList = session.createQuery("from SalesPartPrice where objid = '" + objid+"'").list();
+		SalesPartPrice salesPartPrice = salesPartPriceList.get(0);
+		
+		return salesPartPrice;
 	}
 
 }

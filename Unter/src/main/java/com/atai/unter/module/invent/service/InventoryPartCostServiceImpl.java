@@ -55,8 +55,8 @@ public class InventoryPartCostServiceImpl implements InventoryPartCostService{
 	}
 
 	@Transactional(readOnly = true)
-	public InventoryPartCost getInventoryPartCostByObjid(String objid) {
-		return inventoryPartCostDao.getInventoryPartCostByObjid(objid);
+	public InventoryPartCost getByObjid(String objid) {
+		return inventoryPartCostDao.getByObjid(objid);
 	}
 	
 	

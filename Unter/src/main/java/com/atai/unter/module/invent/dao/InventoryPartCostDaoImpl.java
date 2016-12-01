@@ -51,7 +51,7 @@ public class InventoryPartCostDaoImpl  extends AbstractDao<InventoryPartCostKey,
 		}
 	}
 
-	public InventoryPartCost getInventoryPartCostByObjid(String objid) {
+	public InventoryPartCost getByObjid(String objid) {
 		Session session = this.sessionFactory.getCurrentSession();	
 		List<InventoryPartCost> invPartCostList = session.createQuery("from InventoryPartCost where objid = '" + objid+"'").list();
 		InventoryPartCost invPartCost = invPartCostList.get(0);

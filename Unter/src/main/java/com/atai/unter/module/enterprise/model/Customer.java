@@ -2,11 +2,13 @@ package com.atai.unter.module.enterprise.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "customer_tab")
 public class Customer {
+	@Id
 	@Column(name = "customer_id")
 	private String customerId;
 	

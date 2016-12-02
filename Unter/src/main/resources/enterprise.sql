@@ -37,4 +37,5 @@ CREATE TABLE `user_role_tab` (
   address_id	INT(12),
   phone_no_1 VARCHAR(15),
   phone_no_2 VARCHAR(15),
+  objid VARCHAR(1000) NOT NULL,
   CONSTRAINT fk_address FOREIGN KEY(address_id) REFERENCES address_tab(address_id) ON DELETE NO ACTION);

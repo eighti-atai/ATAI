@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 public class AbstractDao<PK extends Serializable, T> {
 	
 	private final Class<T> persistentClass;
@@ -36,20 +37,49 @@ public class AbstractDao<PK extends Serializable, T> {
         return (T) getSession().get(persistentClass, key);
     }
  
-    public void persist(T entity) {
+    public void persist(Object entity){
+    	Method method;
+    	try{
+	    	method = entity.getClass().getMethod("setObjid", String.class);
+	    	method.invoke(entity, entity.toString());
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
         getSession().persist(entity);
     }
  
-    public void delete(T entity) {
-        getSession().delete(entity);
-    }
-     
+    public void update(T entity) {
+		getSession().update(entity);
 
+	}
+    
+    public void delete(PK key) {
+    	T obj = getSession().load(persistentClass, key);
+		if (obj != null)
+		{
+			getSession().delete(obj);
+		}
+    }
+    
+    public List<T> list() {
+		List<T> objects = getSession().createQuery("from "+persistentClass.getName()+"").list();
+		return objects;
+	}
+        
+    public T getByObjid(String objid) {
+		List<T> objectList = getSession().createQuery("from "+persistentClass.getName()+" where objid = '" + objid+"'").list();
+		T object = objectList.get(0);
+		
+		return object;
+	}
+       
 	protected Criteria createEntityCriteria(){
         return getSession().createCriteria(persistentClass);
     }
 
-	// Following code section is for search queries, under developement Kanchana
+	// Following code section is for search queries
 	public List<T> executeSelectQuery(T entity)
 	{
 		Criteria criteria = getSession().createCriteria(persistentClass, "mainquery");
@@ -125,7 +155,6 @@ public class AbstractDao<PK extends Serializable, T> {
 		
 	}
 	
-	
 	private boolean checkIfNull(Object entity, Field field) throws Exception
 	{
 		if (field.getType().equals(Integer.TYPE))
@@ -177,5 +206,4 @@ public class AbstractDao<PK extends Serializable, T> {
 		}
 		return true;
 	}
-		
 }

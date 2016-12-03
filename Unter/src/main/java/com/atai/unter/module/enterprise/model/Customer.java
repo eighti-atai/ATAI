@@ -5,13 +5,23 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.atai.unter.generic.interfaces.Model;
+
 @Entity
 @Table(name = "customer_tab")
-public class Customer {
+public class Customer implements Model<String>{
 	@Id
 	@Column(name = "customer_id")
 	private String customerId;
 	
+	public String getId() {
+		return getCustomerId();
+	}
+
+	public void setId(String id) {
+		setCustomerId(id);
+	}
+
 	@Column(name = "customer_name")
 	private String customerName;
 	

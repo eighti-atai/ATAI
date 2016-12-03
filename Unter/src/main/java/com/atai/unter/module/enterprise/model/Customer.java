@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import com.atai.unter.generic.interfaces.Model;
 
+import com.atai.unter.generic.interfaces.Model;
+
 @Entity
 @Table(name = "customer_tab")
 public class Customer implements Model<String>{

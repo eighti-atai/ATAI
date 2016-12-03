@@ -2,16 +2,29 @@ package com.atai.unter.module.enterprise.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.atai.unter.generic.interfaces.Model;
 
 @Entity
 @Table(name = "customer_tab")
-public class Customer {
+public class Customer implements Model<String>{
 	@Id
 	@Column(name = "customer_id")
 	private String customerId;
 	
+	public String getId() {
+		return getCustomerId();
+	}
+
+	public void setId(String id) {
+		setCustomerId(id);
+	}
+
 	@Column(name = "customer_name")
 	private String customerName;
 	
@@ -27,6 +40,18 @@ public class Customer {
 	private String phoneNo2;
 	
 	private String objid;
+
+	@OneToOne//(fetch = FetchType.LAZY)
+	@JoinColumn(name = "address_id", referencedColumnName = "address_id", insertable = false, updatable = false)
+	private Address address;
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	public String getCustomerId() {
 		return customerId;

@@ -39,7 +39,7 @@ public class InventoryPartController {
 		return new ModelAndView("inventoryPart");
 	}
 	
-	@GetMapping(value="/invParts")
+	@GetMapping(value="/InventoryPart")
 	public ResponseEntity<List<InventoryPart>> getRecords()
 	{
 		List<InventoryPart> invParts = this.invPartService.listData();
@@ -49,7 +49,7 @@ public class InventoryPartController {
 	//@RequestMapping(value="/inventoryPart/add", method=RequestMethod.POST)
 	//public String addInventoryPart(@ModelAttribute("addInventoryPart") InventoryPart inventoryPart,
 	//								BindingResult result, Model model)
-	@PostMapping(value="/invPart")
+	@PostMapping(value="/InventoryPart")
 	public ResponseEntity<Void> addInventoryPart(@RequestBody InventoryPart invPart)
 	{
 		System.out.println("Inventory Part is Successfully added.");

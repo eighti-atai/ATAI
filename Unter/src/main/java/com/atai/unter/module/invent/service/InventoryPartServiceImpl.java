@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.atai.unter.module.invent.dao.InventoryPartDao;
+import com.atai.unter.module.invent.model.InventoryLocation;
+import com.atai.unter.module.invent.model.InventoryLocationKey;
 import com.atai.unter.module.invent.model.InventoryPart;
 import com.atai.unter.module.invent.model.InventoryPartKey;
 
@@ -55,5 +57,9 @@ public class InventoryPartServiceImpl implements InventoryPartService {
 	@Transactional(readOnly = true)
 	public InventoryPart getByObjid(String objid) {
 		return invPartDao.getByObjid(objid);
+	}
+	@Transactional(readOnly = true)
+	public InventoryPart getInventoryPartById(InventoryPartKey invPartId) {
+		return invPartDao.getInventoryPartById(invPartId);
 	}
 }

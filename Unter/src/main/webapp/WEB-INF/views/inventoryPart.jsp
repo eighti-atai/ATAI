@@ -83,13 +83,13 @@
     <script src="<c:url value='/static/js/service/service.js' />"></script>
     <script src="<c:url value='/static/js/controller/controller.js' />"></script>
     <script src="<c:url value='/static/js/filter/filter.js' />"></script>
-    <script src="<c:url value='/static/js/entity/InventoryLocation.js' />"></script>
+    <script src="<c:url value='/static/js/entity/InventoryPart.js' />"></script>
 </head>
 <body>
 	<body ng-app="generalModule" class="ng-cloak">
       <div class="generic-container" data-ng-controller="RecordController as ctrl" ng-init="ctrl.init()">
           <div class="panel panel-default">
-              <div class="panel-heading"><span class="lead">Inventory Locations</span></div>
+              <div class="panel-heading"><span class="lead">Inventory Parts</span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       <input type="hidden" ng-model="ctrl.Record.objid" /> 
@@ -110,11 +110,11 @@
                       
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="invLocationId">Location ID</label>
+                              <label class="col-md-2 control-lable" for="invPartNo">Inventory Part No</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.id.invLocationId" id="invLocationId" class="description form-control input-sm" placeholder="Enter Location Id." required/>
+                                  <input type="text" ng-model="ctrl.Record.id.invPartNo" id="invPartNo" class="invPartNo form-control input-sm" placeholder="Enter Inventory Part No." required/>
                               	  <div class="has-error" ng-show="myForm.$dirty">
-                                      <span ng-show="myForm.invLocationId.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.invPartId.$error.required">This is a required field</span>
                                   </div>
                               </div>
                           </div>
@@ -122,12 +122,39 @@
                       
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="invLocationType">Location Type</label>
+                              <label class="col-md-2 control-lable" for="description">Description</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.invLocationType" id="invLocationType" class="description form-control input-sm" placeholder="Enter Location Type." required/>
+                                  <input type="text" ng-model="ctrl.Record.description" id="description" class="description form-control input-sm" placeholder="Enter Location Type." required/>
                               	  <div class="has-error" ng-show="myForm.$dirty">
-                                      <span ng-show="myForm.invLocationType.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.description.$error.required">This is a required field</span>
                                   </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="reorderLevel">Reorder Level</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.Record.reorderLevel" id="reorderLevel" class="reorderLevel form-control input-sm" placeholder="Enter reorder level."/>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="description">Safety Stock Level</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.Record.safetyStockLevel" id="safetyStockLevel" class="safetyStockLevel form-control input-sm" placeholder="Enter safety stock level."/>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="uom">UoM</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.Record.uom" id="uom" class="uom form-control input-sm" placeholder="Enter Location Type."/>
                               </div>
                           </div>
                       </div>

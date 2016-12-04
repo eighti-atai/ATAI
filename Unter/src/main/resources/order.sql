@@ -29,5 +29,16 @@ CREATE TABLE `sales_part_price_tab` (
   CONSTRAINT `inv_cost_to_sales_part_price`   FOREIGN KEY (`inv_part_id`,`inv_part_cost_no`) REFERENCES `inventory_part_cost_tab` (`inv_part_no`,`inv_part_cost_no`) ON UPDATE NO ACTION
   ) ENGINE=InnoDB ;
 
+  
+  CREATE TABLE customer_order_tab(
+  customer_order_id VARCHAR(20) PRIMARY KEY,
+  order_date DATETIME NOT NULL,
+  status VARCHAR(10) NOT NULL,
+  note VARCHAR(50),
+  payment_no INT(10),
+  customer_id VARCHAR(5),
+  user_id VARCHAR(5),
+  objid VARCHAR(1000) NOT NULL,
+  CONSTRAINT fk_customer FOREIGN KEY(customer_id) REFERENCES customer_tab(customer_id))
 
 

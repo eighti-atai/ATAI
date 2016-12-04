@@ -40,6 +40,7 @@
 		<a href = "${contextPath}/invPartCosts"> Inventory Part Cost</a>
 		<a href = "${contextPath}/invpartinstocks"> Inventory Part Cost</a>
 		<a href = "${contextPath}/customers"> Customer</a>
+		<a href = "${contextPath}/payments"> Payment</a>
     </c:if>
 
 </div>

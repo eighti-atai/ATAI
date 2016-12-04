@@ -57,6 +57,7 @@
 				<value>com.atai.unter.module.enterprise.model.Role</value>
 				<value>com.atai.unter.module.enterprise.model.Site</value>
 				<value>com.atai.unter.module.enterprise.model.Customer</value>
+				<value>com.atai.unter.module.payment.model.Payment</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

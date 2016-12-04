@@ -31,6 +31,7 @@ public class InventoryPart {
 	
 	@Column(name="safety_stock_level")
 	private double safetyStockLevel;
+	
 	public String getDescription() {
 		return description;
 	}
@@ -61,10 +62,10 @@ public class InventoryPart {
 	public void setObjid(String objid) {
 		this.objid = objid;
 	}
-	private InventoryPartKey getId() {
+	public InventoryPartKey getId() {
 		return id;
 	}
-	private void setId(InventoryPartKey id) {
+	public void setId(InventoryPartKey id) {
 		this.id = id;
 	}
 

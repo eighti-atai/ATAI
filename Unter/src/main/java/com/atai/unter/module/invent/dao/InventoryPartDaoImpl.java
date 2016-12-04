@@ -7,8 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import com.atai.unter.generic.dao.AbstractDao;
-import com.atai.unter.module.invent.model.InventoryLocation;
-import com.atai.unter.module.invent.model.InventoryLocationKey;
 import com.atai.unter.module.invent.model.InventoryPart;
 import com.atai.unter.module.invent.model.InventoryPartKey;
 

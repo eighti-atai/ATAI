@@ -200,7 +200,7 @@
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.paymentType" style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.paymentMethod"style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.chequeNo"style="width: 100%""/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.chequeExpDate"style="width: 100%""/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="date" ng-model="u.chequeExpDate"style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.chequeBank"style="width: 100%""/></td>
                               <!-- <td ng-if="ctrl.change(u.objid)"><input type="hidden" ng-model="u.objid" style="width: 80px;"/></td> -->
                               <td>

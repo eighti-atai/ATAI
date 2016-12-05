@@ -71,7 +71,7 @@ public class Payment implements Model<Integer> {
 		this.chequeNo = chequeNo;
 	}
 
-	@JsonSerialize(using=DateSerializer.class)
+	//@JsonSerialize(using=DateSerializer.class)
 	public Date getChequeExpDate() {
 		return chequeExpDate;
 	}

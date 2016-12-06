@@ -20,6 +20,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     self.entity = '';
     self.currentPage  = 0;
     self.pageSize  = 5;
+    self.myDate = new Date();
  
  
     

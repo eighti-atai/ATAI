@@ -66,3 +66,10 @@ REFERENCES `unter`.`inventory_location_tab` (`site_id`, `inv_location_id`)
 ON DELETE NO ACTION     ON UPDATE NO ACTION)	ENGINE = InnoDB;
 
 alter table site_tab add column objid varchar(1000) not null;
+
+CREATE TABLE IF NOT EXISTS `unter`.`uom_tab` (
+  `uom_id` VARCHAR(10) NOT NULL,
+  `description` VARCHAR(100) NULL,
+  `objid` VARCHAR(1000) NULL,
+  PRIMARY KEY (`uom_id`));
+

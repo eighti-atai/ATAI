@@ -21,6 +21,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     self.currentPage  = 0;
     self.pageSize  = 5;
     self.myDate = new Date();
+    self.setDate = setDate;
  
  
     
@@ -151,6 +152,16 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     
     function numberOfPages() {
         return Math.ceil(self.Records.length/self.pageSize);                
+    }
+    
+    function setDate(objid, field, value){
+    	for(var i = 0; i < self.Records.length; i++){
+	            if(self.Records[i].objid === objid) {
+	               Reflect.set(self.Records[i], field, (new Date(value)));
+	            }
+	    }
+    	field = new Date(value);
+    	return field;
     }
  
 }]);

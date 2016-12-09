@@ -97,7 +97,7 @@
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">Payments</span></div>
               <div class="formcontainer">
-              	  <md-content>
+              	  <!-- <md-content> -->
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       <input type="hidden" ng-model="ctrl.Record.objid" /> 
 
@@ -151,8 +151,8 @@
                       <div class="row">
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="chequeExpDate">Cheque Exp Date</label>
-<!--                               <div class="col-md-7"> -->
-                               	<md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date"></md-datepicker>
+<!--                               <div class="col-md-7">    ng-model="ctrl.myDate" -->
+									<md-datepicker ng-model="ctrl.Record.chequeExpDate" md-placeholder="Enter date"></md-datepicker>
 <!--                                   <input type="date" ng-model="ctrl.Record.chequeExpDate" id="chequeExpDate" class="description form-control input-sm" placeholder="Enter Cheque Exp Date." required/> -->
 <!--                               </div> -->
                           </div>
@@ -166,7 +166,6 @@
                               </div>
                           </div>
                       </div>
-                      dATE:<md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date"></md-datepicker>
                       <div class="row">
                           <div class="form-actions floatRight">
                               <input type="submit"  value="{{!ctrl.Record.objid ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
@@ -177,11 +176,10 @@
                       </div>
                   </form>
                   
-                  </md-content>
+                  <!-- </md-content> -->
               </div>
               
-              Peep:{{ctrl.myDate}}
-<!--           </div> -->
+              <!--           </div> -->
           
           <div class="panel panel-default">
                 <!-- Default panel contents -->
@@ -201,18 +199,19 @@
                       </thead>
                       <tbody>
                           <tr ng-repeat="u in ctrl.Records | startFrom:ctrl.currentPage*ctrl.pageSize | limitTo:ctrl.pageSize " >
+                              
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.paymentNo"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.paymentType"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.paymentMethod"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.chequeNo"></span></td>
-                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.chequeExpDate|date:'yyyy-MM-dd'"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="ctrl.setDate(u.objid, 'chequeExpDate', u.chequeExpDate)|date:yyyy/MM/dd"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.chequeBank"></span></td>
                                                                                           
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.paymentNo"style="width: 100%"/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.paymentType" style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.paymentMethod"style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.chequeNo"style="width: 100%""/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.chequeExpDate"style="width: 100%""/></td>
+                              <td ng-if="ctrl.change(u.objid)"><md-datepicker ng-model="u.chequeExpDate"></md-datepicker></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.chequeBank"style="width: 100%""/></td>
                               <!-- <td ng-if="ctrl.change(u.objid)"><input type="hidden" ng-model="u.objid" style="width: 80px;"/></td> -->
                               <td>
@@ -220,7 +219,6 @@
                               </td>
                           </tr>
                       </tbody>
-                      
                   </table>
                   <button ng-disabled="ctrl.currentPage == 0" ng-click="ctrl.currentPage=ctrl.currentPage-1">
         			Previous

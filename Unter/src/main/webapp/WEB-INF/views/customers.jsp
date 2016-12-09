@@ -84,7 +84,7 @@
     <script src="<c:url value='/static/js/service/service.js' />"></script>
     <script src="<c:url value='/static/js/controller/controller.js' />"></script>
     <script src="<c:url value='/static/js/filter/filter.js' />"></script>
-    <script src="<c:url value='/static/js/entity/Payment.js' />"></script>
+    <script src="<c:url value='/static/js/entity/Customer.js' />"></script>
     <script src="webjars/angularjs/1.5.8/angular.js"></script>
     <script src="webjars/angularjs/1.5.8/angular-animate.min.js"></script>
     <script src="webjars/angularjs/1.5.8/angular-aria.min.js"></script>

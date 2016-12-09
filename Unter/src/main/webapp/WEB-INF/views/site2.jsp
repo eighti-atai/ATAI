@@ -76,8 +76,20 @@
       }
 
     </style>
-     <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
-     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/angular-material/1.1.1/angular-material.min.css">
+    <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
+    <script src="webjars/angularjs/1.5.8/angular.js"></script>
+    <script src="<c:url value='/static/js/app.js' />"></script>
+    <script src="<c:url value='/static/js/service/service.js' />"></script>
+    <script src="<c:url value='/static/js/controller/controller.js' />"></script>
+    <script src="<c:url value='/static/js/filter/filter.js' />"></script>
+    <script src="webjars/angularjs/1.5.8/angular.js"></script>
+    <script src="webjars/angularjs/1.5.8/angular-animate.min.js"></script>
+    <script src="webjars/angularjs/1.5.8/angular-aria.min.js"></script>
+    <script src="webjars/angularjs/1.5.8/angular-messages.min.js"></script>
+    <script src="webjars/angular-material/1.1.1/angular-material.min.js"></script>
+    <script src="<c:url value='/static/js/entity/Site.js' />"></script>
 </head>
 <body ng-app="generalModule" class="ng-cloak">
       <div class="generic-container" data-ng-controller="RecordController as ctrl" ng-init="ctrl.init()">
@@ -201,12 +213,5 @@
               </div>
           </div>
       </div>
-       
-      <script src="webjars/angularjs/1.5.8/angular.js"></script>
-      <script src="<c:url value='/static/js/app.js' />"></script>
-      <script src="<c:url value='/static/js/service/service.js' />"></script>
-      <script src="<c:url value='/static/js/controller/controller.js' />"></script>
-      <script src="<c:url value='/static/js/filter/filter.js' />"></script>
-      <script src="<c:url value='/static/js/entity/Site.js' />"></script>
-  </body>
+   </body>
 </html>

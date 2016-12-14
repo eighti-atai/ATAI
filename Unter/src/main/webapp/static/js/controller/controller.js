@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('generalModule').controller('RecordController', ['$scope', 'RecordService','EntityService', function($scope, RecordService,EntityService) {
+angular.module('generalModule').controller('RecordController', ['$scope', 'RecordService','EntityService','$location','$http', function($scope, RecordService,EntityService, $location, $http) {
     var self = this;
     
     self.Records=[];
@@ -22,12 +22,19 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     self.pageSize  = 5;
     self.myDate = new Date();
     self.setDate = setDate;
+    self.setFocusedElement = setFocusedElement;
+    self.lastFocused;
+    self.lov;
+    self.ListOfValues = ListOfValues;
+    self.LovRecords = [];
+    self.LovColumsHeads = [];
  
  
     
  
     function init(){
     	self.Record= EntityService.record;
+    	self.lov = EntityService.lov;
     	//self.EmptyRecord = angular.copy(EntityService.record);
     	RecordService.setRestServiceUri(EntityService.name);
     	fetchAllRecords();
@@ -163,5 +170,37 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     	field = new Date(value);
     	return field;
     }
+    
+    function setFocusedElement()
+    {
+    	self.lastFocused = document.activeElement;
+    }
  
+    
+    function ListOfValues()
+    {
+    	var lovField = Reflect.get(EntityService.lov, self.lastFocused.id);
+    	var current_url = $location.absUrl();
+    	var base_url = current_url.substr(0, current_url.indexOf('Unter')+6);
+    	var lovUrl = base_url + self.lov[self.lastFocused.id] + '/';   
+    	$http.get(lovUrl)
+        .then(
+	        function (response) {
+	        	self.LovRecords = response.data;
+	        	for (var key in self.LovRecords[0])
+        		{
+        			if (self.LovRecords[0].hasOwnProperty(key) && typeof self.LovRecords[0][key] !== 'function'){
+        				if (key != 'objid')
+    					{
+        					self.LovColumsHeads.push(key);
+    					}
+        			}
+        		}
+	        },
+	        function(errResponse){
+	            console.error('Error while fetching Records');
+	        }
+        );
+    	document.getElementById("lov").style.display = "block";
+    }
 }]);

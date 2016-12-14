@@ -74,7 +74,47 @@
       .generalCategory.ng-dirty.ng-invalid-email {
           background-color: yellow;
       }
+      
+      /* .lov {
+    display: none;
+    } */
 
+	.lov {
+    display: none;/* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
     </style>
     <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
     <link rel="stylesheet" href="webjars/angular-material/1.1.1/angular-material.min.css">
@@ -90,6 +130,7 @@
     <script src="webjars/angularjs/1.5.8/angular-aria.min.js"></script>
     <script src="webjars/angularjs/1.5.8/angular-messages.min.js"></script>
     <script src="webjars/angular-material/1.1.1/angular-material.min.js"></script>
+    <script src="<c:url value='/static/js/directives/unterLov.js' />"></script>
 </head>
 <body>
 	<body ng-app="generalModule" class="ng-cloak">
@@ -98,13 +139,14 @@
               <div class="panel-heading"><span class="lead">Customers</span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                  	 <div id="lov" unter-lov class = "lov"></div>
                       <input type="hidden" ng-model="ctrl.Record.objid" /> 
 
 						<div class="row">
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="customerId">Customer Id</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.customerId" id="customerId" class="salesPartId form-control input-sm" placeholder="Enter Customer Id " required ng-minlength="1"/>
+                                  <input type="text" ng-model="ctrl.Record.customerId" id="customerId" class="salesPartId form-control input-sm" placeholder="Enter Customer Id " required ng-minlength="1" ng-focus="ctrl.setFocusedElement()"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.customerId.$error.required">This is a required field</span>
                                       <span ng-show="myForm.customerId.$error.minlength">Minimum length required is 3</span>
@@ -118,7 +160,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="customerName">Customer Name</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.customerName" id="customerName" class="description form-control input-sm" placeholder="Enter Customer Name" required/>
+                                  <input type="text" ng-model="ctrl.Record.customerName" id="customerName" class="description form-control input-sm" placeholder="Enter Customer Name" required ng-focus="ctrl.setFocusedElement()"/>
                               	  <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.customerName.$error.required">This is a required field</span>
                                   </div>
@@ -130,7 +172,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="nic">Nic</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.nic" id="nic" class="description form-control input-sm" placeholder="Enter Nic" required/>
+                                  <input type="text" ng-model="ctrl.Record.nic" id="nic" class="description form-control input-sm" placeholder="Enter Nic"  ng-focus="ctrl.setFocusedElement()"/>
                               	  <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.nic.$error.required">This is a required field</span>
                                   </div>
@@ -142,7 +184,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="addressId">Address ID</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.addressId" id="addressId" class="description form-control input-sm" placeholder="Enter Address ID." required/>
+                                  <input type="text" ng-model="ctrl.Record.addressId" id="addressId" class="description form-control input-sm" placeholder="Enter Address ID." required ng-focus="ctrl.setFocusedElement()"/>
                               	  <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.addressId.$error.required">This is a required field</span>
                                   </div>
@@ -154,7 +196,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="phoneNo1">Phone No 1</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.phoneNo1" id="phoneNo1" class="description form-control input-sm" placeholder="Enter Phone No 1." required/>
+                                  <input type="text" ng-model="ctrl.Record.phoneNo1" id="phoneNo1" class="description form-control input-sm" placeholder="Enter Phone No 1." ng-focus="ctrl.setFocusedElement()"/>
                               	  <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.phoneNo1.$error.required">This is a required field</span>
                                   </div>
@@ -166,7 +208,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="phoneNo2">Phone No 2</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.phoneNo2" id="phoneNo2" class="description form-control input-sm" placeholder="Enter Phone No 2." required/>
+                                  <input type="text" ng-model="ctrl.Record.phoneNo2" id="phoneNo2" class="description form-control input-sm" placeholder="Enter Phone No 2." ng-focus="ctrl.setFocusedElement()"/>
                               	  <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.phoneNo2.$error.required">This is a required field</span>
                                   </div>
@@ -174,12 +216,14 @@
                           </div>
                       </div>
                       
+                           
                       <div class="row">
                           <div class="form-actions floatRight">
                               <input type="submit"  value="{{!ctrl.Record.objid ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                                <button type="button" ng-click="ctrl.updateAll()" class="btn btn-warning btn-sm" >Save All</button>
                                <button type="button" ng-click="ctrl.searchRecords()" class="btn btn-warning btn-sm" >Search</button>
+                               <button type="button" ng-click="ctrl.ListOfValues()" class = "btn btn-warning btn-sm">List...</button>
                           </div>
                       </div>
                   </form>

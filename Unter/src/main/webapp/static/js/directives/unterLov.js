@@ -12,7 +12,7 @@ angular.module('generalModule').directive('unterLov', function(){
 					"</tr>" +
 					"</thead>" +
 					"<tbody>" +
-					"<tr ng-repeat='u in ctrl.LovRecords'>" +
+					"<tr ng-repeat='u in ctrl.LovRecords' ng-click='ctrl.setLovValue(u)'>" +
 					"<td ng-repeat='a in ctrl.LovColumsHeads'>"+
 					"<span ng-bind='u[a]'></span>" +
 					"</td>" +

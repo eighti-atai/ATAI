@@ -29,6 +29,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     self.LovRecords = [];
     self.LovColumsHeads = [];
     self.lovClose = lovClose;
+    self.setLovValue = setLovValue;
  
  
     
@@ -221,7 +222,21 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
         	document.getElementById("lov").style.display = "none";
         }
     }
-//    span.onclick = function() {
-//    	document.getElementById("lov").style.display = "none";
-//    }
+    
+    function setLovValue(lovRecord)
+    {
+    	for (var key in lovRecord)
+		{
+			if (lovRecord.hasOwnProperty(key) && typeof lovRecord[key] !== 'function'){
+				if (key != 'objid')
+				{
+					if (key === self.lastFocused.id)
+					{
+						self.lastFocused.value = lovRecord[key];
+					}
+				}
+			}
+		}
+    	document.getElementById("lov").style.display = "none";
+    }
 }]);

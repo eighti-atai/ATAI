@@ -28,6 +28,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     self.ListOfValues = ListOfValues;
     self.LovRecords = [];
     self.LovColumsHeads = [];
+    self.lovClose = lovClose;
  
  
     
@@ -179,28 +180,48 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     
     function ListOfValues()
     {
-    	var lovField = Reflect.get(EntityService.lov, self.lastFocused.id);
-    	var current_url = $location.absUrl();
-    	var base_url = current_url.substr(0, current_url.indexOf('Unter')+6);
-    	var lovUrl = base_url + self.lov[self.lastFocused.id] + '/';   
-    	$http.get(lovUrl)
-        .then(
-	        function (response) {
-	        	self.LovRecords = response.data;
-	        	for (var key in self.LovRecords[0])
-        		{
-        			if (self.LovRecords[0].hasOwnProperty(key) && typeof self.LovRecords[0][key] !== 'function'){
-        				if (key != 'objid')
-    					{
-        					self.LovColumsHeads.push(key);
-    					}
-        			}
-        		}
-	        },
-	        function(errResponse){
-	            console.error('Error while fetching Records');
-	        }
-        );
-    	document.getElementById("lov").style.display = "block";
+    	var isLovField = self.lov[self.lastFocused.id];
+    	if (isLovField !== 'undefined')
+		{
+	    	self.LovColumsHeads = [];
+	    	document.getElementById("lov").style.display = "none";
+	    	var lovField = Reflect.get(EntityService.lov, self.lastFocused.id);
+	    	var current_url = $location.absUrl();
+	    	var base_url = current_url.substr(0, current_url.indexOf('Unter')+6);
+	    	var lovUrl = base_url + self.lov[self.lastFocused.id] + '/';   
+	    	$http.get(lovUrl)
+	        .then(
+		        function (response) {
+		        	self.LovRecords = response.data;
+		        	for (var key in self.LovRecords[0])
+	        		{
+	        			if (self.LovRecords[0].hasOwnProperty(key) && typeof self.LovRecords[0][key] !== 'function'){
+	        				if (key != 'objid')
+	    					{
+	        					self.LovColumsHeads.push(key);
+	    					}
+	        			}
+	        		}
+		        },
+		        function(errResponse){
+		            console.error('Error while fetching Records');
+		        }
+	        );
+	    	document.getElementById("lov").style.display = "block";
+		}
     }
+    
+    function lovClose()
+    {
+    	document.getElementById("lov").style.display = "none";
+    }
+    
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("lov")) {
+        	document.getElementById("lov").style.display = "none";
+        }
+    }
+//    span.onclick = function() {
+//    	document.getElementById("lov").style.display = "none";
+//    }
 }]);

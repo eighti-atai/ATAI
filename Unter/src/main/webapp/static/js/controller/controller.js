@@ -25,11 +25,13 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     self.setFocusedElement = setFocusedElement;
     self.lastFocused;
     self.lov;
+    self.lovTitles;
     self.ListOfValues = ListOfValues;
     self.LovRecords = [];
     self.LovColumsHeads = [];
     self.lovClose = lovClose;
     self.setLovValue = setLovValue;
+    self.lovTitle;
  
  
     
@@ -37,6 +39,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     function init(){
     	self.Record= EntityService.record;
     	self.lov = EntityService.lov;
+    	self.lovTitles = EntityService.lovTitles;
     	//self.EmptyRecord = angular.copy(EntityService.record);
     	RecordService.setRestServiceUri(EntityService.name);
     	fetchAllRecords();
@@ -184,6 +187,7 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     	var isLovField = self.lov[self.lastFocused.id];
     	if (isLovField !== undefined)
 		{
+    		self.lovTitle = self.lovTitles[self.lastFocused.id];
 	    	self.LovColumsHeads = [];
 	    	document.getElementById("lov").style.display = "none";
 	    	var lovField = Reflect.get(EntityService.lov, self.lastFocused.id);

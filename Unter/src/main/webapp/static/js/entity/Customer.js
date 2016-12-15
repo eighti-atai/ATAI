@@ -6,7 +6,8 @@ entityModule.factory('EntityService', ['$http', '$q', function($http, $q){
         name   :'Customer',
         record :{customerId:'',customerName:'',nic:'',addressId:'',phoneNo1:'',phoneNo2:'',objid:null},
         emptyRecord :emptyRecord,
-        lov :{addressId: 'Address'}
+        lov :{addressId: 'Address'},
+        lovTitles :{addressId: 'Address'} 
     };
     return entityRec;
     

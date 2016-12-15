@@ -2,7 +2,10 @@ angular.module('generalModule').directive('unterLov', function(){
 	return {
 		template:   "<div id='myModal'>" +
 					"<div class = 'modal-content'>" +
+					"<div class='modal-header'>" +
 					" <span class='close' id='lovClose' ng-click='ctrl.lovClose()'>&times;</span>" +
+					"<h2>{{ctrl.lovTitle}}</h2>"+
+					"</div>" +
 					"<table class='table table-hover'>" +
 					"<thead>" +
 					"<tr>" +

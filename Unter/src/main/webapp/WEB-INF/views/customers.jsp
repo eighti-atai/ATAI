@@ -92,6 +92,13 @@
     /* background-color: rgba(0,0,0,0.4); */ /* Black w/ opacity */
 }
 
+/* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;

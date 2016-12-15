@@ -33,7 +33,7 @@ CREATE TABLE `user_role_tab` (
   CREATE TABLE customer_tab (
   customer_id VARCHAR(5) PRIMARY KEY,
   customer_name VARCHAR(100) NOT NULL,
-  nic			VARCHAR(15),
+  nic VARCHAR(15),
   address_id	INT(12),
   phone_no_1 VARCHAR(15),
   phone_no_2 VARCHAR(15),

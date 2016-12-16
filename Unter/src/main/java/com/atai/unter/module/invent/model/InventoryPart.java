@@ -18,13 +18,17 @@ public class InventoryPart {
 	
 	private String description;
 	
-	private String uom;
+	private String uomId;
+	
+	private String objid;
 
 	@ManyToOne
 	@JoinColumn(name = "site_id", referencedColumnName = "site_id", insertable = false, updatable = false)
 	private Site site;
-	
-	private String objid;
+
+	@ManyToOne
+	@JoinColumn(name="uom_id", referencedColumnName="uom_id", insertable=false, updatable=false)
+	private UoM uoM;
 	
 	@Column(name="reorder_level")
 	private double reorderLevel;
@@ -38,11 +42,11 @@ public class InventoryPart {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getUom() {
-		return uom;
+	public String getUomId() {
+		return uomId;
 	}
-	public void setUom(String uom) {
-		this.uom = uom;
+	public void setUomId(String uom) {
+		this.uomId = uom;
 	}
 	public double getReorderLevel() {
 		return reorderLevel;
@@ -79,5 +83,11 @@ public class InventoryPart {
 	}
 	public void setSite(Site site) {
 		this.site = site;
+	}
+	public UoM getUoM() {
+		return uoM;
+	}
+	public void setUoM(UoM uoM) {
+		this.uoM = uoM;
 	}
 }

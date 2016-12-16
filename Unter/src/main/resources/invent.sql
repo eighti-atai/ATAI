@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `unter`.`inventory_part_tab` (
   `site_id` VARCHAR(5)` NOT NULL,
   `inv_part_no` VARCHAR(30) NOT NULL,
   `description` VARCHAR(200) NULL,
-  `uom` VARCHAR(10) NULL,
+  `uom_id` VARCHAR(10) NULL,
   `reorder_level` DOUBLE NULL,
   `safety_stock_level` DOUBLE NULL,,
   objid		VARCHAR(1000) NOT NULL,

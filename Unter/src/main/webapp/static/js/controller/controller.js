@@ -229,11 +229,6 @@ angular.module('generalModule').controller('RecordController', ['$scope', 'Recor
     
     function setLovValue(lovRecord)
     {
-    	var event = new KeyboardEvent('keypress', {
-    	    'view': window,
-    	    'bubbles': true,
-    	    'cancelable': true
-    	  });
     	for (var key in lovRecord)
 		{
 			if (lovRecord.hasOwnProperty(key) && typeof lovRecord[key] !== 'function'){

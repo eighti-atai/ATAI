@@ -1,6 +1,4 @@
-CREATE database unter;
-
-CREATE TABLE location_tab (
+CREATE TABLE IF NOT EXISTS location_tab (
 id INT(12) SIGNED AUTO_INCREMENT PRIMARY KEY,
 location_id VARCHAR(30) NOT NULL,
 description VARCHAR(1000) NOT NULL,

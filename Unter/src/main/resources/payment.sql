@@ -1,4 +1,4 @@
-CREATE TABLE payment_tab(
+CREATE TABLE IF NOT EXISTS payment_tab(
 payment_no INT(20) PRIMARY KEY,
 payment_type VARCHAR(10) NOT NULL,
 payment_method VARCHAR(10) NOT NULL,

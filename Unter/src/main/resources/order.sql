@@ -1,4 +1,4 @@
-CREATE TABLE `sales_part_tab` (
+CREATE TABLE IF NOT EXISTS `sales_part_tab` (
   `sales_part_id` 			VARCHAR(10) NOT NULL,
   `description` 			VARCHAR(20) NOT NULL,
   `inv_part_id` 			VARCHAR(10) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE `sales_part_tab` (
 ) ENGINE=InnoDB ;
 
 
-CREATE TABLE `sales_part_price_tab` (
+CREATE TABLE IF NOT EXISTS `sales_part_price_tab` (
   `sales_part_id` 			VARCHAR(10) NOT NULL,
   `sales_part_price_no` 	INT(11) NOT NULL,
   `inv_part_id` 			VARCHAR(10) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE `sales_part_price_tab` (
   ) ENGINE=InnoDB ;
 
   
-  CREATE TABLE customer_order_tab(
+  CREATE TABLE IF NOT EXISTS customer_order_tab(
   customer_order_id VARCHAR(20) PRIMARY KEY,
   order_date DATETIME NOT NULL,
   status VARCHAR(10) NOT NULL,
@@ -38,7 +38,6 @@ CREATE TABLE `sales_part_price_tab` (
   payment_no INT(10),
   customer_id VARCHAR(5),
   user_id VARCHAR(5),
-  objid VARCHAR(1000) NOT NULL,
-  CONSTRAINT fk_customer FOREIGN KEY(customer_id) REFERENCES customer_tab(customer_id))
+  objid VARCHAR(1000) NOT NULL);
 
 

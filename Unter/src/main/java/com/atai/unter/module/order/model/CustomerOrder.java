@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.atai.unter.generic.interfaces.Model;
@@ -32,9 +33,11 @@ public class CustomerOrder implements Model<String>{
 	@Column(name = "user_id")
 	private int userId;
 	
+	@ManyToOne
 	@JoinColumn(name = "customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
 	private Customer customer;
 	
+	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
 	private User user;
 	

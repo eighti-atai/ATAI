@@ -37,7 +37,9 @@ CREATE TABLE IF NOT EXISTS `sales_part_price_tab` (
   note VARCHAR(50),
   payment_no INT(10),
   customer_id VARCHAR(5),
-  user_id VARCHAR(5),
+  user_id bigint(20),
   objid VARCHAR(1000) NOT NULL);
+  
+  
 
 

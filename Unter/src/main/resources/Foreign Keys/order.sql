@@ -26,3 +26,10 @@ FOREIGN KEY (customer_id)
 REFERENCES customer_tab(customer_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
+
+ALTER TABLE customer_order_tab
+ADD CONSTRAINT fk_user
+FOREIGN KEY(user_id)
+REFERENCES user_tab(user_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.atai.unter.generic.controller.AbstractController;
-import com.atai.unter.module.enterprise.model.User;
+import org.springframework.security.core.userdetails.User;
 import com.atai.unter.module.enterprise.service.SecurityService;
 import com.atai.unter.module.enterprise.service.UserService;
 import com.atai.unter.module.order.model.CustomerOrder;
@@ -55,12 +56,11 @@ public class CustomerOrderController extends AbstractController<String, Customer
 	@Override
 	@PostMapping(value = url)
 	public ResponseEntity<Void> add(@RequestBody CustomerOrder object) {
-		// TODO Auto-generated method stub
-		String userName;
-		User user;
-		userName = securityService.findLoggedInUsername();
-		user = userService.findByUsername(userName);
-		object.setUserId(user.getId());
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	    String name = user.getUsername();
+	    System.out.println("user Name: "+name);
+	    com.atai.unter.module.enterprise.model.User currentUser = userService.findByUsername(name);  
+		object.setUserId(currentUser.getId());
 		return super.add(object);
 	}
 

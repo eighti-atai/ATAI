@@ -151,6 +151,18 @@
                           </div>
                       </div>
                       
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="paymentNo">Payment NO</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.Record.paymentNo" id="note" class="description form-control input-sm" placeholder="Enter Note"  ng-focus="ctrl.setFocusedElement()"/>
+                              	  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.paymentNo.$error.required">This is a required field</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
                       
 
 					<div class="row">
@@ -165,18 +177,7 @@
                           </div>
                       </div>
                       
-                      <div class="row">
-                          <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="userId">User ID</label>
-                              <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.userId" id="userId" class="description form-control input-sm" placeholder="Enter User ID"  ng-focus="ctrl.setFocusedElement()"/>
-                              	  <div class="has-error" ng-show="myForm.$dirty">
-                                      <span ng-show="myForm.userId.$error.required">This is a required field</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      
+                                            
                       <div class="row">
                           <div class="form-actions floatRight">
                               <input type="submit"  value="{{!ctrl.Record.objid ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
@@ -223,7 +224,7 @@
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.note" style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.paymentNo"style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.customerId"style="width: 100%""/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.userId"style="width: 100%""/></td>
+                              <td ng-if="ctrl.change(u.objid)"><span ng-bind="u.userId"></span></td>
                               <!-- <td ng-if="ctrl.change(u.objid)"><input type="hidden" ng-model="u.objid" style="width: 80px;"/></td> -->
                               <td>
                               <button type="button" ng-click="ctrl.editRow(u.objid)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.objid)" class="btn btn-danger custom-width">Remove</button>

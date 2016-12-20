@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.atai.unter.generic.controller.AbstractController;
+import com.atai.unter.module.enterprise.model.User;
+import com.atai.unter.module.enterprise.service.SecurityService;
+import com.atai.unter.module.enterprise.service.UserService;
 import com.atai.unter.module.order.model.CustomerOrder;
 import com.atai.unter.module.order.service.CustomerOrderService;
 
@@ -24,7 +27,10 @@ public class CustomerOrderController extends AbstractController<String, Customer
 
 	private final String initUrl = "/customerorders";
 	private final String url = "/CustomerOrder";
-	
+	@Autowired
+	SecurityService securityService;
+	@Autowired
+	UserService userService;
 	
 	@Autowired
 	public CustomerOrderController(CustomerOrderService service) {
@@ -50,6 +56,11 @@ public class CustomerOrderController extends AbstractController<String, Customer
 	@PostMapping(value = url)
 	public ResponseEntity<Void> add(@RequestBody CustomerOrder object) {
 		// TODO Auto-generated method stub
+		String userName;
+		User user;
+		userName = securityService.findLoggedInUsername();
+		user = userService.findByUsername(userName);
+		object.setUserId(user.getId());
 		return super.add(object);
 	}
 

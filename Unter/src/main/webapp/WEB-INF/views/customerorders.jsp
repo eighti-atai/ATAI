@@ -86,7 +86,6 @@
     <script src="<c:url value='/static/js/controller/controller.js' />"></script>
     <script src="<c:url value='/static/js/filter/filter.js' />"></script>
     <script src="<c:url value='/static/js/entity/CustomerOrderHead.js' />"></script>
-    <script src="webjars/angularjs/1.5.8/angular.js"></script>
     <script src="webjars/angularjs/1.5.8/angular-animate.min.js"></script>
     <script src="webjars/angularjs/1.5.8/angular-aria.min.js"></script>
     <script src="webjars/angularjs/1.5.8/angular-messages.min.js"></script>
@@ -121,6 +120,9 @@
                               <label class="col-md-2 control-lable" for="orderDate">Order Date</label>
                               <div class="col-md-7">
                                   <md-datepicker ng-model="ctrl.Record.orderDate" md-placeholder="Enter date"></md-datepicker>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.orderDate.$error.required">This is a required field</span>
+                                  </div>
                               </div>
                           </div>
                       </div>

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -50,21 +51,21 @@ public class CustomerOrder implements Model<String>{
 		this.customer = customer;
 	}
 
-	public User getUser() {
+	/*public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
-	}
+	}*/
 
 	@ManyToOne
 	@JoinColumn(name = "customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
 	private Customer customer;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
-	private User user;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+//	private User user;
 	
 	public String getCustomerOrderId() {
 		return customerOrderId;

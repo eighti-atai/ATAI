@@ -32,7 +32,32 @@ public class CustomerOrder implements Model<String>{
 	private String customerId;
 	@Column(name = "user_id")
 	private int userId;
+	private String objid;
 	
+	public String getObjid() {
+		return objid;
+	}
+
+	public void setObjid(String objid) {
+		this.objid = objid;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
 	private Customer customer;

@@ -8,8 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.atai.unter.generic.controller.AbstractController;
@@ -45,28 +48,28 @@ public class CustomerOrderController extends AbstractController<String, Customer
 
 	@Override
 	@PostMapping(value = url)
-	public ResponseEntity<Void> add(CustomerOrder object) {
+	public ResponseEntity<Void> add(@RequestBody CustomerOrder object) {
 		// TODO Auto-generated method stub
 		return super.add(object);
 	}
 
 	@Override
 	@PutMapping(value = url)
-	public ResponseEntity<CustomerOrder> modify(CustomerOrder newObject) {
+	public ResponseEntity<CustomerOrder> modify(@RequestBody CustomerOrder newObject) {
 		// TODO Auto-generated method stub
 		return super.modify(newObject);
 	}
 
 	@Override
 	@DeleteMapping(value = "/CustomerOrder/{objid:.+}")
-	public ResponseEntity<CustomerOrder> delete(String objid) {
+	public ResponseEntity<CustomerOrder> delete(@PathVariable("objid") String objid) {
 		// TODO Auto-generated method stub
 		return super.delete(objid);
 	}
 
 	@Override
 	@PostMapping(value = "/CustomerOrder/Search")
-	public ResponseEntity<List<CustomerOrder>> search(CustomerOrder object) {
+	public ResponseEntity<List<CustomerOrder>> search(@RequestBody CustomerOrder object) {
 		// TODO Auto-generated method stub
 		return super.search(object);
 	}

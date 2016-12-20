@@ -19,6 +19,7 @@ END$$
 DELIMITER ;
 
 CALL PROC_DROP_FOREIGN_KEY('customer_order_tab', 'fk_customer');
+CALL PROC_DROP_FOREIGN_KEY('customer_order_tab', 'fk_user');
  
 ALTER TABLE customer_order_tab
 ADD CONSTRAINT fk_customer

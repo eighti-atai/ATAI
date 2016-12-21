@@ -41,5 +41,14 @@ CREATE TABLE IF NOT EXISTS `sales_part_price_tab` (
   objid VARCHAR(1000) NOT NULL);
   
   
-
+  CREATE TABLE IF NOT EXISTS customer_order_line_tab(
+  customer_order_id VARCHAR(20) NOT NULL,
+  co_line_no INT(5) NOT NULL,
+  sales_qty INT(10) NOT NULL,
+  discount DECIMAL(2,2),
+  amount DECIMAL(10,2) NOT NULL,
+  sales_part_id VARCHAR(10),
+  sales_part_price_no INT(11),
+  objid VARCHAR(1000) NOT NULL,
+  PRIMARY KEY(customer_order_id, co_line_no));
 

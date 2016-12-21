@@ -34,3 +34,17 @@ FOREIGN KEY(user_id)
 REFERENCES user_tab(user_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
+
+ALTER TABLE customer_order_line_tab
+ADD CONSTRAINT fk_customer_order
+FOREIGN KEY (customer_order_id)
+REFERENCES customer_order_tab(customer_order_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE customer_order_line_tab
+ADD CONSTRAINT fk_sales_part
+FOREIGN KEY (sales_part_id, sales_part_price_no)
+REFERENCES sales_part_price_tab(sales_part_id, sales_part_price_no)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;

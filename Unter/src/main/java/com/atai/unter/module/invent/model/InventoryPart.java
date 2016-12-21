@@ -18,6 +18,7 @@ public class InventoryPart {
 	
 	private String description;
 	
+	@Column(name="uom_id")
 	private String uomId;
 	
 	private String objid;
@@ -89,5 +90,9 @@ public class InventoryPart {
 	}
 	public void setUoM(UoM uoM) {
 		this.uoM = uoM;
+	}
+	public boolean isNew()
+	{
+		return (this.objid== null);
 	}
 }

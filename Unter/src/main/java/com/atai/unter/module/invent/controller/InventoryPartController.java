@@ -50,10 +50,18 @@ public class InventoryPartController {
 	//public String addInventoryPart(@ModelAttribute("addInventoryPart") InventoryPart inventoryPart,
 	//								BindingResult result, Model model)
 	@PostMapping(value="/InventoryPart")
-	public ResponseEntity<Void> addInventoryPart(@RequestBody InventoryPart invPart)
+	public ResponseEntity<Void> addInventoryPart(@RequestBody InventoryPart invPart, BindingResult result)
 	{
-		System.out.println("Inventory Part is Successfully added.");
-		this.invPartService.addData(invPart);
+		inventoryPartValidator.validate(invPart, result);
+		if(result.hasErrors())
+		{
+			System.out.println("Has errors");
+		}
+		else
+		{
+			System.out.println("Inventory Part is Successfully added.");
+			this.invPartService.addData(invPart);
+		}
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	

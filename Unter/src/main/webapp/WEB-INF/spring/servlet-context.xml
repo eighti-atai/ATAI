@@ -60,7 +60,7 @@
 				<value>com.atai.unter.module.enterprise.model.Customer</value>
 				<value>com.atai.unter.module.payment.model.Payment</value>
 				<value>com.atai.unter.module.order.model.CustomerOrder</value>
-				<value>com.atai.unter.moduel.order.modle.CustomerOrderLine</value>
+				<value>com.atai.unter.module.order.modle.CustomerOrderLine</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

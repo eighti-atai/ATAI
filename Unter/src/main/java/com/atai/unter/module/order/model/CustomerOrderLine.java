@@ -2,7 +2,9 @@ package com.atai.unter.module.order.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,7 +19,7 @@ import com.atai.unter.generic.interfaces.Model;
 @Table(name = "customer_order_line_tab")
 public class CustomerOrderLine implements Model<CustomerOrderLineKey>{
 
-	@Id
+	@EmbeddedId
 	private CustomerOrderLineKey id;
 	@Column(name = "sales_qty")
 	private int salesQty;
@@ -32,8 +34,8 @@ public class CustomerOrderLine implements Model<CustomerOrderLineKey>{
 	@Column(name = "objid")
 	private String objid;
 	
-	@ManyToOne
-	@JoinColumn(name = "customer_order_id", referencedColumnName = "customer_order_id", insertable = true, updatable = true)
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "customer_order_id", referencedColumnName = "customer_order_id", insertable = false, updatable = false)
 	private CustomerOrder customerOrder;
 	
 	@OneToOne
@@ -87,12 +89,12 @@ public class CustomerOrderLine implements Model<CustomerOrderLineKey>{
 	public void setObjid(String objid) {
 		this.objid = objid;
 	}
-	public CustomerOrder getCustomerOrder() {
-		return customerOrder;
-	}
-	public void setCustomerOrder(CustomerOrder customerOrder) {
-		this.customerOrder = customerOrder;
-	}
+//	public CustomerOrder getCustomerOrder() {
+//		return customerOrder;
+//	}
+//	public void setCustomerOrder(CustomerOrder customerOrder) {
+//		this.customerOrder = customerOrder;
+//	}
 	public SalesPart getSalesPart() {
 		return salesPart;
 	}

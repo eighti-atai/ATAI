@@ -15,6 +15,7 @@ public class CustomerOrderLineKey implements Serializable {
 	public String getCustomerOrderId() {
 		return customerOrderId;
 	}
+	
 	public void setCustomerOrderId(String customerOrderId) {
 		this.customerOrderId = customerOrderId;
 	}

@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -34,7 +35,7 @@ public class CustomerOrderLine implements Model<CustomerOrderLineKey>{
 	@Column(name = "objid")
 	private String objid;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_order_id", referencedColumnName = "customer_order_id", insertable = false, updatable = false)
 	private CustomerOrder customerOrder;
 	
@@ -47,6 +48,12 @@ public class CustomerOrderLine implements Model<CustomerOrderLineKey>{
 	@JoinColumn(name = "sales_part_id", referencedColumnName = "sales_part_id", insertable = false, updatable = false)})
 	private SalesPartPrice salePartPrice;*/
 	
+	public CustomerOrder getCustomerOrder() {
+		return customerOrder;
+	}
+	public void setCustomerOrder(CustomerOrder customerOrder) {
+		this.customerOrder = customerOrder;
+	}
 	public CustomerOrderLineKey getId() {
 		return id;
 	}

@@ -47,6 +47,8 @@ public class CustomerOrderLineController extends AbstractController<CustomerOrde
 	@PostMapping(value = url)
 	public ResponseEntity<Void> add(@RequestBody CustomerOrderLine object) {
 		// TODO Auto-generated method stub
+		object.getCustomerOrder().setObjid(object.getCustomerOrder().toString());
+		object.getCustomerOrder().setUserId(1);
 		return super.add(object);
 	}
 

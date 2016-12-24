@@ -42,6 +42,7 @@
 		<a href = "${contextPath}/customers"> Customer</a>
 		<a href = "${contextPath}/payments"> Payment</a>
 		<a href = "${contextPath}/customerorders"> Customer Order Head</a>
+		<a href = "${contextPath}/CustomerOrderLines"> Customer Order Lines</a>
     </c:if>
 
 </div>

@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `sales_part_price_tab` (
   customer_order_id VARCHAR(20) NOT NULL,
   co_line_no INT(5) NOT NULL,
   sales_qty INT(10) NOT NULL,
-  discount DECIMAL(2,2),
+  discount DECIMAL(10,2),
   amount DECIMAL(10,2) NOT NULL,
   sales_part_id VARCHAR(10),
   sales_part_price_no INT(11),

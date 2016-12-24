@@ -38,14 +38,14 @@ public class CustomerOrderLine implements Model<CustomerOrderLineKey>{
 	@JoinColumn(name = "customer_order_id", referencedColumnName = "customer_order_id", insertable = false, updatable = false)
 	private CustomerOrder customerOrder;
 	
-	@OneToOne
+	/*@OneToOne
 	@JoinColumn(name = "sales_part_id", referencedColumnName = "sales_part_id", insertable = false, updatable = false)
 	private SalesPart salesPart;
 	
 	@OneToOne
 	@JoinColumns({
 	@JoinColumn(name = "sales_part_id", referencedColumnName = "sales_part_id", insertable = false, updatable = false)})
-	private SalesPartPrice salePartPrice;
+	private SalesPartPrice salePartPrice;*/
 	
 	public CustomerOrderLineKey getId() {
 		return id;
@@ -95,7 +95,7 @@ public class CustomerOrderLine implements Model<CustomerOrderLineKey>{
 //	public void setCustomerOrder(CustomerOrder customerOrder) {
 //		this.customerOrder = customerOrder;
 //	}
-	public SalesPart getSalesPart() {
+	/*public SalesPart getSalesPart() {
 		return salesPart;
 	}
 	public void setSalesPart(SalesPart salesPart) {
@@ -106,6 +106,6 @@ public class CustomerOrderLine implements Model<CustomerOrderLineKey>{
 	}
 	public void setSalePartPrice(SalesPartPrice salePartPrice) {
 		this.salePartPrice = salePartPrice;
-	}
+	}*/
 
 }

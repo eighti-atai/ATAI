@@ -1,6 +1,7 @@
 package com.atai.unter.generic.dao;
 
 import java.io.Serializable;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -41,6 +42,27 @@ public class AbstractDao<PK extends Serializable, T> {
  
     public void persist(Object entity){
     	Method method;
+    	Class<?> c = entity.getClass();
+    	Method[] methods;
+    	Annotation annotation;
+    	Field[] fields = c.getDeclaredFields();
+    	String attribute;
+    	for (Field fld: fields)
+    	{
+    		annotation = fld.getAnnotation(javax.persistence.ManyToOne.class); 
+    		if(annotation != null)
+    		{
+    			methods = annotation.annotationType().getDeclaredMethods();
+    			for (Method mtd: methods)
+    			{
+    				attribute = mtd.getName();
+    				if (attribute == "cascade")
+    				{
+    					
+    				}
+    			}
+    		}
+    	}
     	try{
 	    	method = entity.getClass().getMethod("setObjid", String.class);
 	    	method.invoke(entity, entity.toString());

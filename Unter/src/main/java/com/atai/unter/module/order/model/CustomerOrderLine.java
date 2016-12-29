@@ -35,7 +35,7 @@ public class CustomerOrderLine implements Model<CustomerOrderLineKey>{
 	@Column(name = "objid")
 	private String objid;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_order_id", referencedColumnName = "customer_order_id", insertable = false, updatable = false)
 	private CustomerOrder customerOrder;
 	

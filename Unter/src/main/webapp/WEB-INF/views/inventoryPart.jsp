@@ -158,9 +158,9 @@
                       
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="uom">UoM</label>
+                              <label class="col-md-2 control-lable" for="uomId">UoM</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Record.uom" id="uom" class="uom form-control input-sm" placeholder="Enter Location Type."/>
+                                  <input type="text" ng-model="ctrl.Record.uomId" id="uomId" class="uomId form-control input-sm" placeholder="Enter Location Type."/>
                               </div>
                           </div>
                       </div>
@@ -198,15 +198,15 @@
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.id.siteId"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.id.invPartNo"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.description"></span></td>
-                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.uom"></span></td>
-                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.reorder_level"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.uomId"></span></td>
+                              <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.reorderLevel"></span></td>
                               <td ng-if="!ctrl.change(u.objid)"><span ng-bind="u.safetyStockLevel"></span></td>
                                                                                           
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.id.siteId"style="width: 100%"/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.id.invPartNo" style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.description"style="width: 100%""/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.uom"style="width: 100%"/></td>
-                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.reorder_level" style="width: 100%""/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.uomId"style="width: 100%"/></td>
+                              <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model="u.reorderLevel" style="width: 100%""/></td>
                               <td ng-if="ctrl.change(u.objid)"><input type="text" ng-model=u.safetyStockLevelstyle="width: 100%""/></td>
                               <!-- <td ng-if="ctrl.change(u.objid)"><input type="hidden" ng-model="u.objid" style="width: 80px;"/></td> -->
                               <td>

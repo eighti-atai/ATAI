@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,12 +51,13 @@ public class InventoryPartController {
 	//public String addInventoryPart(@ModelAttribute("addInventoryPart") InventoryPart inventoryPart,
 	//								BindingResult result, Model model)
 	@PostMapping(value="/InventoryPart")
-	public ResponseEntity<Void> addInventoryPart(@RequestBody InventoryPart invPart, BindingResult result)
+	public ResponseEntity</*Void*/?> addInventoryPart(@RequestBody InventoryPart invPart, BindingResult result)
 	{
 		inventoryPartValidator.validate(invPart, result);
 		if(result.hasErrors())
 		{
 			System.out.println("Has errors");
+			return new ResponseEntity<ObjectError>(result.getGlobalError(), HttpStatus.CONFLICT);
 		}
 		else
 		{

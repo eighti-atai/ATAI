@@ -45,7 +45,7 @@ public class InventoryPartDaoImpl extends AbstractDao<InventoryPartKey, Inventor
 
 	public InventoryPart getInventoryPartById(InventoryPartKey invPartId) {
 		Session session = sessionFactory.getCurrentSession();
-		InventoryPart invPart = session.load(InventoryPart.class, invPartId);
+		InventoryPart invPart = session.get(InventoryPart.class, invPartId);
 		return invPart;
 	}
 

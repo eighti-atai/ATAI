@@ -27,9 +27,10 @@ public class InventoryPart {
 	@JoinColumn(name = "site_id", referencedColumnName = "site_id", insertable = false, updatable = false)
 	private Site site;
 
+	/*
 	@ManyToOne
 	@JoinColumn(name="uom_id", referencedColumnName="uom_id", insertable=false, updatable=false)
-	private UoM uoM;
+	private UoM uoM;*/
 	
 	@Column(name="reorder_level")
 	private double reorderLevel;
@@ -68,7 +69,7 @@ public class InventoryPart {
 		this.objid = objid;
 	}
 	public InventoryPartKey getId() {
-		return id;
+		return this.id;
 	}
 	public void setId(InventoryPartKey id) {
 		this.id = id;
@@ -85,12 +86,13 @@ public class InventoryPart {
 	public void setSite(Site site) {
 		this.site = site;
 	}
-	public UoM getUoM() {
+	
+	/*public UoM getUoM() {
 		return uoM;
 	}
 	public void setUoM(UoM uoM) {
 		this.uoM = uoM;
-	}
+	}*/
 	public boolean isNew()
 	{
 		return (this.objid== null);

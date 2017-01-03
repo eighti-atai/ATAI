@@ -3,17 +3,28 @@ package com.atai.unter.generic.dao;
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.atai.unter.generic.service.AbstractService;
+import com.atai.unter.module.order.controller.CustomerOrderController;
+import com.atai.unter.module.order.service.CustomerOrderService;
 
 
 public class AbstractDao<PK extends Serializable, T> {
@@ -27,6 +38,8 @@ public class AbstractDao<PK extends Serializable, T> {
      
     @Autowired
     private SessionFactory sessionFactory;
+    @Autowired
+    ApplicationContext act;
  
     protected Session getSession(){
         return sessionFactory.getCurrentSession();
@@ -47,21 +60,79 @@ public class AbstractDao<PK extends Serializable, T> {
     	Annotation annotation;
     	Field[] fields = c.getDeclaredFields();
     	String attribute;
+    	char[] fieldNameArray;
+    	Object embeddedEntity;
+    	Class<?> embeddedClass = null;
     	for (Field fld: fields)
     	{
-    		annotation = fld.getAnnotation(javax.persistence.ManyToOne.class); 
-    		if(annotation != null)
-    		{
-    			methods = annotation.annotationType().getDeclaredMethods();
-    			for (Method mtd: methods)
-    			{
-    				attribute = mtd.getName();
-    				if (attribute == "cascade")
-    				{
-    					
-    				}
-    			}
-    		}
+    		try {
+    			fld.setAccessible(true);
+				if (fld.get(entity) != null)
+				{
+					annotation = fld.getAnnotation(javax.persistence.ManyToOne.class);
+					if(annotation != null)
+		    		{
+		    			methods = annotation.annotationType().getDeclaredMethods();
+		    			for (Method mtd: methods)
+		    			{
+		    				attribute = mtd.getName();
+		    				if (attribute == "cascade")
+		    				{
+		    					try {
+									 CascadeType[] value =  (CascadeType[])mtd.invoke(annotation);
+									 System.out.println("value of the annotation is :  "+value);
+									 for (CascadeType cType: value)
+									 {
+										System.out.println("value of the annotation is : "+cType.name());
+										if((cType.name() == "ALL" || cType.name() == "PERSIST"))
+										{
+											fieldNameArray = fld.getName().toCharArray();
+											fieldNameArray[0] = Character.toUpperCase(fieldNameArray[0]);
+											try {
+												method = entity.getClass().getMethod("get"+(new String(fieldNameArray)));
+												embeddedEntity = method.invoke(entity);
+												method = entity.getClass().getMethod("set"+(new String(fieldNameArray)));
+												method.invoke(entity, null);
+												try {
+													embeddedClass = Class.forName(embeddedEntity.getClass().getPackage().getName().replace("model", "service.") + embeddedEntity.getClass().getSimpleName()+"Service");
+												} catch (ClassNotFoundException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+												Object service = act.getBean(embeddedClass);
+												embeddedClass.getMethod("persist", Object.class).invoke(service, embeddedEntity);
+											} catch (NoSuchMethodException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											} catch (SecurityException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
+											break;
+										}
+									 }
+								} catch (IllegalAccessException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (IllegalArgumentException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (InvocationTargetException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+		    				}
+		    			}
+		    		}
+	    		}
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IllegalAccessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+    		
     	}
     	try{
 	    	method = entity.getClass().getMethod("setObjid", String.class);
@@ -71,9 +142,48 @@ public class AbstractDao<PK extends Serializable, T> {
     	{
     		e.printStackTrace();
     	}
-        getSession().persist(entity);
+    	// checking the @Id or @EmbeddedId columns are empty and proceeding if not null
+    	if(isPrimitive(c))
+		{
+    		getSession().persist(entity);
+		}
+    	else
+    	{
+    		for (Field fld: fields)
+        	{
+    			fld.setAccessible(true);
+    			if(fld.getAnnotation(javax.persistence.EmbeddedId.class) != null || fld.getAnnotation(javax.persistence.Id.class) != null)
+	    		{
+					
+	    		}
+        	}
+    	}
     }
  
+    public boolean isKeyNull(Object entity, Field fld) throws IllegalArgumentException, IllegalAccessException
+    {
+    	if(isPrimitive(fld.getClass()))
+		{
+			if(fld.get(entity) == null)
+				return false;
+		}
+    	else
+    	{
+    		
+    	}
+    	return true;
+    }
+    
+    
+    public boolean isPrimitive(Class<?> c)
+    {
+    	if(c.isPrimitive() || (c.getTypeName() == "java.lang.String") || (c.getTypeName() == "java.math.BigDecimal") || (c.getTypeName() == "java.util.Date"))
+		{
+    		return true;
+		}
+    	return false;
+    }
+    
     public void update(T entity) {
 		getSession().update(entity);
 

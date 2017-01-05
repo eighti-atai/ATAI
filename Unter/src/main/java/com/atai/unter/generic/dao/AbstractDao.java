@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -91,8 +92,9 @@ public class AbstractDao<PK extends Serializable, T> {
 											try {
 												method = entity.getClass().getMethod("get"+(new String(fieldNameArray)));
 												embeddedEntity = method.invoke(entity);
-												method = entity.getClass().getMethod("set"+(new String(fieldNameArray)));
-												method.invoke(entity, null);
+												//method = entity.getClass().getMethod("set"+(new String(fieldNameArray)));
+												fld.set(entity, null);
+												//method.invoke(entity, null);
 												try {
 													embeddedClass = Class.forName(embeddedEntity.getClass().getPackage().getName().replace("model", "service.") + embeddedEntity.getClass().getSimpleName()+"Service");
 												} catch (ClassNotFoundException e) {
@@ -143,37 +145,83 @@ public class AbstractDao<PK extends Serializable, T> {
     		e.printStackTrace();
     	}
     	// checking the @Id or @EmbeddedId columns are empty and proceeding if not null
-    	if(isPrimitive(c))
-		{
-    		getSession().persist(entity);
+    	try {
+			if (!isKeyNull(entity))
+				getSession().persist(entity);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-    	else
-    	{
-    		for (Field fld: fields)
-        	{
-    			fld.setAccessible(true);
-    			if(fld.getAnnotation(javax.persistence.EmbeddedId.class) != null || fld.getAnnotation(javax.persistence.Id.class) != null)
-	    		{
-					
-	    		}
-        	}
-    	}
+		
     }
  
-    public boolean isKeyNull(Object entity, Field fld) throws IllegalArgumentException, IllegalAccessException
+    public boolean isKeyNull(Object entity) throws IllegalArgumentException, IllegalAccessException, NoSuchMethodException, SecurityException, InvocationTargetException
     {
-    	if(isPrimitive(fld.getClass()))
-		{
-			if(fld.get(entity) == null)
-				return false;
-		}
-    	else
+    	String fieldName;
+    	char[] fieldNameArray;
+    	Method method;
+    	List<Field> fields = getKeyField(entity);
+    	for (Field fld : fields)
     	{
-    		
+	    	if(isPrimitive(fld.getClass()))
+			{
+				if(fld.get(entity) == null)
+					return true;
+			}
+	    	else
+	    	{
+	    		fieldName = fld.getName();
+				fieldNameArray = fld.getName().toCharArray();
+				fieldNameArray[0] = Character.toUpperCase(fieldNameArray[0]);
+				method = entity.getClass().getMethod("get"+(new String(fieldNameArray)));
+				isKeyNull(method.invoke(entity));
+	    	}
     	}
-    	return true;
+    	return false;
     }
     
+    
+    private List<Field> getKeyField(Object entity)
+    {
+    	Field[] fields = entity.getClass().getDeclaredFields();
+    	List<Field> keyField = new ArrayList<Field>();
+    	boolean isEmbeddedClass = false;
+    	int index = 0;
+    	if (entity.getClass().getAnnotation(javax.persistence.Embeddable.class) != null)
+    	{
+    		isEmbeddedClass = true;
+    	}
+    	for (Field fld : fields)
+    	{
+    		fld.setAccessible(true);
+			if(fld.getAnnotation(javax.persistence.EmbeddedId.class) != null || fld.getAnnotation(javax.persistence.Id.class) != null)
+    		{
+				if (!isEmbeddedClass)
+				{
+					keyField.add(fld);
+					break;
+				}
+				else
+				{
+					keyField.add(fld);
+					index++;
+				}
+    		}
+    	}
+    	return keyField;
+    }
     
     public boolean isPrimitive(Class<?> c)
     {
@@ -250,7 +298,7 @@ public class AbstractDao<PK extends Serializable, T> {
 		{ 
 			Class<?> c = field.getType();
 			
-			if(c.isPrimitive() || (c.getTypeName() == "java.lang.String") || (c.getTypeName() == "java.math.BigDecimal") || (c.getTypeName() == "java.util.Date"))
+			if(isPrimitive(c))
 			{
 				fieldName = field.getName();
 				fieldValue = field.get(entity).toString();

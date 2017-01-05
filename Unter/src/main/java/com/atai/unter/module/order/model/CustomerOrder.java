@@ -38,9 +38,9 @@ public class CustomerOrder implements Model<String>{
 	private int userId;
 	private String objid;
 	
-	@OneToOne(mappedBy = "customerOrder")
-	private CustomerOrderLine customerOrderLine;
-	//private List<CustomerOrderLine> customerOrderLine;
+	@OneToMany(mappedBy = "customerOrder")
+	private List<CustomerOrderLine> customerOrderLine;
+	//private CustomerOrderLine customerOrderLine;
 	
 	public String getObjid() {
 		return objid;

@@ -163,11 +163,14 @@ public class AbstractDao<PK extends Serializable, T> {
 		} catch (InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
     }
  
-    public boolean isKeyNull(Object entity) throws IllegalArgumentException, IllegalAccessException, NoSuchMethodException, SecurityException, InvocationTargetException
+    public boolean isKeyNull(Object entity) throws Exception
     {
     	String fieldName;
     	char[] fieldNameArray;
@@ -175,9 +178,9 @@ public class AbstractDao<PK extends Serializable, T> {
     	List<Field> fields = getKeyField(entity);
     	for (Field fld : fields)
     	{
-	    	if(isPrimitive(fld.getClass()))
+	    	if(isPrimitive(fld.getType()))
 			{
-				if(fld.get(entity) == null)
+				if(checkIfNull(entity, fld))
 					return true;
 			}
 	    	else
